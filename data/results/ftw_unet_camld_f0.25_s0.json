@@ -1,0 +1,11 @@
+{
+  "cambodia": {
+    "unet_true_auroc": 0.9423,
+    "unet_true_f1": 0.8922,
+    "n_eval": 14400,
+    "frac": 0.25,
+    "seed": 0,
+    "n_train_chips": 27,
+    "params_M": 31.05
+  }
+}

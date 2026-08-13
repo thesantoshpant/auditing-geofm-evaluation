@@ -1,0 +1,62 @@
+{
+  "country": "netherlands",
+  "n_pixels": 273657,
+  "chip_overlap": 0,
+  "n_train_chips": 522,
+  "n_test_chips": 175,
+  "true_pos_rate": 0.491,
+  "proxy_pos_rate": 0.437,
+  "seed": 20260514,
+  "models": {
+    "clay_v1": {
+      "true": {
+        "auroc": 0.498,
+        "f1": 0.486
+      },
+      "proxy": {
+        "auroc": 0.583,
+        "f1": 0.523
+      }
+    },
+    "prithvi_eo_2_0_300m": {
+      "true": {
+        "auroc": 0.955,
+        "f1": 0.889
+      },
+      "proxy": {
+        "auroc": 0.901,
+        "f1": 0.802
+      }
+    },
+    "terramind_v1_base": {
+      "true": {
+        "auroc": 0.943,
+        "f1": 0.868
+      },
+      "proxy": {
+        "auroc": 0.901,
+        "f1": 0.801
+      }
+    },
+    "anysat_dense": {
+      "true": {
+        "auroc": 0.961,
+        "f1": 0.891
+      },
+      "proxy": {
+        "auroc": 0.945,
+        "f1": 0.863
+      }
+    },
+    "rf_spectral": {
+      "true": {
+        "auroc": 0.815,
+        "f1": 0.756
+      },
+      "proxy": {
+        "auroc": 0.928,
+        "f1": 0.84
+      }
+    }
+  }
+}

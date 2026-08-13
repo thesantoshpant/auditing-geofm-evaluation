@@ -1,0 +1,11 @@
+{
+  "cambodia": {
+    "ft_true_auroc": 0.9484,
+    "ft_true_f1": 0.9225,
+    "n_eval": 14400,
+    "frac": 1.0,
+    "seed": 1,
+    "freeze": "none",
+    "n_train_chips": 107
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "vietnam": {
+    "train_country": "vietnam",
+    "eval_country": "vietnam",
+    "ft_true_auroc": 0.9517,
+    "ft_true_ap": 0.9226,
+    "ft_true_f1": 0.906,
+    "ft_true_iou": 0.8282,
+    "n_eval": 28800,
+    "frac": 1.0,
+    "seed": 6,
+    "freeze": "backbone"
+  }
+}

@@ -1,0 +1,200 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "dct": "http://purl.org/dc/terms/",
+    "sc": "https://schema.org/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "field": "cr:field",
+    "fileObject": "cr:fileObject",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "recordSet": "cr:recordSet",
+    "source": "cr:source"
+  },
+  "@type": "sc:Dataset",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "name": "Auditing GeoFM Evaluation for Field-Extent Segmentation",
+  "description": "Artifact for a TMLR evaluation audit of geospatial foundation models on single-date Sentinel-2 field-extent segmentation. It contains 300 run-level files from a ten-seed grid, derived metrics, and controls for label choice, baseline strength, adaptation, transfer, training budget, and sparse-positive behavior. Frozen-decoder and full fine-tuning are TOST-equivalent in 9 of 12 in-region cells at an equivalence margin of 0.02 AUROC. The confirmatory cross-region analysis covers all 30 directed transfers; a non-Kenya subset is explicitly exploratory. Raw imagery and polygons are not redistributed.",
+  "version": "1.0.0",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://github.com/thesantoshpant/auditing-geofm-evaluation",
+  "citation": "Santosh Pant. Auditing GeoFM Evaluation for Field-Extent Segmentation: Label Proxies, Baselines, and When Frozen Features Match Fine-tuning. Transactions on Machine Learning Research, 2026. https://openreview.net/forum?id=qRXVTe1yYp",
+  "creator": {
+    "@type": "sc:Person",
+    "name": "Santosh Pant",
+    "email": "pantsantosh23@gmail.com",
+    "affiliation": "Knox College"
+  },
+  "datePublished": "2026-08-13",
+  "dateModified": "2026-08-13",
+  "keywords": [
+    "geospatial foundation models",
+    "evaluation",
+    "field-extent segmentation",
+    "Sentinel-2",
+    "Fields of The World",
+    "frozen features",
+    "fine-tuning"
+  ],
+  "rai:dataCollection": "Derived metrics computed from public Sentinel-2 L2A scenes (Copernicus/Google Earth Engine), ESA WorldCover 10m v200, and Fields of The World (FTW) field-boundary polygons, across six countries (India, Cambodia, Vietnam, Kenya, France, Netherlands). No new imagery or labels were collected; we compute evaluation metrics over existing public sources.",
+  "rai:dataCollectionType": "Derived/secondary analysis of existing public datasets.",
+  "rai:dataBiases": "Geographic coverage is limited to six FTW countries and to single-date Sentinel-2; results may not generalize to other sensors, dates, or regions. FTW provides partial field annotation. A three-region sensitivity analysis restricts negatives to high-confidence non-cropland pixels: Prithvi AUROC changes little, while the random forest and resulting model gap can change substantially. Kenya has extreme label sparsity (about 0.1% positive pixels) and is a documented failure regime.",
+  "rai:dataLimitations": "Metrics are for field-extent (inside-vs-outside polygon) membership from single-date S2; they do not cover boundary delineation, instance separation, crop-type classification, multi-temporal tasks, or other modalities. Four GeoFMs are evaluated directly (Clay, Prithvi-EO-2.0, TerraMind, AnySat); broader coverage is cited via the PANGAEA benchmark. The released artifact contains numeric metrics and code, not the underlying imagery.",
+  "rai:dataUseCases": "Intended for auditing GeoFM evaluation practices, reproducing the paper's controlled comparisons, and studying frozen-feature versus fine-tuning choices for field-extent segmentation. It is not intended for land-tenure, taxation, subsidy, regulatory, or enforcement decisions.",
+  "rai:personalSensitiveInformation": "None. The artifact contains aggregate evaluation metrics and code over public Earth-observation data; it includes no personal or sensitive information. Field boundaries derive from the public FTW dataset.",
+  "rai:dataSocialImpact": "The work can improve evaluation of Earth-observation models used in agricultural planning and monitoring. Field maps can also support surveillance, regulatory enforcement, asset valuation, or automated decisions that harm smallholder farmers. Results should be validated with local labels before consequential use.",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "repo",
+      "name": "code-repository",
+      "description": "Code, controlled-evaluation apparatus, and reproduction commands.",
+      "contentUrl": "https://github.com/thesantoshpant/auditing-geofm-evaluation",
+      "encodingFormat": "git+https"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "master-results",
+      "name": "ftw_master_results.json",
+      "description": "Per-region summary used for the controlled label/baseline audit: RF true/proxy labels, U-Net, Prithvi full fine-tuning, and frozen-probe entries.",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "contentUrl": "data/results/ftw_master_results.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "headline-inregion",
+      "name": "ftw_inregion_equivalence.json",
+      "description": "Headline 10-seed in-region seed-paired TOST analysis for frozen-decoder vs full fine-tuning across 12 region x model cells; 9/12 equivalent at epsilon=0.02 AUROC.",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "contentUrl": "data/results/ftw_inregion_equivalence.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "headline-transfer",
+      "name": "ftw_cross_region_transfer.json",
+      "description": "Headline full 30 directed cross-region transfer matrix and seed-paired deltas for U-Net, Prithvi frozen-decoder/full-FT, and TerraMind frozen-decoder/full-FT.",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "contentUrl": "data/results/ftw_cross_region_transfer.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "headline-summary",
+      "name": "ftw_headline_summary.txt",
+      "description": "Human-readable summary of the headline in-region and cross-region numbers generated by scripts/integrate_headline_results.py.",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "contentUrl": "data/results/ftw_headline_summary.txt",
+      "encodingFormat": "text/plain"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "headline-integrator",
+      "name": "scripts/integrate_headline_results.py",
+      "description": "Canonical script that reads the 300 raw headline-grid JSONs and writes ftw_inregion_equivalence.json, ftw_cross_region_transfer.json, and ftw_headline_summary.txt.",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "contentUrl": "scripts/integrate_headline_results.py",
+      "encodingFormat": "text/x-python"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "transfer-metrics",
+      "name": "ftw_xfer_metrics.json",
+      "description": "AUROC, average precision, and IoU summaries for the full 30-transfer matrix and exploratory non-Kenya 20-transfer subset.",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "contentUrl": "data/results/ftw_xfer_metrics.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "margin-sensitivity",
+      "name": "ftw_eps_sweep.json",
+      "description": "Sensitivity of the paired in-region equivalence verdict to AUROC margins from 0.005 through 0.030.",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "contentUrl": "data/results/ftw_eps_sweep.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "epoch-sensitivity",
+      "name": "ftw_unet_epoch_sensitivity.json",
+      "description": "Descriptive 80-epoch U-Net control alongside the primary 150-epoch U-Net means.",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "contentUrl": "data/results/ftw_unet_epoch_sensitivity.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "regional-regime",
+      "name": "ftw_regional_regime.json",
+      "description": "Six-region descriptive regime summary and Cambodia low-data control.",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "contentUrl": "data/results/ftw_regional_regime.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "convergence-diagnostic",
+      "name": "ftw_convergence_diagnostic.json",
+      "description": "Post-hoc seed-0 Prithvi test-set trajectories through 150 epochs for Vietnam and Kenya.",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "contentUrl": "data/results/ftw_convergence_diagnostic.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "environment",
+      "name": "environment.json",
+      "description": "Captured runtime environment for the headline grid: Python/torch/terratorch/timm/claymodel versions plus AnySat torch.hub cache state. Source of truth for reproducibility; pyproject.toml specifies looser ranges.",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "contentUrl": "data/results/environment.json",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "historical-archive",
+      "name": "historical_iterations",
+      "description": "Archived pilot-run aggregates and earlier analysis helpers retained for traceability; these files are not used by the main text.",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "contentUrl": "data/results/archive/historical_iterations/",
+      "encodingFormat": "inode/directory"
+    }
+  ],
+  "recordSet": [],
+  "_recordSet_note": "The result JSON files use nested, analysis-specific schemas rather than one flat tabular schema. FileObject entries provide machine-readable paths to the principal artifacts; downstream consumers should load them with a JSON parser."
+}

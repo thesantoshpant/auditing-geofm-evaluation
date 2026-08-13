@@ -1,0 +1,6 @@
+{
+  "n_pairs": 12,
+  "mean_diff_prithvi_minus_unet": 0.0647,
+  "wilcoxon_greater_p": 0.00024,
+  "all_positive": true
+}

@@ -1,0 +1,20 @@
+{
+  "india": {
+    "unet_true_auroc": 0.623,
+    "unet_true_f1": 0.469,
+    "n_eval": 54362,
+    "n_train_chips": 525,
+    "params_M": 0.14,
+    "perpix_rf_true": 0.574,
+    "best_fm_true": 0.983
+  },
+  "vietnam": {
+    "unet_true_auroc": 0.678,
+    "unet_true_f1": 0.665,
+    "n_eval": 28800,
+    "n_train_chips": 213,
+    "params_M": 0.14,
+    "perpix_rf_true": 0.643,
+    "best_fm_true": 0.929
+  }
+}

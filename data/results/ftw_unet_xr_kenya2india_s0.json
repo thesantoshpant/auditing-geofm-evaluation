@@ -1,0 +1,11 @@
+{
+  "kenya": {
+    "train_country": "kenya",
+    "eval_country": "india",
+    "unet_true_auroc": 0.7831,
+    "unet_true_f1": 0.0878,
+    "n_eval": 54362,
+    "frac": 1.0,
+    "seed": 0
+  }
+}

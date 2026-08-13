@@ -1,0 +1,12 @@
+{
+  "france": {
+    "train_country": "france",
+    "eval_country": "india",
+    "ft_true_auroc": 0.8711,
+    "ft_true_f1": 0.5854,
+    "n_eval": 54362,
+    "frac": 1.0,
+    "seed": 1,
+    "freeze": "none"
+  }
+}

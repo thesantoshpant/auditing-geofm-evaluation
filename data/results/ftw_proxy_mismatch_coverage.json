@@ -1,0 +1,32 @@
+{
+  "india": {
+    "n_chips": 250,
+    "true_field_coverage": 0.003,
+    "wc_cropland_frac": 0.68,
+    "trueneg_that_are_wc_cropland": 0.68
+  },
+  "kenya": {
+    "n_chips": 209,
+    "true_field_coverage": 0.001,
+    "wc_cropland_frac": 0.361,
+    "trueneg_that_are_wc_cropland": 0.361
+  },
+  "vietnam": {
+    "n_chips": 250,
+    "true_field_coverage": 0.178,
+    "wc_cropland_frac": 0.704,
+    "trueneg_that_are_wc_cropland": 0.655
+  },
+  "france": {
+    "n_chips": 250,
+    "true_field_coverage": 0.111,
+    "wc_cropland_frac": 0.656,
+    "trueneg_that_are_wc_cropland": 0.615
+  },
+  "netherlands": {
+    "n_chips": 250,
+    "true_field_coverage": 0.046,
+    "wc_cropland_frac": 0.22,
+    "trueneg_that_are_wc_cropland": 0.195
+  }
+}

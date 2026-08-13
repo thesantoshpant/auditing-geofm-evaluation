@@ -1,0 +1,293 @@
+{
+  "method": "Descriptive epoch-budget sensitivity. The 80-epoch control uses seeds 0--2; the primary 150-epoch baseline uses seeds 0--9. Differences are differences of means, not seed-paired estimates.",
+  "regions": {
+    "india": {
+      "epochs_80": {
+        "n_seeds": 3,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "auroc_values": [
+          0.9191,
+          0.8856,
+          0.9289
+        ],
+        "mean_auroc": 0.9112,
+        "sample_std_auroc": 0.0227
+      },
+      "epochs_150": {
+        "n_seeds": 10,
+        "seeds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "auroc_values": [
+          0.9057,
+          0.9322,
+          0.9628,
+          0.9193,
+          0.9617,
+          0.91,
+          0.9606,
+          0.9621,
+          0.9387,
+          0.9589
+        ],
+        "mean_auroc": 0.9412,
+        "sample_std_auroc": 0.0231
+      },
+      "mean_delta_80_minus_150": -0.03,
+      "within_0_01_auroc": false
+    },
+    "cambodia": {
+      "epochs_80": {
+        "n_seeds": 3,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "auroc_values": [
+          0.9459,
+          0.9469,
+          0.9482
+        ],
+        "mean_auroc": 0.947,
+        "sample_std_auroc": 0.0012
+      },
+      "epochs_150": {
+        "n_seeds": 10,
+        "seeds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "auroc_values": [
+          0.9482,
+          0.9496,
+          0.9476,
+          0.95,
+          0.9431,
+          0.9482,
+          0.9497,
+          0.9475,
+          0.9471,
+          0.949
+        ],
+        "mean_auroc": 0.948,
+        "sample_std_auroc": 0.002
+      },
+      "mean_delta_80_minus_150": -0.001,
+      "within_0_01_auroc": true
+    },
+    "vietnam": {
+      "epochs_80": {
+        "n_seeds": 3,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "auroc_values": [
+          0.9543,
+          0.9553,
+          0.9547
+        ],
+        "mean_auroc": 0.9548,
+        "sample_std_auroc": 0.0005
+      },
+      "epochs_150": {
+        "n_seeds": 10,
+        "seeds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "auroc_values": [
+          0.9633,
+          0.9628,
+          0.968,
+          0.958,
+          0.9627,
+          0.9691,
+          0.9575,
+          0.967,
+          0.9672,
+          0.9606
+        ],
+        "mean_auroc": 0.9636,
+        "sample_std_auroc": 0.0041
+      },
+      "mean_delta_80_minus_150": -0.0089,
+      "within_0_01_auroc": true
+    },
+    "kenya": {
+      "epochs_80": {
+        "n_seeds": 3,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "auroc_values": [
+          0.8916,
+          0.8839,
+          0.8909
+        ],
+        "mean_auroc": 0.8888,
+        "sample_std_auroc": 0.0043
+      },
+      "epochs_150": {
+        "n_seeds": 10,
+        "seeds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "auroc_values": [
+          0.8934,
+          0.8876,
+          0.9004,
+          0.8929,
+          0.8908,
+          0.8755,
+          0.9024,
+          0.8782,
+          0.892,
+          0.8951
+        ],
+        "mean_auroc": 0.8908,
+        "sample_std_auroc": 0.0086
+      },
+      "mean_delta_80_minus_150": -0.002,
+      "within_0_01_auroc": true
+    },
+    "france": {
+      "epochs_80": {
+        "n_seeds": 3,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "auroc_values": [
+          0.9757,
+          0.977,
+          0.976
+        ],
+        "mean_auroc": 0.9762,
+        "sample_std_auroc": 0.0007
+      },
+      "epochs_150": {
+        "n_seeds": 10,
+        "seeds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "auroc_values": [
+          0.9772,
+          0.9772,
+          0.9779,
+          0.9775,
+          0.9774,
+          0.9773,
+          0.9771,
+          0.9775,
+          0.9777,
+          0.9777
+        ],
+        "mean_auroc": 0.9774,
+        "sample_std_auroc": 0.0003
+      },
+      "mean_delta_80_minus_150": -0.0012,
+      "within_0_01_auroc": true
+    },
+    "netherlands": {
+      "epochs_80": {
+        "n_seeds": 3,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "auroc_values": [
+          0.9838,
+          0.9831,
+          0.9782
+        ],
+        "mean_auroc": 0.9817,
+        "sample_std_auroc": 0.0031
+      },
+      "epochs_150": {
+        "n_seeds": 10,
+        "seeds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "auroc_values": [
+          0.981,
+          0.9833,
+          0.9832,
+          0.9834,
+          0.979,
+          0.9774,
+          0.9822,
+          0.9787,
+          0.9821,
+          0.9834
+        ],
+        "mean_auroc": 0.9814,
+        "sample_std_auroc": 0.0022
+      },
+      "mean_delta_80_minus_150": 0.0003,
+      "within_0_01_auroc": true
+    }
+  }
+}

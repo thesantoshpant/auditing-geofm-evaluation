@@ -1,0 +1,32 @@
+{
+  "india": {
+    "train_country": "india",
+    "eval_country": "india",
+    "ft_true_auroc": 0.9786,
+    "ft_true_f1": 0.4164,
+    "n_eval": 54362,
+    "frac": 1.0,
+    "seed": 2,
+    "freeze": "backbone"
+  },
+  "cambodia": {
+    "train_country": "cambodia",
+    "eval_country": "cambodia",
+    "ft_true_auroc": 0.9425,
+    "ft_true_f1": 0.9082,
+    "n_eval": 14400,
+    "frac": 1.0,
+    "seed": 2,
+    "freeze": "backbone"
+  },
+  "france": {
+    "train_country": "france",
+    "eval_country": "france",
+    "ft_true_auroc": 0.979,
+    "ft_true_f1": 0.909,
+    "n_eval": 70421,
+    "frac": 1.0,
+    "seed": 2,
+    "freeze": "backbone"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "france": {
+    "train_country": "france",
+    "eval_country": "netherlands",
+    "unet_true_auroc": 0.9421,
+    "unet_true_f1": 0.5454,
+    "n_eval": 69433,
+    "frac": 1.0,
+    "seed": 1
+  }
+}

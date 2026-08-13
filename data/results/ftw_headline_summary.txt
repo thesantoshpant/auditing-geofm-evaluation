@@ -1,0 +1,37 @@
+FTW clean single-recipe 10-seed summary
+========================================
+
+In-region TOST: 9 of 12 region x model cells equivalent at epsilon=0.02 AUROC (n=10, df=9).
+  prithvi: 5 of 6
+  terramind: 4 of 6
+
+In-region cells (delta = frozen - full-FT):
+  prithvi   india       frozen=0.9816 fullft=0.9852 delta=-0.0036 CI=[-0.0056,-0.0015] equiv
+  prithvi   cambodia    frozen=0.9471 fullft=0.9489 delta=-0.0018 CI=[-0.0025,-0.0012] equiv
+  prithvi   vietnam     frozen=0.9546 fullft=0.9585 delta=-0.0039 CI=[-0.0045,-0.0032] equiv
+  prithvi   kenya       frozen=0.6535 fullft=0.7709 delta=-0.1174 CI=[-0.1760,-0.0588] not-equiv
+  prithvi   france      frozen=0.9815 fullft=0.9789 delta=+0.0025 CI=[+0.0015,+0.0036] equiv
+  prithvi   netherlands frozen=0.9706 fullft=0.9578 delta=+0.0128 CI=[+0.0078,+0.0179] equiv
+  terramind india       frozen=0.9683 fullft=0.9479 delta=+0.0204 CI=[+0.0052,+0.0356] not-equiv
+  terramind cambodia    frozen=0.9423 fullft=0.9484 delta=-0.0061 CI=[-0.0069,-0.0053] equiv
+  terramind vietnam     frozen=0.9512 fullft=0.9557 delta=-0.0045 CI=[-0.0048,-0.0042] equiv
+  terramind kenya       frozen=0.6133 fullft=0.7104 delta=-0.0972 CI=[-0.1463,-0.0480] not-equiv
+  terramind france      frozen=0.9788 fullft=0.9777 delta=+0.0010 CI=[+0.0001,+0.0019] equiv
+  terramind netherlands frozen=0.9608 fullft=0.9520 delta=+0.0088 CI=[+0.0027,+0.0148] equiv
+
+Cross-region subset means:
+  all30       U-Net=0.8258 Prithvi frozen=0.7671 Prithvi fullFT=0.7802 TerraMind frozen=0.7810 TerraMind fullFT=0.7811
+  nonkenya20  U-Net=0.8423 Prithvi frozen=0.8164 Prithvi fullFT=0.8104 TerraMind frozen=0.8386 TerraMind fullFT=0.8132
+  kenya10     U-Net=0.7929 Prithvi frozen=0.6686 Prithvi fullFT=0.7198 TerraMind frozen=0.6658 TerraMind fullFT=0.7170
+
+Cross-region seed-paired deltas:
+  all30:
+    prithvi_frozen_minus_prithvi_fullft: delta=-0.0131 CI=[-0.0207,-0.0055]
+    terramind_frozen_minus_terramind_fullft: delta=-0.0001 CI=[-0.0128,+0.0125]
+    prithvi_frozen_minus_unet: delta=-0.0587 CI=[-0.0666,-0.0508]
+    terramind_frozen_minus_unet: delta=-0.0448 CI=[-0.0532,-0.0364]
+  nonkenya20:
+    prithvi_frozen_minus_prithvi_fullft: delta=+0.0060 CI=[+0.0008,+0.0112]
+    terramind_frozen_minus_terramind_fullft: delta=+0.0254 CI=[+0.0187,+0.0321]
+    prithvi_frozen_minus_unet: delta=-0.0259 CI=[-0.0332,-0.0186]
+    terramind_frozen_minus_unet: delta=-0.0037 CI=[-0.0126,+0.0053]

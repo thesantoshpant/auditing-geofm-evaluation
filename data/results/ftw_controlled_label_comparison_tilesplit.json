@@ -1,0 +1,62 @@
+{
+  "country": "india",
+  "n_pixels": 213611,
+  "chip_overlap": 0,
+  "n_train_chips": 524,
+  "n_test_chips": 176,
+  "true_pos_rate": 0.353,
+  "proxy_pos_rate": 0.775,
+  "seed": 20260514,
+  "models": {
+    "clay_v1": {
+      "true": {
+        "auroc": 0.598,
+        "f1": 0.444
+      },
+      "proxy": {
+        "auroc": 0.709,
+        "f1": 0.722
+      }
+    },
+    "prithvi_eo_2_0_300m": {
+      "true": {
+        "auroc": 0.984,
+        "f1": 0.919
+      },
+      "proxy": {
+        "auroc": 0.867,
+        "f1": 0.846
+      }
+    },
+    "terramind_v1_base": {
+      "true": {
+        "auroc": 0.969,
+        "f1": 0.876
+      },
+      "proxy": {
+        "auroc": 0.884,
+        "f1": 0.848
+      }
+    },
+    "anysat_dense": {
+      "true": {
+        "auroc": 0.945,
+        "f1": 0.836
+      },
+      "proxy": {
+        "auroc": 0.736,
+        "f1": 0.743
+      }
+    },
+    "rf_spectral": {
+      "true": {
+        "auroc": 0.592,
+        "f1": 0.062
+      },
+      "proxy": {
+        "auroc": 0.771,
+        "f1": 0.876
+      }
+    }
+  }
+}

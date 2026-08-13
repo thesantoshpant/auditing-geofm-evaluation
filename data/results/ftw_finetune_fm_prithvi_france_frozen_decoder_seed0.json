@@ -1,0 +1,74 @@
+{
+  "france->india": {
+    "train_country": "france",
+    "eval_country": "india",
+    "ft_true_auroc": 0.8936,
+    "ft_true_ap": 0.7856,
+    "ft_true_f1": 0.5393,
+    "ft_true_iou": 0.3692,
+    "n_eval": 54362,
+    "frac": 1.0,
+    "seed": 0,
+    "freeze": "backbone"
+  },
+  "france->cambodia": {
+    "train_country": "france",
+    "eval_country": "cambodia",
+    "ft_true_auroc": 0.774,
+    "ft_true_ap": 0.7778,
+    "ft_true_f1": 0.1766,
+    "ft_true_iou": 0.0969,
+    "n_eval": 14400,
+    "frac": 1.0,
+    "seed": 0,
+    "freeze": "backbone"
+  },
+  "france->vietnam": {
+    "train_country": "france",
+    "eval_country": "vietnam",
+    "ft_true_auroc": 0.7517,
+    "ft_true_ap": 0.7668,
+    "ft_true_f1": 0.1104,
+    "ft_true_iou": 0.0584,
+    "n_eval": 28800,
+    "frac": 1.0,
+    "seed": 0,
+    "freeze": "backbone"
+  },
+  "france->kenya": {
+    "train_country": "france",
+    "eval_country": "kenya",
+    "ft_true_auroc": 0.7677,
+    "ft_true_ap": 0.3795,
+    "ft_true_f1": 0.1918,
+    "ft_true_iou": 0.106,
+    "n_eval": 12745,
+    "frac": 1.0,
+    "seed": 0,
+    "freeze": "backbone"
+  },
+  "france": {
+    "train_country": "france",
+    "eval_country": "france",
+    "ft_true_auroc": 0.9813,
+    "ft_true_ap": 0.9714,
+    "ft_true_f1": 0.9184,
+    "ft_true_iou": 0.8491,
+    "n_eval": 70421,
+    "frac": 1.0,
+    "seed": 0,
+    "freeze": "backbone"
+  },
+  "france->netherlands": {
+    "train_country": "france",
+    "eval_country": "netherlands",
+    "ft_true_auroc": 0.9068,
+    "ft_true_ap": 0.9126,
+    "ft_true_f1": 0.5736,
+    "ft_true_iou": 0.4022,
+    "n_eval": 69433,
+    "frac": 1.0,
+    "seed": 0,
+    "freeze": "backbone"
+  }
+}

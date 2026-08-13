@@ -1,0 +1,20 @@
+{
+  "france": {
+    "ft_true_auroc": 0.9769,
+    "ft_true_f1": 0.9222,
+    "n_eval": 70421,
+    "frac": 0.5,
+    "seed": 1,
+    "freeze": "none",
+    "n_train_chips": 266
+  },
+  "netherlands": {
+    "ft_true_auroc": 0.95,
+    "ft_true_f1": 0.7973,
+    "n_eval": 69433,
+    "frac": 0.5,
+    "seed": 1,
+    "freeze": "none",
+    "n_train_chips": 261
+  }
+}

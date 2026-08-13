@@ -1,0 +1,35 @@
+{
+  "india": {
+    "n_test_full": 54362,
+    "n_test_highconf": 29989,
+    "n_ambiguous_neg_dropped": 24373,
+    "rf_true_full": 0.574,
+    "rf_true_highconf": 0.665,
+    "prithvi_true_full": 0.983,
+    "prithvi_true_highconf": 0.987,
+    "fm_minus_rf_full": 0.409,
+    "fm_minus_rf_highconf": 0.322
+  },
+  "france": {
+    "n_test_full": 70421,
+    "n_test_highconf": 49403,
+    "n_ambiguous_neg_dropped": 21018,
+    "rf_true_full": 0.695,
+    "rf_true_highconf": 0.947,
+    "prithvi_true_full": 0.961,
+    "prithvi_true_highconf": 0.968,
+    "fm_minus_rf_full": 0.266,
+    "fm_minus_rf_highconf": 0.021
+  },
+  "kenya": {
+    "n_test_full": 12745,
+    "n_test_highconf": 8895,
+    "n_ambiguous_neg_dropped": 3850,
+    "rf_true_full": 0.651,
+    "rf_true_highconf": 0.698,
+    "prithvi_true_full": 0.766,
+    "prithvi_true_highconf": 0.774,
+    "fm_minus_rf_full": 0.115,
+    "fm_minus_rf_highconf": 0.076
+  }
+}

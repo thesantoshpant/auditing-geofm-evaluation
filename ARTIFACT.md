@@ -1,0 +1,197 @@
+# Artifact and Reproduction Guide
+
+This artifact accompanies **"Auditing GeoFM Evaluation for Field-Extent
+Segmentation: Label Proxies, Baselines, and When Frozen Features Match
+Fine-tuning."** It contains the evaluation code, raw run-level metrics, derived
+analysis files, and the camera-ready paper. It does not redistribute satellite
+imagery or field polygons.
+
+## Scope
+
+The main experiment covers India, Cambodia, Vietnam, Kenya, France, and the
+Netherlands. It evaluates single-date Sentinel-2 field-extent segmentation,
+defined as per-pixel membership inside a field polygon. Parcel instances and
+boundary delineation are outside the primary task.
+
+The principal adaptation comparison is frozen decoder versus full fine-tuning:
+
+- **frozen decoder:** fixed GeoFM backbone plus a trained decoder (2.75M
+  parameters for Prithvi; 2.16M for TerraMind);
+- **full fine-tuning:** the same decoder with the backbone updated; and
+- **U-Net:** a 31M-parameter supervised model trained from scratch.
+
+The frozen probe used in the label and baseline audit is a different model: a
+linear head on fixed features. In particular,
+`ftw_finetune_fm.py --freeze backbone` runs the frozen decoder, not the probe.
+
+## Released results
+
+### Primary ten-seed grid
+
+`data/results/` contains 300 run-level JSON files:
+
+- 2 GeoFMs x 6 source regions x 2 adaptation modes x 10 seeds = 240 files;
+- U-Net x 6 source regions x 10 seeds = 60 files.
+
+Each file contains in-region and cross-region evaluations for all six target
+regions. The primary derived files are:
+
+| File | Contents | Generator |
+|---|---|---|
+| `ftw_inregion_equivalence.json` | paired in-region TOST analysis | `integrate_headline_results.py` |
+| `ftw_cross_region_transfer.json` | full 30-transfer AUROC matrix and paired deltas | `integrate_headline_results.py` |
+| `ftw_headline_summary.txt` | readable headline summary | `integrate_headline_results.py` |
+| `ftw_xfer_metrics.json` | AUROC, AP, and IoU for all 30 and non-Kenya 20 | `integrate_transfer_metrics.py` |
+| `ftw_eps_sweep.json` | equivalence-margin sensitivity | `integrate_revision_controls.py` |
+| `ftw_regional_regime.json` | six-region descriptive control and Cambodia subsampling | `integrate_revision_controls.py` |
+
+The in-region comparison uses matched seeds and a 0.02 AUROC equivalence
+margin. Nine of twelve region-by-model cells meet the 95% paired-CI containment
+criterion; Holm correction across the twelve TOST p-values retains all nine.
+The full 30-transfer matrix is the confirmatory cross-region result. The
+non-Kenya 20-transfer subset was defined after observing the Kenya failure and
+is reported as exploratory.
+
+### Revision controls
+
+The camera-ready response experiments are also included:
+
+| File | Contents | Generator |
+|---|---|---|
+| `ftw_unet_epoch_sensitivity.json` | U-Net at 80 epochs (3 seeds) versus the primary 150-epoch means (10 seeds) | `ftw_unet_baseline_epochs.py` |
+| `ftw_convergence_diagnostic.json` | post-hoc seed-0 test trajectories through 150 epochs | `ftw_finetune_fm_curves.py` |
+| `paper/figures/convergence.pdf` | plotted convergence diagnostic | `ftw_finetune_fm_curves.py` |
+
+The epoch comparison is descriptive because its columns use different seed
+counts. The convergence trajectories are test-set diagnostics; they were not
+used for checkpoint or hyperparameter selection.
+
+The raw response runs can be regenerated with the same training entry points:
+
+```bash
+# U-Net 80-epoch control, one file per seed containing all six regions
+for S in 0 1 2; do
+  python scripts/ftw_unet_baseline.py --robust --epochs 80 --seed "$S" \
+    --tag "_e80_seed${S}" india cambodia vietnam kenya france netherlands
+done
+
+# Seed-0 Prithvi trajectories, evaluated every 15 epochs
+python scripts/ftw_finetune_fm.py --model prithvi --freeze backbone \
+  --epochs 150 --curve-every 15 --seed 0 --tag _curve150_backbone_seed0 \
+  vietnam kenya
+python scripts/ftw_finetune_fm.py --model prithvi --freeze none \
+  --epochs 150 --curve-every 15 --seed 0 --tag _curve150_none_seed0 \
+  vietnam kenya
+```
+
+Other controls include label-proxy comparisons, windowed and per-pixel
+baselines, partial-label sensitivity, tile-disjoint splits, frozen-probe
+boundary-zone results, and the India chip-paired Wilcoxon test. Historical
+pilot analyses remain under `data/results/archive/historical_iterations/` and
+`scripts/archive/historical_iterations/` for traceability. They are not used
+for camera-ready headline claims.
+
+## Environment
+
+The primary grid used Python 3.11.15, PyTorch 2.5.1+cu121, TerraTorch 1.2.7,
+timm 1.0.27, and claymodel 1.5.0. The captured top-level versions are pinned in
+`requirements.runtime.txt`; the complete runtime record is in
+`data/results/environment.json` and remains the provenance source of truth.
+
+For the headline training environment, use Python 3.11 and CUDA 12.1:
+
+```bash
+pip install -r requirements.runtime.txt
+pip install -e .
+```
+
+`requirements.lock` is a current resolved environment for CPU-side analysis,
+not a byte-for-byte record of the training environment.
+
+Dependency notes:
+
+- Clay is pinned to commit
+  `f14e698f3c237cabf8d28dec669a362d66625381`.
+- The headline grid used TerraTorch 1.2.7 and timm 1.0.27 exactly. The looser
+  ranges in `pyproject.toml` support installation on newer compatible systems.
+- AnySat is loaded through `torch.hub`. Its cached checkout did not preserve
+  Git metadata, so the exact commit is unrecoverable. The environment record
+  includes the branch and cache-fetch timestamp. Byte-exact AnySat
+  reproduction is therefore not claimed.
+- Presto is excluded from the `all` extra because its older Earth Engine pin
+  conflicts with this pipeline. It requires a separate environment.
+
+GPU training used NVIDIA A6000-class hardware. CPU execution is sufficient for
+the random-forest, probe, integration, and checksum steps.
+
+## Verify the release
+
+```bash
+python scripts/checksums.py --verify
+```
+
+`data/results/CHECKSUMS.sha256` protects the released result and provenance
+files. Verification fails on a missing, new, or changed canonical artifact.
+
+To regenerate all derived camera-ready summaries from the released run-level
+JSONs and then verify them:
+
+```bash
+bash scripts/reproduce_all.sh
+```
+
+This command performs no training and needs no GPU. It runs the headline
+integration, cross-region metric integration, U-Net epoch control, margin and
+regional controls, convergence plot generation, multiple-comparison analysis,
+and checksum verification.
+
+## Reproduce the training pipeline
+
+The data preparation stage requires Google Earth Engine authentication.
+
+```bash
+C=india
+bash scripts/prep_ftw_country.sh "$C"
+python scripts/build_ftw_index.py --country "$C" --limit 800 \
+  --out "data/index/ftw_${C}.jsonl"
+bash scripts/run_ftw_country.sh "$C"
+python scripts/ftw_export_split.py --country "$C"
+```
+
+Run the label/baseline audit and segmentation models:
+
+```bash
+python scripts/ftw_controlled_label_comparison.py --country "$C"
+python scripts/ftw_unet_baseline.py --robust "$C"
+python scripts/ftw_finetune_fm.py --model prithvi --freeze backbone "$C"
+python scripts/ftw_finetune_fm.py --model prithvi "$C"
+```
+
+Pass `--seed N` for individual training seeds and `--eval-country B` for a
+cross-region target. The full model and country recipes are documented in
+`docs/FTW_REPRODUCE.md`.
+
+## Data sources and integrity
+
+- Fields of The World field polygons: CC BY 4.0
+- ESA WorldCover 10 m v200: CC BY 4.0
+- Sentinel-2 L2A: Copernicus free and open data
+
+Field polygons are reprojected to each chip's local UTM zone during data
+preparation. The released alignment checks confirm that stored positive pixels
+fall inside a field polygon and stored negative pixels fall outside one in all
+six regions.
+
+The artifact contains code and aggregate metrics over public Earth-observation
+data. It contains no personal or sensitive information.
+
+## Known limits
+
+- Raw imagery and field polygons are fetched from their public sources rather
+  than redistributed.
+- Cambodia lacks the retained per-chip feature file needed to rerun its
+  bootstrap interval; the paper reports the point estimate without a CI.
+- The boundary-zone control covers frozen probes only. It does not rank U-Net,
+  frozen-decoder, or full-fine-tuned segmentation models on edge pixels.
+- The six-region regime analysis is descriptive. It does not estimate a causal
+  sparsity threshold.

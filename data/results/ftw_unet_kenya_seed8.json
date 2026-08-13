@@ -1,0 +1,68 @@
+{
+  "kenya->india": {
+    "train_country": "kenya",
+    "eval_country": "india",
+    "unet_true_auroc": 0.7949,
+    "unet_true_ap": 0.6242,
+    "unet_true_f1": 0.0644,
+    "unet_true_iou": 0.0333,
+    "n_eval": 54362,
+    "frac": 1.0,
+    "seed": 8
+  },
+  "kenya->cambodia": {
+    "train_country": "kenya",
+    "eval_country": "cambodia",
+    "unet_true_auroc": 0.8551,
+    "unet_true_ap": 0.8255,
+    "unet_true_f1": 0.0628,
+    "unet_true_iou": 0.0324,
+    "n_eval": 14400,
+    "frac": 1.0,
+    "seed": 8
+  },
+  "kenya->vietnam": {
+    "train_country": "kenya",
+    "eval_country": "vietnam",
+    "unet_true_auroc": 0.6629,
+    "unet_true_ap": 0.5907,
+    "unet_true_f1": 0.0255,
+    "unet_true_iou": 0.0129,
+    "n_eval": 28800,
+    "frac": 1.0,
+    "seed": 8
+  },
+  "kenya": {
+    "train_country": "kenya",
+    "eval_country": "kenya",
+    "unet_true_auroc": 0.892,
+    "unet_true_ap": 0.6072,
+    "unet_true_f1": 0.1285,
+    "unet_true_iou": 0.0687,
+    "n_eval": 12745,
+    "frac": 1.0,
+    "seed": 8
+  },
+  "kenya->france": {
+    "train_country": "kenya",
+    "eval_country": "france",
+    "unet_true_auroc": 0.7864,
+    "unet_true_ap": 0.7626,
+    "unet_true_f1": 0.1632,
+    "unet_true_iou": 0.0889,
+    "n_eval": 70421,
+    "frac": 1.0,
+    "seed": 8
+  },
+  "kenya->netherlands": {
+    "train_country": "kenya",
+    "eval_country": "netherlands",
+    "unet_true_auroc": 0.8513,
+    "unet_true_ap": 0.7985,
+    "unet_true_f1": 0.0141,
+    "unet_true_iou": 0.0071,
+    "n_eval": 69433,
+    "frac": 1.0,
+    "seed": 8
+  }
+}

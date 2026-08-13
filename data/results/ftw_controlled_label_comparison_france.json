@@ -1,0 +1,62 @@
+{
+  "country": "france",
+  "n_pixels": 282547,
+  "chip_overlap": 0,
+  "n_train_chips": 532,
+  "n_test_chips": 178,
+  "true_pos_rate": 0.497,
+  "proxy_pos_rate": 0.774,
+  "seed": 20260514,
+  "models": {
+    "clay_v1": {
+      "true": {
+        "auroc": 0.501,
+        "f1": 0.485
+      },
+      "proxy": {
+        "auroc": 0.707,
+        "f1": 0.722
+      }
+    },
+    "prithvi_eo_2_0_300m": {
+      "true": {
+        "auroc": 0.961,
+        "f1": 0.91
+      },
+      "proxy": {
+        "auroc": 0.949,
+        "f1": 0.914
+      }
+    },
+    "terramind_v1_base": {
+      "true": {
+        "auroc": 0.951,
+        "f1": 0.894
+      },
+      "proxy": {
+        "auroc": 0.951,
+        "f1": 0.915
+      }
+    },
+    "anysat_dense": {
+      "true": {
+        "auroc": 0.943,
+        "f1": 0.884
+      },
+      "proxy": {
+        "auroc": 0.967,
+        "f1": 0.939
+      }
+    },
+    "rf_spectral": {
+      "true": {
+        "auroc": 0.695,
+        "f1": 0.666
+      },
+      "proxy": {
+        "auroc": 0.959,
+        "f1": 0.946
+      }
+    }
+  }
+}

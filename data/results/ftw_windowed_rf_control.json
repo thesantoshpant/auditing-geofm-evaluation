@@ -1,0 +1,37 @@
+{
+  "india": {
+    "perpix_rf_true_auroc": 0.574,
+    "windowed_rf_true_auroc": 0.582,
+    "windowed_rf_true_f1": 0.069,
+    "best_fm_true_auroc": 0.983,
+    "n_test": 54377
+  },
+  "kenya": {
+    "perpix_rf_true_auroc": 0.651,
+    "windowed_rf_true_auroc": 0.641,
+    "windowed_rf_true_f1": 0.106,
+    "best_fm_true_auroc": 0.853,
+    "n_test": 12745
+  },
+  "vietnam": {
+    "perpix_rf_true_auroc": 0.643,
+    "windowed_rf_true_auroc": 0.657,
+    "windowed_rf_true_f1": 0.624,
+    "best_fm_true_auroc": 0.929,
+    "n_test": 28800
+  },
+  "france": {
+    "perpix_rf_true_auroc": 0.695,
+    "windowed_rf_true_auroc": 0.703,
+    "windowed_rf_true_f1": 0.679,
+    "best_fm_true_auroc": 0.961,
+    "n_test": 70421
+  },
+  "netherlands": {
+    "perpix_rf_true_auroc": 0.815,
+    "windowed_rf_true_auroc": 0.827,
+    "windowed_rf_true_f1": 0.771,
+    "best_fm_true_auroc": 0.961,
+    "n_test": 69433
+  }
+}

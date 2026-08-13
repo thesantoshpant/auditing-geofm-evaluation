@@ -1,0 +1,271 @@
+{
+  "pairs": {
+    "india->cambodia": {
+      "unet_cross": [
+        0.6905,
+        0.0396
+      ],
+      "prithvi_ft_cross": [
+        0.6706,
+        0.0519
+      ],
+      "frozen_prithvi_cross": [
+        0.7962,
+        0.0108
+      ],
+      "frozen_terramind_cross": [
+        0.849,
+        0.0066
+      ],
+      "frozen_clay_cross": [
+        0.4984,
+        0.0008
+      ],
+      "spectral_rf_cross": [
+        0.499,
+        0.006
+      ]
+    },
+    "cambodia->india": {
+      "unet_cross": [
+        0.836,
+        0.0068
+      ],
+      "prithvi_ft_cross": [
+        0.8591,
+        0.0032
+      ],
+      "frozen_prithvi_cross": [
+        0.8321,
+        0.0054
+      ],
+      "frozen_terramind_cross": [
+        0.8793,
+        0.0054
+      ],
+      "frozen_clay_cross": [
+        0.4763,
+        0.0185
+      ],
+      "spectral_rf_cross": [
+        0.5249,
+        0.006
+      ]
+    },
+    "france->netherlands": {
+      "unet_cross": [
+        0.9384,
+        0.0038
+      ],
+      "prithvi_ft_cross": [
+        0.9061,
+        0.0214
+      ],
+      "frozen_prithvi_cross": [
+        0.9426,
+        0.0017
+      ],
+      "frozen_terramind_cross": [
+        0.9272,
+        0.0028
+      ],
+      "frozen_clay_cross": [
+        0.5006,
+        0.0034
+      ],
+      "spectral_rf_cross": [
+        0.7065,
+        0.0058
+      ]
+    },
+    "netherlands->france": {
+      "unet_cross": [
+        0.9382,
+        0.0117
+      ],
+      "prithvi_ft_cross": [
+        0.9094,
+        0.0071
+      ],
+      "frozen_prithvi_cross": [
+        0.9457,
+        0.0019
+      ],
+      "frozen_terramind_cross": [
+        0.9248,
+        0.0032
+      ],
+      "frozen_clay_cross": [
+        0.5002,
+        0.0011
+      ],
+      "spectral_rf_cross": [
+        0.6033,
+        0.0018
+      ]
+    },
+    "india->france": {
+      "unet_cross": [
+        0.7959,
+        0.0125
+      ],
+      "prithvi_ft_cross": [
+        0.7214,
+        0.0564
+      ],
+      "frozen_prithvi_cross": [
+        0.8501,
+        0.0061
+      ],
+      "frozen_terramind_cross": [
+        0.8479,
+        0.0094
+      ],
+      "frozen_clay_cross": [
+        0.5039,
+        0.0008
+      ],
+      "spectral_rf_cross": [
+        0.54,
+        0.0064
+      ]
+    },
+    "france->india": {
+      "unet_cross": [
+        0.8906,
+        0.0016
+      ],
+      "prithvi_ft_cross": [
+        0.868,
+        0.0029
+      ],
+      "frozen_prithvi_cross": [
+        0.9134,
+        0.0033
+      ],
+      "frozen_terramind_cross": [
+        0.911,
+        0.0054
+      ],
+      "frozen_clay_cross": [
+        0.4967,
+        0.018
+      ],
+      "spectral_rf_cross": [
+        0.5633,
+        0.007
+      ]
+    },
+    "india->kenya": {
+      "unet_cross": [
+        0.6896,
+        0.0365
+      ],
+      "prithvi_ft_cross": [
+        0.5761,
+        0.0308
+      ],
+      "frozen_prithvi_cross": [
+        0.7205,
+        0.0348
+      ],
+      "frozen_terramind_cross": [
+        0.7479,
+        0.0304
+      ],
+      "frozen_clay_cross": [
+        0.5211,
+        0.0156
+      ],
+      "spectral_rf_cross": [
+        0.5907,
+        0.033
+      ]
+    },
+    "kenya->india": {
+      "unet_cross": [
+        0.7483,
+        0.0406
+      ],
+      "prithvi_ft_cross": [
+        0.7057,
+        0.0153
+      ],
+      "frozen_prithvi_cross": [
+        0.7041,
+        0.0158
+      ],
+      "frozen_terramind_cross": [
+        0.6695,
+        0.0203
+      ],
+      "frozen_clay_cross": [
+        0.493,
+        0.0103
+      ],
+      "spectral_rf_cross": [
+        0.4978,
+        0.0098
+      ]
+    },
+    "cambodia->kenya": {
+      "unet_cross": [
+        0.8835,
+        0.0079
+      ],
+      "prithvi_ft_cross": [
+        0.8389,
+        0.005
+      ],
+      "frozen_prithvi_cross": [
+        0.8525,
+        0.0157
+      ],
+      "frozen_terramind_cross": [
+        0.8081,
+        0.0214
+      ],
+      "frozen_clay_cross": [
+        0.4827,
+        0.0301
+      ],
+      "spectral_rf_cross": [
+        0.5536,
+        0.0154
+      ]
+    },
+    "kenya->cambodia": {
+      "unet_cross": [
+        0.8429,
+        0.0359
+      ],
+      "prithvi_ft_cross": [
+        0.7189,
+        0.0047
+      ],
+      "frozen_prithvi_cross": [
+        0.7556,
+        0.008
+      ],
+      "frozen_terramind_cross": [
+        0.7167,
+        0.0151
+      ],
+      "frozen_clay_cross": [
+        0.503,
+        0.0051
+      ],
+      "spectral_rf_cross": [
+        0.5207,
+        0.0087
+      ]
+    }
+  },
+  "means": {
+    "unet": 0.8254,
+    "prithvi_ft": 0.7774,
+    "frozen_prithvi": 0.8313,
+    "frozen_terramind": 0.8281,
+    "n_directed_transfers": 10
+  }
+}

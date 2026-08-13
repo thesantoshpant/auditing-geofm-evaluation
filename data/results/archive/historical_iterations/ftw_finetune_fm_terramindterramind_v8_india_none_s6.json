@@ -1,0 +1,14 @@
+{
+  "india": {
+    "train_country": "india",
+    "eval_country": "india",
+    "ft_true_auroc": 0.957,
+    "ft_true_ap": 0.952,
+    "ft_true_f1": 0.5305,
+    "ft_true_iou": 0.361,
+    "n_eval": 54362,
+    "frac": 1.0,
+    "seed": 6,
+    "freeze": "none"
+  }
+}

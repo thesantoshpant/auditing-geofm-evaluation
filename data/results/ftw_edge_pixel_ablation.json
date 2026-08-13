@@ -1,0 +1,71 @@
+{
+  "ALL test": {
+    "n_test": 54362,
+    "pos": 19935,
+    "neg": 34427,
+    "models": {
+      "clay_v1": {
+        "auroc": 0.577,
+        "f1": 0.444
+      },
+      "prithvi_eo_2_0_300m": {
+        "auroc": 0.983,
+        "f1": 0.908
+      },
+      "terramind_v1_base": {
+        "auroc": 0.967,
+        "f1": 0.881
+      },
+      "rf_spectral": {
+        "auroc": 0.574,
+        "f1": 0.079
+      }
+    }
+  },
+  "near-edge (<=2px)": {
+    "n_test": 18804,
+    "pos": 18674,
+    "neg": 130,
+    "models": {
+      "clay_v1": {
+        "auroc": 0.518,
+        "f1": 0.614
+      },
+      "prithvi_eo_2_0_300m": {
+        "auroc": 0.541,
+        "f1": 0.936
+      },
+      "terramind_v1_base": {
+        "auroc": 0.475,
+        "f1": 0.933
+      },
+      "rf_spectral": {
+        "auroc": 0.464,
+        "f1": 0.079
+      }
+    }
+  },
+  "near-edge (<=1px)": {
+    "n_test": 16517,
+    "pos": 16420,
+    "neg": 97,
+    "models": {
+      "clay_v1": {
+        "auroc": 0.503,
+        "f1": 0.604
+      },
+      "prithvi_eo_2_0_300m": {
+        "auroc": 0.567,
+        "f1": 0.938
+      },
+      "terramind_v1_base": {
+        "auroc": 0.48,
+        "f1": 0.933
+      },
+      "rf_spectral": {
+        "auroc": 0.475,
+        "f1": 0.075
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "india->cambodia": {
+    "prithvi_probe": {
+      "in_region": 0.9826,
+      "cross_region": 0.7875,
+      "transfer_gap": 0.1951
+    },
+    "spectral_rf": {
+      "in_region": 0.5738,
+      "cross_region": 0.5011,
+      "transfer_gap": 0.0727
+    }
+  },
+  "cambodia->india": {
+    "prithvi_probe": {
+      "in_region": 0.9237,
+      "cross_region": 0.8324,
+      "transfer_gap": 0.0913
+    },
+    "spectral_rf": {
+      "in_region": 0.5498,
+      "cross_region": 0.5333,
+      "transfer_gap": 0.0165
+    }
+  },
+  "france->netherlands": {
+    "prithvi_probe": {
+      "in_region": 0.9612,
+      "cross_region": 0.9408,
+      "transfer_gap": 0.0204
+    },
+    "spectral_rf": {
+      "in_region": 0.6949,
+      "cross_region": 0.6984,
+      "transfer_gap": -0.0035
+    }
+  },
+  "netherlands->france": {
+    "prithvi_probe": {
+      "in_region": 0.9547,
+      "cross_region": 0.9479,
+      "transfer_gap": 0.0068
+    },
+    "spectral_rf": {
+      "in_region": 0.8146,
+      "cross_region": 0.6049,
+      "transfer_gap": 0.2097
+    }
+  }
+}

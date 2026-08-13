@@ -1,0 +1,338 @@
+{
+  "method": "Post-hoc seed-0 test-set trajectories recorded every 15 epochs. The trajectories were not used for model or checkpoint selection; the primary experiments select the last epoch without early stopping.",
+  "primary_epoch_budget": 80,
+  "regions": {
+    "vietnam": {
+      "frozen_decoder": {
+        "points": [
+          {
+            "epoch": 15,
+            "auroc": 0.9526,
+            "ap": 0.9252,
+            "f1": 0.9168,
+            "iou": 0.8464
+          },
+          {
+            "epoch": 30,
+            "auroc": 0.9535,
+            "ap": 0.9251,
+            "f1": 0.9151,
+            "iou": 0.8436
+          },
+          {
+            "epoch": 45,
+            "auroc": 0.9537,
+            "ap": 0.9259,
+            "f1": 0.9165,
+            "iou": 0.8458
+          },
+          {
+            "epoch": 60,
+            "auroc": 0.954,
+            "ap": 0.9269,
+            "f1": 0.9158,
+            "iou": 0.8446
+          },
+          {
+            "epoch": 75,
+            "auroc": 0.9547,
+            "ap": 0.9269,
+            "f1": 0.9101,
+            "iou": 0.835
+          },
+          {
+            "epoch": 90,
+            "auroc": 0.9539,
+            "ap": 0.9259,
+            "f1": 0.9104,
+            "iou": 0.8355
+          },
+          {
+            "epoch": 105,
+            "auroc": 0.9538,
+            "ap": 0.9259,
+            "f1": 0.911,
+            "iou": 0.8366
+          },
+          {
+            "epoch": 120,
+            "auroc": 0.9539,
+            "ap": 0.9256,
+            "f1": 0.9078,
+            "iou": 0.8311
+          },
+          {
+            "epoch": 135,
+            "auroc": 0.9533,
+            "ap": 0.9246,
+            "f1": 0.9064,
+            "iou": 0.8288
+          },
+          {
+            "epoch": 150,
+            "auroc": 0.9534,
+            "ap": 0.925,
+            "f1": 0.9053,
+            "iou": 0.8269
+          }
+        ],
+        "peak_epoch": 75,
+        "peak_auroc": 0.9547,
+        "final_auroc": 0.9534,
+        "range_auroc": 0.0021,
+        "epoch_15_auroc": 0.9526,
+        "epoch_75_auroc": 0.9547,
+        "epoch_90_auroc": 0.9539,
+        "epoch_150_auroc": 0.9534
+      },
+      "full_finetune": {
+        "points": [
+          {
+            "epoch": 15,
+            "auroc": 0.9508,
+            "ap": 0.9209,
+            "f1": 0.9171,
+            "iou": 0.8469
+          },
+          {
+            "epoch": 30,
+            "auroc": 0.9547,
+            "ap": 0.9251,
+            "f1": 0.9182,
+            "iou": 0.8487
+          },
+          {
+            "epoch": 45,
+            "auroc": 0.9524,
+            "ap": 0.9253,
+            "f1": 0.9005,
+            "iou": 0.819
+          },
+          {
+            "epoch": 60,
+            "auroc": 0.9582,
+            "ap": 0.9309,
+            "f1": 0.9174,
+            "iou": 0.8474
+          },
+          {
+            "epoch": 75,
+            "auroc": 0.9589,
+            "ap": 0.9328,
+            "f1": 0.9236,
+            "iou": 0.8581
+          },
+          {
+            "epoch": 90,
+            "auroc": 0.96,
+            "ap": 0.9354,
+            "f1": 0.9157,
+            "iou": 0.8445
+          },
+          {
+            "epoch": 105,
+            "auroc": 0.959,
+            "ap": 0.9339,
+            "f1": 0.9169,
+            "iou": 0.8466
+          },
+          {
+            "epoch": 120,
+            "auroc": 0.9584,
+            "ap": 0.9342,
+            "f1": 0.9134,
+            "iou": 0.8406
+          },
+          {
+            "epoch": 135,
+            "auroc": 0.9573,
+            "ap": 0.9336,
+            "f1": 0.9147,
+            "iou": 0.8429
+          },
+          {
+            "epoch": 150,
+            "auroc": 0.9569,
+            "ap": 0.9332,
+            "f1": 0.9134,
+            "iou": 0.8406
+          }
+        ],
+        "peak_epoch": 90,
+        "peak_auroc": 0.96,
+        "final_auroc": 0.9569,
+        "range_auroc": 0.0092,
+        "epoch_15_auroc": 0.9508,
+        "epoch_75_auroc": 0.9589,
+        "epoch_90_auroc": 0.96,
+        "epoch_150_auroc": 0.9569
+      }
+    },
+    "kenya": {
+      "frozen_decoder": {
+        "points": [
+          {
+            "epoch": 15,
+            "auroc": 0.8132,
+            "ap": 0.492,
+            "f1": 0.1075,
+            "iou": 0.0568
+          },
+          {
+            "epoch": 30,
+            "auroc": 0.6113,
+            "ap": 0.2544,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          {
+            "epoch": 45,
+            "auroc": 0.795,
+            "ap": 0.4808,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          {
+            "epoch": 60,
+            "auroc": 0.769,
+            "ap": 0.4278,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          {
+            "epoch": 75,
+            "auroc": 0.7648,
+            "ap": 0.4225,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          {
+            "epoch": 90,
+            "auroc": 0.7398,
+            "ap": 0.4138,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          {
+            "epoch": 105,
+            "auroc": 0.7292,
+            "ap": 0.3736,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          {
+            "epoch": 120,
+            "auroc": 0.6782,
+            "ap": 0.2984,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          {
+            "epoch": 135,
+            "auroc": 0.6739,
+            "ap": 0.3043,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          {
+            "epoch": 150,
+            "auroc": 0.6782,
+            "ap": 0.3128,
+            "f1": 0.0,
+            "iou": 0.0
+          }
+        ],
+        "peak_epoch": 15,
+        "peak_auroc": 0.8132,
+        "final_auroc": 0.6782,
+        "range_auroc": 0.2019,
+        "epoch_15_auroc": 0.8132,
+        "epoch_75_auroc": 0.7648,
+        "epoch_90_auroc": 0.7398,
+        "epoch_150_auroc": 0.6782
+      },
+      "full_finetune": {
+        "points": [
+          {
+            "epoch": 15,
+            "auroc": 0.8751,
+            "ap": 0.5227,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          {
+            "epoch": 30,
+            "auroc": 0.812,
+            "ap": 0.3747,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          {
+            "epoch": 45,
+            "auroc": 0.8051,
+            "ap": 0.4401,
+            "f1": 0.4685,
+            "iou": 0.3059
+          },
+          {
+            "epoch": 60,
+            "auroc": 0.8253,
+            "ap": 0.4668,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          {
+            "epoch": 75,
+            "auroc": 0.7265,
+            "ap": 0.3498,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          {
+            "epoch": 90,
+            "auroc": 0.7484,
+            "ap": 0.3178,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          {
+            "epoch": 105,
+            "auroc": 0.7427,
+            "ap": 0.3118,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          {
+            "epoch": 120,
+            "auroc": 0.7118,
+            "ap": 0.2987,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          {
+            "epoch": 135,
+            "auroc": 0.7148,
+            "ap": 0.2918,
+            "f1": 0.0,
+            "iou": 0.0
+          },
+          {
+            "epoch": 150,
+            "auroc": 0.7017,
+            "ap": 0.2821,
+            "f1": 0.0,
+            "iou": 0.0
+          }
+        ],
+        "peak_epoch": 15,
+        "peak_auroc": 0.8751,
+        "final_auroc": 0.7017,
+        "range_auroc": 0.1734,
+        "epoch_15_auroc": 0.8751,
+        "epoch_75_auroc": 0.7265,
+        "epoch_90_auroc": 0.7484,
+        "epoch_150_auroc": 0.7017
+      }
+    }
+  }
+}

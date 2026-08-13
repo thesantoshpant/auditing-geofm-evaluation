@@ -1,0 +1,92 @@
+{
+  "india": {
+    "rf_true": 0.574,
+    "rf_proxy": 0.786,
+    "unet": [
+      0.909,
+      0.034
+    ],
+    "prithvi_ft": [
+      0.983,
+      0.003
+    ],
+    "frozen_best_fm": 0.983,
+    "delta_fm_minus_unet": 0.074,
+    "winner": "FM"
+  },
+  "cambodia": {
+    "rf_true": 0.55,
+    "rf_proxy": 0.9,
+    "unet": [
+      0.948,
+      0.001
+    ],
+    "prithvi_ft": [
+      0.949,
+      0.0
+    ],
+    "frozen_best_fm": 0.924,
+    "delta_fm_minus_unet": 0.001,
+    "winner": "tie"
+  },
+  "vietnam": {
+    "rf_true": 0.643,
+    "rf_proxy": 0.911,
+    "unet": [
+      0.962,
+      0.003
+    ],
+    "prithvi_ft": [
+      0.951,
+      0.0
+    ],
+    "frozen_best_fm": 0.929,
+    "delta_fm_minus_unet": -0.011,
+    "winner": "tie"
+  },
+  "kenya": {
+    "rf_true": 0.651,
+    "rf_proxy": 0.806,
+    "unet": [
+      0.887,
+      0.002
+    ],
+    "prithvi_ft": [
+      0.763,
+      0.012
+    ],
+    "frozen_best_fm": 0.853,
+    "delta_fm_minus_unet": -0.124,
+    "winner": "U-Net"
+  },
+  "france": {
+    "rf_true": 0.695,
+    "rf_proxy": 0.959,
+    "unet": [
+      0.977,
+      0.0
+    ],
+    "prithvi_ft": [
+      0.978,
+      0.001
+    ],
+    "frozen_best_fm": 0.961,
+    "delta_fm_minus_unet": 0.001,
+    "winner": "tie"
+  },
+  "netherlands": {
+    "rf_true": 0.815,
+    "rf_proxy": 0.928,
+    "unet": [
+      0.981,
+      0.002
+    ],
+    "prithvi_ft": [
+      0.959,
+      0.005
+    ],
+    "frozen_best_fm": 0.961,
+    "delta_fm_minus_unet": -0.022,
+    "winner": "U-Net"
+  }
+}

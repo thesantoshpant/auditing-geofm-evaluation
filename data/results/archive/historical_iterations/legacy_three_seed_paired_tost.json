@@ -1,0 +1,270 @@
+{
+  "epsilon_auroc": 0.02,
+  "n_seeds": 3,
+  "t_crit": 4.303,
+  "method": "seed-paired t-interval (df=2); strict source-family resolution (reproduce > v7 > canonical, all seeds from same family within a cell)",
+  "prithvi": {
+    "regions": {
+      "india": {
+        "frozen_seeds": [
+          0.9843,
+          0.9812,
+          0.9829
+        ],
+        "ft_seeds": [
+          0.9784,
+          0.9852,
+          0.9863
+        ],
+        "frozen_source_family": "canonical",
+        "ft_source_family": "canonical",
+        "paired_delta_mean": -0.0005,
+        "paired_delta_std": 0.0056,
+        "ci": [
+          -0.0143,
+          0.0133
+        ],
+        "tost_equivalent": true
+      },
+      "cambodia": {
+        "frozen_seeds": [
+          0.9476,
+          0.9481,
+          0.9462
+        ],
+        "ft_seeds": [
+          0.9493,
+          0.9484,
+          0.9487
+        ],
+        "frozen_source_family": "canonical",
+        "ft_source_family": "canonical",
+        "paired_delta_mean": -0.0015,
+        "paired_delta_std": 0.0011,
+        "ci": [
+          -0.0043,
+          0.0013
+        ],
+        "tost_equivalent": true
+      },
+      "vietnam": {
+        "frozen_seeds": [
+          0.9545,
+          0.9547,
+          0.9537
+        ],
+        "ft_seeds": [
+          0.9517,
+          0.9508,
+          0.951
+        ],
+        "frozen_source_family": "canonical",
+        "ft_source_family": "canonical",
+        "paired_delta_mean": 0.0031,
+        "paired_delta_std": 0.0007,
+        "ci": [
+          0.0015,
+          0.0048
+        ],
+        "tost_equivalent": true
+      },
+      "kenya": {
+        "frozen_seeds": [
+          0.6668,
+          0.6577,
+          0.5833
+        ],
+        "ft_seeds": [
+          0.7767,
+          0.7649,
+          0.7467
+        ],
+        "frozen_source_family": "canonical",
+        "ft_source_family": "canonical",
+        "paired_delta_mean": -0.1268,
+        "paired_delta_std": 0.0317,
+        "ci": [
+          -0.2056,
+          -0.0481
+        ],
+        "tost_equivalent": false
+      },
+      "france": {
+        "frozen_seeds": [
+          0.9813,
+          0.9822,
+          0.9817
+        ],
+        "ft_seeds": [
+          0.9759,
+          0.979,
+          0.9777
+        ],
+        "frozen_source_family": "canonical",
+        "ft_source_family": "canonical",
+        "paired_delta_mean": 0.0042,
+        "paired_delta_std": 0.0011,
+        "ci": [
+          0.0014,
+          0.007
+        ],
+        "tost_equivalent": true
+      },
+      "netherlands": {
+        "frozen_seeds": [
+          0.9715,
+          0.9728,
+          0.9709
+        ],
+        "ft_seeds": [
+          0.9536,
+          0.9564,
+          0.9662
+        ],
+        "frozen_source_family": "canonical",
+        "ft_source_family": "canonical",
+        "paired_delta_mean": 0.013,
+        "paired_delta_std": 0.0072,
+        "ci": [
+          -0.005,
+          0.031
+        ],
+        "tost_equivalent": false
+      }
+    },
+    "n_equivalent": 4
+  },
+  "terramind": {
+    "regions": {
+      "india": {
+        "frozen_seeds": [
+          0.9715,
+          0.9462,
+          0.9786
+        ],
+        "ft_seeds": [
+          0.9584,
+          0.9606,
+          0.9743
+        ],
+        "frozen_source_family": "canonical",
+        "ft_source_family": "canonical",
+        "paired_delta_mean": 0.001,
+        "paired_delta_std": 0.014,
+        "ci": [
+          -0.0339,
+          0.0359
+        ],
+        "tost_equivalent": false
+      },
+      "cambodia": {
+        "frozen_seeds": [
+          0.943,
+          0.9418,
+          0.9425
+        ],
+        "ft_seeds": [
+          0.9492,
+          0.9478,
+          0.9475
+        ],
+        "frozen_source_family": "canonical",
+        "ft_source_family": "v7",
+        "paired_delta_mean": -0.0057,
+        "paired_delta_std": 0.0006,
+        "ci": [
+          -0.0073,
+          -0.0041
+        ],
+        "tost_equivalent": true
+      },
+      "vietnam": {
+        "frozen_seeds": [
+          0.9514,
+          0.9511,
+          0.952
+        ],
+        "ft_seeds": [
+          0.9541,
+          0.9536,
+          0.954
+        ],
+        "frozen_source_family": "v7",
+        "ft_source_family": "canonical",
+        "paired_delta_mean": -0.0024,
+        "paired_delta_std": 0.0004,
+        "ci": [
+          -0.0033,
+          -0.0015
+        ],
+        "tost_equivalent": true
+      },
+      "kenya": {
+        "frozen_seeds": [
+          0.5838,
+          0.6323,
+          0.6377
+        ],
+        "ft_seeds": [
+          0.6175,
+          0.7725,
+          0.7223
+        ],
+        "frozen_source_family": "v7",
+        "ft_source_family": "canonical",
+        "paired_delta_mean": -0.0862,
+        "paired_delta_std": 0.0533,
+        "ci": [
+          -0.2185,
+          0.0462
+        ],
+        "tost_equivalent": false
+      },
+      "france": {
+        "frozen_seeds": [
+          0.9783,
+          0.9792,
+          0.979
+        ],
+        "ft_seeds": [
+          0.9732,
+          0.9741,
+          0.9713
+        ],
+        "frozen_source_family": "canonical",
+        "ft_source_family": "canonical",
+        "paired_delta_mean": 0.006,
+        "paired_delta_std": 0.0015,
+        "ci": [
+          0.0022,
+          0.0097
+        ],
+        "tost_equivalent": true
+      },
+      "netherlands": {
+        "frozen_seeds": [
+          0.9606,
+          0.9585,
+          0.9586
+        ],
+        "ft_seeds": [
+          0.9304,
+          0.9397,
+          0.9507
+        ],
+        "frozen_source_family": "v7",
+        "ft_source_family": "canonical",
+        "paired_delta_mean": 0.019,
+        "paired_delta_std": 0.0112,
+        "ci": [
+          -0.0087,
+          0.0467
+        ],
+        "tost_equivalent": false
+      }
+    },
+    "n_equivalent": 3
+  },
+  "n_equivalent_combined": 7,
+  "n_total_cells": 12
+}

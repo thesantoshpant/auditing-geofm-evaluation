@@ -1,0 +1,153 @@
+{
+  "method": "Descriptive six-region summary. Training-chip counts, paired AUROC deltas, and ten-seed IoU means are regenerated from shipped JSONs. Positive-pixel percentages are rounded manuscript descriptors from the training masks; the raw masks are not redistributed. No causal threshold is estimated.",
+  "regions": {
+    "india": {
+      "positive_pixel_pct_rounded": 0.3,
+      "n_train_chips": 525,
+      "prithvi_frozen_minus_fullft_auroc": -0.0036,
+      "terramind_frozen_minus_fullft_auroc": 0.0204,
+      "unet_mean_iou_at_0_5": 0.455,
+      "prithvi_frozen_mean_iou_at_0_5": 0.3858,
+      "prithvi_fullft_mean_iou_at_0_5": 0.4332,
+      "descriptive_regime": "smallholder; model-dependent"
+    },
+    "cambodia": {
+      "positive_pixel_pct_rounded": 23.0,
+      "n_train_chips": 107,
+      "prithvi_frozen_minus_fullft_auroc": -0.0018,
+      "terramind_frozen_minus_fullft_auroc": -0.0061,
+      "unet_mean_iou_at_0_5": 0.8258,
+      "prithvi_frozen_mean_iou_at_0_5": 0.8499,
+      "prithvi_fullft_mean_iou_at_0_5": 0.8563,
+      "descriptive_regime": "tie"
+    },
+    "vietnam": {
+      "positive_pixel_pct_rounded": 18.0,
+      "n_train_chips": 213,
+      "prithvi_frozen_minus_fullft_auroc": -0.0039,
+      "terramind_frozen_minus_fullft_auroc": -0.0045,
+      "unet_mean_iou_at_0_5": 0.8535,
+      "prithvi_frozen_mean_iou_at_0_5": 0.8385,
+      "prithvi_fullft_mean_iou_at_0_5": 0.8474,
+      "descriptive_regime": "tie"
+    },
+    "kenya": {
+      "positive_pixel_pct_rounded": 0.1,
+      "n_train_chips": 155,
+      "prithvi_frozen_minus_fullft_auroc": -0.1174,
+      "terramind_frozen_minus_fullft_auroc": -0.0972,
+      "unet_mean_iou_at_0_5": 0.0865,
+      "prithvi_frozen_mean_iou_at_0_5": 0.0,
+      "prithvi_fullft_mean_iou_at_0_5": 0.0049,
+      "descriptive_regime": "sparse-positive collapse"
+    },
+    "france": {
+      "positive_pixel_pct_rounded": 11.0,
+      "n_train_chips": 532,
+      "prithvi_frozen_minus_fullft_auroc": 0.0025,
+      "terramind_frozen_minus_fullft_auroc": 0.001,
+      "unet_mean_iou_at_0_5": 0.891,
+      "prithvi_frozen_mean_iou_at_0_5": 0.8501,
+      "prithvi_fullft_mean_iou_at_0_5": 0.8562,
+      "descriptive_regime": "industrial; near-parity"
+    },
+    "netherlands": {
+      "positive_pixel_pct_rounded": 3.8,
+      "n_train_chips": 522,
+      "prithvi_frozen_minus_fullft_auroc": 0.0128,
+      "terramind_frozen_minus_fullft_auroc": 0.0088,
+      "unet_mean_iou_at_0_5": 0.8095,
+      "prithvi_frozen_mean_iou_at_0_5": 0.6986,
+      "prithvi_fullft_mean_iou_at_0_5": 0.7085,
+      "descriptive_regime": "frozen-favored AUROC"
+    }
+  },
+  "cambodia_fullft_low_data_control": {
+    "0.10": {
+      "n_seeds": 3,
+      "n_train_chips": 11,
+      "mean_auroc": 0.9415,
+      "sample_std_auroc": 0.0012,
+      "mean_f1": 0.9197,
+      "sample_std_f1": 0.0044,
+      "auroc_values": [
+        0.9424,
+        0.9419,
+        0.9402
+      ],
+      "f1_values": [
+        0.9146,
+        0.9226,
+        0.9219
+      ]
+    },
+    "0.25": {
+      "n_seeds": 3,
+      "n_train_chips": 27,
+      "mean_auroc": 0.9473,
+      "sample_std_auroc": 0.0003,
+      "mean_f1": 0.9212,
+      "sample_std_f1": 0.0016,
+      "auroc_values": [
+        0.9475,
+        0.947,
+        0.9474
+      ],
+      "f1_values": [
+        0.9214,
+        0.9227,
+        0.9195
+      ]
+    },
+    "0.50": {
+      "n_seeds": 3,
+      "n_train_chips": 54,
+      "mean_auroc": 0.948,
+      "sample_std_auroc": 0.0008,
+      "mean_f1": 0.9225,
+      "sample_std_f1": 0.001,
+      "auroc_values": [
+        0.9489,
+        0.9477,
+        0.9474
+      ],
+      "f1_values": [
+        0.9215,
+        0.9235,
+        0.9224
+      ]
+    },
+    "1.00": {
+      "n_seeds": 10,
+      "n_train_chips": 107,
+      "mean_auroc": 0.9489,
+      "sample_std_auroc": 0.0005,
+      "mean_f1": 0.9226,
+      "sample_std_f1": 0.0014,
+      "auroc_values": [
+        0.9489,
+        0.9491,
+        0.9482,
+        0.9498,
+        0.9489,
+        0.949,
+        0.9487,
+        0.9494,
+        0.9487,
+        0.9484
+      ],
+      "f1_values": [
+        0.9244,
+        0.9208,
+        0.9218,
+        0.9235,
+        0.9225,
+        0.9202,
+        0.923,
+        0.9239,
+        0.9234,
+        0.9221
+      ]
+    }
+  }
+}

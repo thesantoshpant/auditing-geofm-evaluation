@@ -1,0 +1,11 @@
+{
+  "india": {
+    "ft_true_auroc": 0.9829,
+    "ft_true_f1": 0.582,
+    "n_eval": 54362,
+    "frac": 1.0,
+    "seed": 2,
+    "freeze": "backbone",
+    "n_train_chips": 525
+  }
+}

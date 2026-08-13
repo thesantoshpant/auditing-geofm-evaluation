@@ -1,0 +1,26 @@
+
+--- Prithvi (separate seven-seed robustness cohort; seeds [3, 4, 5, 6, 7, 8, 9]; df=6) ---
+  india         delta=-0.0003+-0.0042  CI=[-0.0042,+0.0035]  EQUIV
+  cambodia      delta=-0.0022+-0.0009  CI=[-0.0030,-0.0013]  EQUIV
+  vietnam       delta=-0.0038+-0.0010  CI=[-0.0047,-0.0028]  EQUIV
+  kenya         delta=-0.1015+-0.0815  CI=[-0.1769,-0.0262]  not-eq
+  france        delta=+0.0042+-0.0020  CI=[+0.0023,+0.0060]  EQUIV
+  netherlands   delta=+0.0076+-0.0063  CI=[+0.0018,+0.0135]  EQUIV
+  Prithvi: 5 of 6 TOST-equivalent
+
+--- Terramind (separate seven-seed robustness cohort; seeds [3, 4, 5, 6, 7, 8, 9]; df=6) ---
+  india         delta=+0.0185+-0.0152  CI=[+0.0045,+0.0326]  not-eq
+  cambodia      delta=-0.0059+-0.0012  CI=[-0.0070,-0.0048]  EQUIV
+  vietnam       delta=-0.0049+-0.0004  CI=[-0.0053,-0.0045]  EQUIV
+  kenya         delta=-0.1018+-0.0922  CI=[-0.1871,-0.0165]  not-eq
+  france        delta=+0.0007+-0.0008  CI=[-0.0000,+0.0014]  EQUIV
+  netherlands   delta=+0.0058+-0.0108  CI=[-0.0041,+0.0158]  EQUIV
+  Terramind: 4 of 6 TOST-equivalent
+
+*** v8 n=7: 9 of 12 region x model cells TOST-equivalent ***
+
+Holm familywise correction across the 12 cells:
+  at alpha=0.05 : 9 of 12 cells retain TOST equivalence
+  at alpha=0.025: 8 of 12 cells retain TOST equivalence
+
+Wrote data/results/ftw_paired_tost_v8.json

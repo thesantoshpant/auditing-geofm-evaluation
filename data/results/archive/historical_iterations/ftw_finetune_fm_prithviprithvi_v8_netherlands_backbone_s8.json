@@ -1,0 +1,14 @@
+{
+  "netherlands": {
+    "train_country": "netherlands",
+    "eval_country": "netherlands",
+    "ft_true_auroc": 0.9674,
+    "ft_true_ap": 0.965,
+    "ft_true_f1": 0.8222,
+    "ft_true_iou": 0.698,
+    "n_eval": 69433,
+    "frac": 1.0,
+    "seed": 8,
+    "freeze": "backbone"
+  }
+}

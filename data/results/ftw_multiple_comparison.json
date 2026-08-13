@@ -1,0 +1,127 @@
+{
+  "n_tests": 10,
+  "all_significant_BH_and_Holm": true,
+  "min_z": 6.54,
+  "tests": [
+    {
+      "test": "india:RFproxy-true F1",
+      "delta": 0.808,
+      "ci": [
+        0.781,
+        0.833
+      ],
+      "z": 60.91,
+      "p": 1e-300,
+      "BH_sig_FDR0.05": true,
+      "Holm_sig_0.05": true
+    },
+    {
+      "test": "india:bestFM-RF AUROC",
+      "delta": 0.409,
+      "ci": [
+        0.381,
+        0.44
+      ],
+      "z": 27.17,
+      "p": 1e-300,
+      "BH_sig_FDR0.05": true,
+      "Holm_sig_0.05": true
+    },
+    {
+      "test": "kenya:RFproxy-true F1",
+      "delta": 0.586,
+      "ci": [
+        0.519,
+        0.641
+      ],
+      "z": 18.83,
+      "p": 1e-300,
+      "BH_sig_FDR0.05": true,
+      "Holm_sig_0.05": true
+    },
+    {
+      "test": "vietnam:RFproxy-true F1",
+      "delta": 0.313,
+      "ci": [
+        0.294,
+        0.332
+      ],
+      "z": 32.29,
+      "p": 1e-300,
+      "BH_sig_FDR0.05": true,
+      "Holm_sig_0.05": true
+    },
+    {
+      "test": "vietnam:bestFM-RF AUROC",
+      "delta": 0.286,
+      "ci": [
+        0.266,
+        0.305
+      ],
+      "z": 28.75,
+      "p": 1e-300,
+      "BH_sig_FDR0.05": true,
+      "Holm_sig_0.05": true
+    },
+    {
+      "test": "france:RFproxy-true F1",
+      "delta": 0.279,
+      "ci": [
+        0.266,
+        0.293
+      ],
+      "z": 40.51,
+      "p": 1e-300,
+      "BH_sig_FDR0.05": true,
+      "Holm_sig_0.05": true
+    },
+    {
+      "test": "france:bestFM-RF AUROC",
+      "delta": 0.266,
+      "ci": [
+        0.248,
+        0.285
+      ],
+      "z": 28.18,
+      "p": 1e-300,
+      "BH_sig_FDR0.05": true,
+      "Holm_sig_0.05": true
+    },
+    {
+      "test": "netherlands:RFproxy-true F1",
+      "delta": 0.084,
+      "ci": [
+        0.066,
+        0.102
+      ],
+      "z": 9.15,
+      "p": 1e-300,
+      "BH_sig_FDR0.05": true,
+      "Holm_sig_0.05": true
+    },
+    {
+      "test": "netherlands:bestFM-RF AUROC",
+      "delta": 0.146,
+      "ci": [
+        0.133,
+        0.161
+      ],
+      "z": 20.44,
+      "p": 1e-300,
+      "BH_sig_FDR0.05": true,
+      "Holm_sig_0.05": true
+    },
+    {
+      "test": "kenya:bestFM-RF AUROC",
+      "delta": 0.202,
+      "ci": [
+        0.146,
+        0.267
+      ],
+      "z": 6.54,
+      "p": 5.988987084037944e-11,
+      "BH_sig_FDR0.05": true,
+      "Holm_sig_0.05": true
+    }
+  ]
+}

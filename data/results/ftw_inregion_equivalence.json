@@ -1,0 +1,552 @@
+{
+  "epsilon_auroc": 0.02,
+  "n_seeds": 10,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "method": "Clean single-recipe 10-seed analysis. For each region x model cell, delta is frozen-backbone decoder AUROC minus full fine-tuning AUROC across the same ten seeds. TOST equivalence uses the conservative criterion that the 95% paired t-interval (df=9) lies fully within +/-0.02 AUROC. P-values are max of the two one-sided TOST p-values; Holm adjustment is across the 12 region x model cells.",
+  "models": {
+    "prithvi": {
+      "regions": {
+        "india": {
+          "frozen_seeds": [
+            0.9838,
+            0.9812,
+            0.9829,
+            0.9845,
+            0.9829,
+            0.9792,
+            0.9797,
+            0.9787,
+            0.9851,
+            0.978
+          ],
+          "fullft_seeds": [
+            0.9823,
+            0.9883,
+            0.9854,
+            0.9858,
+            0.9856,
+            0.9858,
+            0.9828,
+            0.982,
+            0.9879,
+            0.9858
+          ],
+          "frozen_mean": 0.9816,
+          "frozen_std": 0.0026,
+          "fullft_mean": 0.9852,
+          "fullft_std": 0.0022,
+          "paired_delta_mean": -0.0036,
+          "paired_delta_std": 0.0029,
+          "ci95": [
+            -0.0056,
+            -0.0015
+          ],
+          "tost_equivalent": true,
+          "tost_p_value": 1.0310312825723145e-08,
+          "tost_p_value_display": 0.0,
+          "tost_p_value_holm": 6.186187695433887e-08,
+          "tost_p_value_holm_display": 0.0,
+          "tost_equiv_holm_0_05": true,
+          "tost_equiv_holm_0_025": true
+        },
+        "cambodia": {
+          "frozen_seeds": [
+            0.9477,
+            0.9481,
+            0.9462,
+            0.9465,
+            0.9461,
+            0.9462,
+            0.9482,
+            0.9476,
+            0.9475,
+            0.9465
+          ],
+          "fullft_seeds": [
+            0.9489,
+            0.9491,
+            0.9482,
+            0.9498,
+            0.9489,
+            0.949,
+            0.9487,
+            0.9494,
+            0.9487,
+            0.9484
+          ],
+          "frozen_mean": 0.9471,
+          "frozen_std": 0.0008,
+          "fullft_mean": 0.9489,
+          "fullft_std": 0.0005,
+          "paired_delta_mean": -0.0018,
+          "paired_delta_std": 0.0009,
+          "ci95": [
+            -0.0025,
+            -0.0012
+          ],
+          "tost_equivalent": true,
+          "tost_p_value": 1.4777068457760834e-13,
+          "tost_p_value_display": 0.0,
+          "tost_p_value_holm": 1.6254775303536917e-12,
+          "tost_p_value_holm_display": 0.0,
+          "tost_equiv_holm_0_05": true,
+          "tost_equiv_holm_0_025": true
+        },
+        "vietnam": {
+          "frozen_seeds": [
+            0.9543,
+            0.9549,
+            0.9537,
+            0.9548,
+            0.9547,
+            0.9547,
+            0.955,
+            0.9539,
+            0.9552,
+            0.9549
+          ],
+          "fullft_seeds": [
+            0.9584,
+            0.9572,
+            0.9584,
+            0.959,
+            0.9592,
+            0.9585,
+            0.9583,
+            0.9584,
+            0.9578,
+            0.9595
+          ],
+          "frozen_mean": 0.9546,
+          "frozen_std": 0.0005,
+          "fullft_mean": 0.9585,
+          "fullft_std": 0.0007,
+          "paired_delta_mean": -0.0039,
+          "paired_delta_std": 0.0009,
+          "ci95": [
+            -0.0045,
+            -0.0032
+          ],
+          "tost_equivalent": true,
+          "tost_p_value": 2.625677453238495e-13,
+          "tost_p_value_display": 0.0,
+          "tost_p_value_holm": 2.6256774532384952e-12,
+          "tost_p_value_holm_display": 0.0,
+          "tost_equiv_holm_0_05": true,
+          "tost_equiv_holm_0_025": true
+        },
+        "kenya": {
+          "frozen_seeds": [
+            0.6668,
+            0.6577,
+            0.6154,
+            0.5987,
+            0.6072,
+            0.6765,
+            0.5309,
+            0.7234,
+            0.7449,
+            0.7132
+          ],
+          "fullft_seeds": [
+            0.7807,
+            0.7985,
+            0.6992,
+            0.8112,
+            0.8135,
+            0.7283,
+            0.761,
+            0.7007,
+            0.7912,
+            0.8244
+          ],
+          "frozen_mean": 0.6535,
+          "frozen_std": 0.066,
+          "fullft_mean": 0.7709,
+          "fullft_std": 0.0466,
+          "paired_delta_mean": -0.1174,
+          "paired_delta_std": 0.0819,
+          "ci95": [
+            -0.176,
+            -0.0588
+          ],
+          "tost_equivalent": false,
+          "tost_p_value": 0.9977607693512881,
+          "tost_p_value_display": 0.997761,
+          "tost_p_value_holm": 1.0,
+          "tost_p_value_holm_display": 1.0,
+          "tost_equiv_holm_0_05": false,
+          "tost_equiv_holm_0_025": false
+        },
+        "france": {
+          "frozen_seeds": [
+            0.9813,
+            0.9819,
+            0.9812,
+            0.9816,
+            0.9816,
+            0.9823,
+            0.9817,
+            0.981,
+            0.9806,
+            0.9814
+          ],
+          "fullft_seeds": [
+            0.9804,
+            0.9782,
+            0.9807,
+            0.9789,
+            0.9788,
+            0.9774,
+            0.9773,
+            0.9791,
+            0.9791,
+            0.9793
+          ],
+          "frozen_mean": 0.9815,
+          "frozen_std": 0.0005,
+          "fullft_mean": 0.9789,
+          "fullft_std": 0.0011,
+          "paired_delta_mean": 0.0025,
+          "paired_delta_std": 0.0015,
+          "ci95": [
+            0.0015,
+            0.0036
+          ],
+          "tost_equivalent": true,
+          "tost_p_value": 1.5035306333288645e-11,
+          "tost_p_value_display": 0.0,
+          "tost_p_value_holm": 1.0524714433302051e-10,
+          "tost_p_value_holm_display": 0.0,
+          "tost_equiv_holm_0_05": true,
+          "tost_equiv_holm_0_025": true
+        },
+        "netherlands": {
+          "frozen_seeds": [
+            0.9708,
+            0.9728,
+            0.971,
+            0.9711,
+            0.9699,
+            0.9735,
+            0.9708,
+            0.9677,
+            0.9679,
+            0.9706
+          ],
+          "fullft_seeds": [
+            0.9639,
+            0.9566,
+            0.9529,
+            0.9535,
+            0.9634,
+            0.9609,
+            0.9456,
+            0.9644,
+            0.9514,
+            0.9652
+          ],
+          "frozen_mean": 0.9706,
+          "frozen_std": 0.0018,
+          "fullft_mean": 0.9578,
+          "fullft_std": 0.0068,
+          "paired_delta_mean": 0.0128,
+          "paired_delta_std": 0.0071,
+          "ci95": [
+            0.0078,
+            0.0179
+          ],
+          "tost_equivalent": true,
+          "tost_p_value": 0.005349514139193046,
+          "tost_p_value_display": 0.00535,
+          "tost_p_value_holm": 0.021398056556772183,
+          "tost_p_value_holm_display": 0.021398,
+          "tost_equiv_holm_0_05": true,
+          "tost_equiv_holm_0_025": true
+        }
+      },
+      "n_equivalent": 5
+    },
+    "terramind": {
+      "regions": {
+        "india": {
+          "frozen_seeds": [
+            0.9716,
+            0.9343,
+            0.9764,
+            0.9766,
+            0.9732,
+            0.9748,
+            0.9778,
+            0.9635,
+            0.9698,
+            0.9646
+          ],
+          "fullft_seeds": [
+            0.9695,
+            0.9548,
+            0.9503,
+            0.9456,
+            0.9612,
+            0.9559,
+            0.9455,
+            0.9298,
+            0.9117,
+            0.9546
+          ],
+          "frozen_mean": 0.9683,
+          "frozen_std": 0.0129,
+          "fullft_mean": 0.9479,
+          "fullft_std": 0.0165,
+          "paired_delta_mean": 0.0204,
+          "paired_delta_std": 0.0213,
+          "ci95": [
+            0.0052,
+            0.0356
+          ],
+          "tost_equivalent": false,
+          "tost_p_value": 0.5213293358646447,
+          "tost_p_value_display": 0.521329,
+          "tost_p_value_holm": 1.0,
+          "tost_p_value_holm_display": 1.0,
+          "tost_equiv_holm_0_05": false,
+          "tost_equiv_holm_0_025": false
+        },
+        "cambodia": {
+          "frozen_seeds": [
+            0.943,
+            0.9418,
+            0.9425,
+            0.9417,
+            0.9413,
+            0.943,
+            0.9429,
+            0.9423,
+            0.9424,
+            0.9421
+          ],
+          "fullft_seeds": [
+            0.9485,
+            0.9477,
+            0.9472,
+            0.9494,
+            0.9491,
+            0.948,
+            0.9491,
+            0.9492,
+            0.9486,
+            0.9473
+          ],
+          "frozen_mean": 0.9423,
+          "frozen_std": 0.0006,
+          "fullft_mean": 0.9484,
+          "fullft_std": 0.0008,
+          "paired_delta_mean": -0.0061,
+          "paired_delta_std": 0.0011,
+          "ci95": [
+            -0.0069,
+            -0.0053
+          ],
+          "tost_equivalent": true,
+          "tost_p_value": 8.148925978446186e-12,
+          "tost_p_value_display": 0.0,
+          "tost_p_value_holm": 6.519140782756949e-11,
+          "tost_p_value_holm_display": 0.0,
+          "tost_equiv_holm_0_05": true,
+          "tost_equiv_holm_0_025": true
+        },
+        "vietnam": {
+          "frozen_seeds": [
+            0.9513,
+            0.9511,
+            0.952,
+            0.9512,
+            0.9507,
+            0.9511,
+            0.9517,
+            0.9513,
+            0.9508,
+            0.951
+          ],
+          "fullft_seeds": [
+            0.9553,
+            0.9555,
+            0.9558,
+            0.9561,
+            0.9556,
+            0.9557,
+            0.9556,
+            0.9561,
+            0.9553,
+            0.956
+          ],
+          "frozen_mean": 0.9512,
+          "frozen_std": 0.0004,
+          "fullft_mean": 0.9557,
+          "fullft_std": 0.0003,
+          "paired_delta_mean": -0.0045,
+          "paired_delta_std": 0.0004,
+          "ci95": [
+            -0.0048,
+            -0.0042
+          ],
+          "tost_equivalent": true,
+          "tost_p_value": 9.992007221626409e-16,
+          "tost_p_value_display": 0.0,
+          "tost_p_value_holm": 1.199040866595169e-14,
+          "tost_p_value_holm_display": 0.0,
+          "tost_equiv_holm_0_05": true,
+          "tost_equiv_holm_0_025": true
+        },
+        "kenya": {
+          "frozen_seeds": [
+            0.61,
+            0.6323,
+            0.6377,
+            0.5959,
+            0.5374,
+            0.5759,
+            0.7066,
+            0.6432,
+            0.569,
+            0.6245
+          ],
+          "fullft_seeds": [
+            0.8196,
+            0.7242,
+            0.7877,
+            0.6109,
+            0.5733,
+            0.6957,
+            0.6961,
+            0.7728,
+            0.7206,
+            0.7032
+          ],
+          "frozen_mean": 0.6133,
+          "frozen_std": 0.0473,
+          "fullft_mean": 0.7104,
+          "fullft_std": 0.0755,
+          "paired_delta_mean": -0.0972,
+          "paired_delta_std": 0.0687,
+          "ci95": [
+            -0.1463,
+            -0.048
+          ],
+          "tost_equivalent": false,
+          "tost_p_value": 0.9969107559714124,
+          "tost_p_value_display": 0.996911,
+          "tost_p_value_holm": 1.0,
+          "tost_p_value_holm_display": 1.0,
+          "tost_equiv_holm_0_05": false,
+          "tost_equiv_holm_0_025": false
+        },
+        "france": {
+          "frozen_seeds": [
+            0.9779,
+            0.9792,
+            0.9789,
+            0.979,
+            0.979,
+            0.9788,
+            0.9786,
+            0.9791,
+            0.9787,
+            0.9784
+          ],
+          "fullft_seeds": [
+            0.9791,
+            0.9776,
+            0.9779,
+            0.978,
+            0.9766,
+            0.9787,
+            0.9752,
+            0.978,
+            0.9782,
+            0.9779
+          ],
+          "frozen_mean": 0.9788,
+          "frozen_std": 0.0004,
+          "fullft_mean": 0.9777,
+          "fullft_std": 0.0011,
+          "paired_delta_mean": 0.001,
+          "paired_delta_std": 0.0013,
+          "ci95": [
+            0.0001,
+            0.0019
+          ],
+          "tost_equivalent": true,
+          "tost_p_value": 1.9624302183274267e-12,
+          "tost_p_value_display": 0.0,
+          "tost_p_value_holm": 1.766187196494684e-11,
+          "tost_p_value_holm_display": 0.0,
+          "tost_equiv_holm_0_05": true,
+          "tost_equiv_holm_0_025": true
+        },
+        "netherlands": {
+          "frozen_seeds": [
+            0.9604,
+            0.9584,
+            0.9582,
+            0.9556,
+            0.9637,
+            0.9645,
+            0.9644,
+            0.9596,
+            0.9638,
+            0.9594
+          ],
+          "fullft_seeds": [
+            0.9423,
+            0.9505,
+            0.9611,
+            0.9531,
+            0.9429,
+            0.964,
+            0.9615,
+            0.9395,
+            0.9535,
+            0.9519
+          ],
+          "frozen_mean": 0.9608,
+          "frozen_std": 0.0031,
+          "fullft_mean": 0.952,
+          "fullft_std": 0.0085,
+          "paired_delta_mean": 0.0088,
+          "paired_delta_std": 0.0085,
+          "ci95": [
+            0.0027,
+            0.0148
+          ],
+          "tost_equivalent": true,
+          "tost_p_value": 0.001152052713752738,
+          "tost_p_value_display": 0.001152,
+          "tost_p_value_holm": 0.0057602635687636905,
+          "tost_p_value_holm_display": 0.00576,
+          "tost_equiv_holm_0_05": true,
+          "tost_equiv_holm_0_025": true
+        }
+      },
+      "n_equivalent": 4
+    }
+  },
+  "n_equivalent_combined": 9,
+  "n_total_cells": 12,
+  "holm": {
+    "n_cells": 12,
+    "n_retained_alpha_0_05": 9,
+    "n_retained_alpha_0_025": 9
+  }
+}

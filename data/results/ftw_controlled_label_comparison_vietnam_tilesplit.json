@@ -1,0 +1,62 @@
+{
+  "country": "vietnam",
+  "n_pixels": 114000,
+  "chip_overlap": 0,
+  "n_train_chips": 250,
+  "n_test_chips": 35,
+  "true_pos_rate": 0.5,
+  "proxy_pos_rate": 0.802,
+  "seed": 20260514,
+  "models": {
+    "clay_v1": {
+      "true": {
+        "auroc": 0.513,
+        "f1": 0.483
+      },
+      "proxy": {
+        "auroc": 0.616,
+        "f1": 0.683
+      }
+    },
+    "prithvi_eo_2_0_300m": {
+      "true": {
+        "auroc": 0.922,
+        "f1": 0.874
+      },
+      "proxy": {
+        "auroc": 0.886,
+        "f1": 0.859
+      }
+    },
+    "terramind_v1_base": {
+      "true": {
+        "auroc": 0.915,
+        "f1": 0.861
+      },
+      "proxy": {
+        "auroc": 0.907,
+        "f1": 0.879
+      }
+    },
+    "anysat_dense": {
+      "true": {
+        "auroc": 0.645,
+        "f1": 0.644
+      },
+      "proxy": {
+        "auroc": 0.794,
+        "f1": 0.79
+      }
+    },
+    "rf_spectral": {
+      "true": {
+        "auroc": 0.616,
+        "f1": 0.569
+      },
+      "proxy": {
+        "auroc": 0.849,
+        "f1": 0.897
+      }
+    }
+  }
+}

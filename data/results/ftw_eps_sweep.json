@@ -1,0 +1,1051 @@
+{
+  "method": "Sensitivity of the primary equivalence verdict to epsilon. The table criterion is containment of the 95% seed-paired t-interval within +/-epsilon. TOST p-values and Holm adjustments are also provided for audit, but the paper's sensitivity counts use unadjusted CI containment.",
+  "n_seeds": 10,
+  "df": 9,
+  "epsilons": {
+    "0.005": {
+      "n_equivalent_by_ci95": 5,
+      "n_retained_after_holm_0_05": 5,
+      "cells": [
+        {
+          "model": "prithvi",
+          "region": "india",
+          "paired_delta_mean": -0.00357,
+          "ci95": [
+            -0.00561,
+            -0.00153
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.0736190464602392,
+          "tost_p_value_holm": 0.5153333252216744,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "prithvi",
+          "region": "cambodia",
+          "paired_delta_mean": -0.00185,
+          "ci95": [
+            -0.002495,
+            -0.001205
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 7.798011595339105e-07,
+          "tost_p_value_holm": 9.357613914406926e-06,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "vietnam",
+          "paired_delta_mean": -0.00386,
+          "ci95": [
+            -0.004472,
+            -0.003248
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 0.0011282963447716288,
+          "tost_p_value_holm": 0.010154667102944659,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "kenya",
+          "paired_delta_mean": -0.1174,
+          "ci95": [
+            -0.175985,
+            -0.058815
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.9990614723731372,
+          "tost_p_value_holm": 1.0,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "prithvi",
+          "region": "france",
+          "paired_delta_mean": 0.00254,
+          "ci95": [
+            0.001501,
+            0.003579
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 0.00023012876345873678,
+          "tost_p_value_holm": 0.002301287634587368,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "netherlands",
+          "paired_delta_mean": 0.01283,
+          "ci95": [
+            0.007773,
+            0.017887
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.9966536683546712,
+          "tost_p_value_holm": 1.0,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "terramind",
+          "region": "india",
+          "paired_delta_mean": 0.02037,
+          "ci95": [
+            0.005151,
+            0.035589
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.9759031702210503,
+          "tost_p_value_holm": 1.0,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "terramind",
+          "region": "cambodia",
+          "paired_delta_mean": -0.00611,
+          "ci95": [
+            -0.006882,
+            -0.005338
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.9950129046951698,
+          "tost_p_value_holm": 1.0,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "terramind",
+          "region": "vietnam",
+          "paired_delta_mean": -0.00448,
+          "ci95": [
+            -0.004798,
+            -0.004162
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 0.0024537517884314353,
+          "tost_p_value_holm": 0.019630014307451482,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "terramind",
+          "region": "kenya",
+          "paired_delta_mean": -0.09716,
+          "ci95": [
+            -0.146275,
+            -0.048045
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.9989204037843288,
+          "tost_p_value_holm": 1.0,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "terramind",
+          "region": "france",
+          "paired_delta_mean": 0.00104,
+          "ci95": [
+            0.000141,
+            0.001939
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 1.8481568470063436e-06,
+          "tost_p_value_holm": 2.032972531706978e-05,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "terramind",
+          "region": "netherlands",
+          "paired_delta_mean": 0.00877,
+          "ci95": [
+            0.002723,
+            0.014817
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.9039579135464942,
+          "tost_p_value_holm": 1.0,
+          "retained_after_holm_0_05": false
+        }
+      ]
+    },
+    "0.010": {
+      "n_equivalent_by_ci95": 7,
+      "n_retained_after_holm_0_05": 7,
+      "cells": [
+        {
+          "model": "prithvi",
+          "region": "india",
+          "paired_delta_mean": -0.00357,
+          "ci95": [
+            -0.00561,
+            -0.00153
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 2.7400883526707e-05,
+          "tost_p_value_holm": 0.000164405301160242,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "cambodia",
+          "paired_delta_mean": -0.00185,
+          "ci95": [
+            -0.002495,
+            -0.001205
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 1.9207835322276878e-10,
+          "tost_p_value_holm": 2.1128618854504566e-09,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "vietnam",
+          "paired_delta_mean": -0.00386,
+          "ci95": [
+            -0.004472,
+            -0.003248
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 1.4814065529833442e-09,
+          "tost_p_value_holm": 1.4814065529833442e-08,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "kenya",
+          "paired_delta_mean": -0.1174,
+          "ci95": [
+            -0.175985,
+            -0.058815
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.9987524037822877,
+          "tost_p_value_holm": 1.0,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "prithvi",
+          "region": "france",
+          "paired_delta_mean": 0.00254,
+          "ci95": [
+            0.001501,
+            0.003579
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 2.8329040002716965e-08,
+          "tost_p_value_holm": 2.2663232002173572e-07,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "netherlands",
+          "paired_delta_mean": 0.01283,
+          "ci95": [
+            0.007773,
+            0.017887
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.881360869104639,
+          "tost_p_value_holm": 1.0,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "terramind",
+          "region": "india",
+          "paired_delta_mean": 0.02037,
+          "ci95": [
+            0.005151,
+            0.035589
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.9212001899833705,
+          "tost_p_value_holm": 1.0,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "terramind",
+          "region": "cambodia",
+          "paired_delta_mean": -0.00611,
+          "ci95": [
+            -0.006882,
+            -0.005338
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 5.975573629246611e-07,
+          "tost_p_value_holm": 4.182901540472628e-06,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "terramind",
+          "region": "vietnam",
+          "paired_delta_mean": -0.00448,
+          "ci95": [
+            -0.004798,
+            -0.004162
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 1.1129208665749957e-11,
+          "tost_p_value_holm": 1.3355050398899948e-10,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "terramind",
+          "region": "kenya",
+          "paired_delta_mean": -0.09716,
+          "ci95": [
+            -0.146275,
+            -0.048045
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.9984782651164493,
+          "tost_p_value_holm": 1.0,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "terramind",
+          "region": "france",
+          "paired_delta_mean": 0.00104,
+          "ci95": [
+            0.000141,
+            0.001939
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 1.5789518581499351e-09,
+          "tost_p_value_holm": 1.4814065529833442e-08,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "terramind",
+          "region": "netherlands",
+          "paired_delta_mean": 0.00877,
+          "ci95": [
+            0.002723,
+            0.014817
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.32817869843192127,
+          "tost_p_value_holm": 1.0,
+          "retained_after_holm_0_05": false
+        }
+      ]
+    },
+    "0.015": {
+      "n_equivalent_by_ci95": 8,
+      "n_retained_after_holm_0_05": 7,
+      "cells": [
+        {
+          "model": "prithvi",
+          "region": "india",
+          "paired_delta_mean": -0.00357,
+          "ci95": [
+            -0.00561,
+            -0.00153
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 2.411328217100106e-07,
+          "tost_p_value_holm": 1.4467969302600636e-06,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "cambodia",
+          "paired_delta_mean": -0.00185,
+          "ci95": [
+            -0.002495,
+            -0.001205
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 2.663980147588063e-12,
+          "tost_p_value_holm": 2.9303781623468694e-11,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "vietnam",
+          "paired_delta_mean": -0.00386,
+          "ci95": [
+            -0.004472,
+            -0.003248
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 7.30437932361383e-12,
+          "tost_p_value_holm": 7.30437932361383e-11,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "kenya",
+          "paired_delta_mean": -0.1174,
+          "ci95": [
+            -0.175985,
+            -0.058815
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.9983328186450303,
+          "tost_p_value_holm": 1.0,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "prithvi",
+          "region": "france",
+          "paired_delta_mean": 0.00254,
+          "ci95": [
+            0.001501,
+            0.003579
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 3.0568370057437733e-10,
+          "tost_p_value_holm": 2.4454696045950186e-09,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "netherlands",
+          "paired_delta_mean": 0.01283,
+          "ci95": [
+            0.007773,
+            0.017887
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.178507227727853,
+          "tost_p_value_holm": 0.714028910911412,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "terramind",
+          "region": "india",
+          "paired_delta_mean": 0.02037,
+          "ci95": [
+            0.005151,
+            0.035589
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.7773530664530922,
+          "tost_p_value_holm": 1.0,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "terramind",
+          "region": "cambodia",
+          "paired_delta_mean": -0.00611,
+          "ci95": [
+            -0.006882,
+            -0.005338
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 4.380367180090161e-10,
+          "tost_p_value_holm": 3.0662570260631128e-09,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "terramind",
+          "region": "vietnam",
+          "paired_delta_mean": -0.00448,
+          "ci95": [
+            -0.004798,
+            -0.004162
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 3.419486915845482e-14,
+          "tost_p_value_holm": 4.1033842990145786e-13,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "terramind",
+          "region": "kenya",
+          "paired_delta_mean": -0.09716,
+          "ci95": [
+            -0.146275,
+            -0.048045
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.9978393050987776,
+          "tost_p_value_holm": 1.0,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "terramind",
+          "region": "france",
+          "paired_delta_mean": 0.00104,
+          "ci95": [
+            0.000141,
+            0.001939
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 3.044087204528978e-11,
+          "tost_p_value_holm": 2.73967848407608e-10,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "terramind",
+          "region": "netherlands",
+          "paired_delta_mean": 0.00877,
+          "ci95": [
+            0.002723,
+            0.014817
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 0.022357837649592205,
+          "tost_p_value_holm": 0.11178918824796102,
+          "retained_after_holm_0_05": false
+        }
+      ]
+    },
+    "0.020": {
+      "n_equivalent_by_ci95": 9,
+      "n_retained_after_holm_0_05": 9,
+      "cells": [
+        {
+          "model": "prithvi",
+          "region": "india",
+          "paired_delta_mean": -0.00357,
+          "ci95": [
+            -0.00561,
+            -0.00153
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 1.0310312825723145e-08,
+          "tost_p_value_holm": 6.186187695433887e-08,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "cambodia",
+          "paired_delta_mean": -0.00185,
+          "ci95": [
+            -0.002495,
+            -0.001205
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 1.4777068457760834e-13,
+          "tost_p_value_holm": 1.6254775303536917e-12,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "vietnam",
+          "paired_delta_mean": -0.00386,
+          "ci95": [
+            -0.004472,
+            -0.003248
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 2.625677453238495e-13,
+          "tost_p_value_holm": 2.6256774532384952e-12,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "kenya",
+          "paired_delta_mean": -0.1174,
+          "ci95": [
+            -0.175985,
+            -0.058815
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.9977607693512881,
+          "tost_p_value_holm": 1.0,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "prithvi",
+          "region": "france",
+          "paired_delta_mean": 0.00254,
+          "ci95": [
+            0.001501,
+            0.003579
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 1.5035306333288645e-11,
+          "tost_p_value_holm": 1.0524714433302051e-10,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "netherlands",
+          "paired_delta_mean": 0.01283,
+          "ci95": [
+            0.007773,
+            0.017887
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 0.005349514139193046,
+          "tost_p_value_holm": 0.021398056556772183,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "terramind",
+          "region": "india",
+          "paired_delta_mean": 0.02037,
+          "ci95": [
+            0.005151,
+            0.035589
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.5213293358646447,
+          "tost_p_value_holm": 1.0,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "terramind",
+          "region": "cambodia",
+          "paired_delta_mean": -0.00611,
+          "ci95": [
+            -0.006882,
+            -0.005338
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 8.148925978446186e-12,
+          "tost_p_value_holm": 6.519140782756949e-11,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "terramind",
+          "region": "vietnam",
+          "paired_delta_mean": -0.00448,
+          "ci95": [
+            -0.004798,
+            -0.004162
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 9.992007221626409e-16,
+          "tost_p_value_holm": 1.199040866595169e-14,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "terramind",
+          "region": "kenya",
+          "paired_delta_mean": -0.09716,
+          "ci95": [
+            -0.146275,
+            -0.048045
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.9969107559714124,
+          "tost_p_value_holm": 1.0,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "terramind",
+          "region": "france",
+          "paired_delta_mean": 0.00104,
+          "ci95": [
+            0.000141,
+            0.001939
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 1.9624302183274267e-12,
+          "tost_p_value_holm": 1.766187196494684e-11,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "terramind",
+          "region": "netherlands",
+          "paired_delta_mean": 0.00877,
+          "ci95": [
+            0.002723,
+            0.014817
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 0.001152052713752738,
+          "tost_p_value_holm": 0.0057602635687636905,
+          "retained_after_holm_0_05": true
+        }
+      ]
+    },
+    "0.025": {
+      "n_equivalent_by_ci95": 9,
+      "n_retained_after_holm_0_05": 9,
+      "cells": [
+        {
+          "model": "prithvi",
+          "region": "india",
+          "paired_delta_mean": -0.00357,
+          "ci95": [
+            -0.00561,
+            -0.00153
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 9.868507122590131e-10,
+          "tost_p_value_holm": 5.921104273554079e-09,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "cambodia",
+          "paired_delta_mean": -0.00185,
+          "ci95": [
+            -0.002495,
+            -0.001205
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 1.6653345369377348e-14,
+          "tost_p_value_holm": 1.8318679906315083e-13,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "vietnam",
+          "paired_delta_mean": -0.00386,
+          "ci95": [
+            -0.004472,
+            -0.003248
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 2.3314683517128287e-14,
+          "tost_p_value_holm": 2.3314683517128287e-13,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "kenya",
+          "paired_delta_mean": -0.1174,
+          "ci95": [
+            -0.175985,
+            -0.058815
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.9969778735221816,
+          "tost_p_value_holm": 1.0,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "prithvi",
+          "region": "france",
+          "paired_delta_mean": 0.00254,
+          "ci95": [
+            0.001501,
+            0.003579
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 1.5746293158258595e-12,
+          "tost_p_value_holm": 1.1022405210781017e-11,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "netherlands",
+          "paired_delta_mean": 0.01283,
+          "ci95": [
+            0.007773,
+            0.017887
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 0.00020428511311221254,
+          "tost_p_value_holm": 0.0008171404524488501,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "terramind",
+          "region": "india",
+          "paired_delta_mean": 0.02037,
+          "ci95": [
+            0.005151,
+            0.035589
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.2543306022157281,
+          "tost_p_value_holm": 0.7629918066471844,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "terramind",
+          "region": "cambodia",
+          "paired_delta_mean": -0.00611,
+          "ci95": [
+            -0.006882,
+            -0.005338
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 5.172529071728604e-13,
+          "tost_p_value_holm": 4.1380232573828835e-12,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "terramind",
+          "region": "vietnam",
+          "paired_delta_mean": -0.00448,
+          "ci95": [
+            -0.004798,
+            -0.004162
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 1.1102230246251565e-16,
+          "tost_p_value_holm": 1.3322676295501878e-15,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "terramind",
+          "region": "kenya",
+          "paired_delta_mean": -0.09716,
+          "ci95": [
+            -0.146275,
+            -0.048045
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.995555122651786,
+          "tost_p_value_holm": 1.0,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "terramind",
+          "region": "france",
+          "paired_delta_mean": 0.00104,
+          "ci95": [
+            0.000141,
+            0.001939
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 2.4014124022642136e-13,
+          "tost_p_value_holm": 2.1612711620377922e-12,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "terramind",
+          "region": "netherlands",
+          "paired_delta_mean": 0.00877,
+          "ci95": [
+            0.002723,
+            0.014817
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 9.282725405790337e-05,
+          "tost_p_value_holm": 0.00046413627028951687,
+          "retained_after_holm_0_05": true
+        }
+      ]
+    },
+    "0.030": {
+      "n_equivalent_by_ci95": 9,
+      "n_retained_after_holm_0_05": 9,
+      "cells": [
+        {
+          "model": "prithvi",
+          "region": "india",
+          "paired_delta_mean": -0.00357,
+          "ci95": [
+            -0.00561,
+            -0.00153
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 1.5280954279717207e-10,
+          "tost_p_value_holm": 9.168572567830324e-10,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "cambodia",
+          "paired_delta_mean": -0.00185,
+          "ci95": [
+            -0.002495,
+            -0.001205
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 2.886579864025407e-15,
+          "tost_p_value_holm": 3.175237850427948e-14,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "vietnam",
+          "paired_delta_mean": -0.00386,
+          "ci95": [
+            -0.004472,
+            -0.003248
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 3.4416913763379853e-15,
+          "tost_p_value_holm": 3.441691376337985e-14,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "kenya",
+          "paired_delta_mean": -0.1174,
+          "ci95": [
+            -0.175985,
+            -0.058815
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.995902933238902,
+          "tost_p_value_holm": 1.0,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "prithvi",
+          "region": "france",
+          "paired_delta_mean": 0.00254,
+          "ci95": [
+            0.001501,
+            0.003579
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 2.5934809855243657e-13,
+          "tost_p_value_holm": 1.815436689867056e-12,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "prithvi",
+          "region": "netherlands",
+          "paired_delta_mean": 0.01283,
+          "ci95": [
+            0.007773,
+            0.017887
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 1.529023057500467e-05,
+          "tost_p_value_holm": 6.116092230001868e-05,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "terramind",
+          "region": "india",
+          "paired_delta_mean": 0.02037,
+          "ci95": [
+            0.005151,
+            0.035589
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.09304920186858279,
+          "tost_p_value_holm": 0.27914760560574836,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "terramind",
+          "region": "cambodia",
+          "paired_delta_mean": -0.00611,
+          "ci95": [
+            -0.006882,
+            -0.005338
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 6.272760089132134e-14,
+          "tost_p_value_holm": 5.018208071305708e-13,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "terramind",
+          "region": "vietnam",
+          "paired_delta_mean": -0.00448,
+          "ci95": [
+            -0.004798,
+            -0.004162
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 0.0,
+          "tost_p_value_holm": 0.0,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "terramind",
+          "region": "kenya",
+          "paired_delta_mean": -0.09716,
+          "ci95": [
+            -0.146275,
+            -0.048045
+          ],
+          "direction": "full-ft-favored",
+          "equivalent_by_ci95": false,
+          "tost_p_value": 0.9935693005618483,
+          "tost_p_value_holm": 1.0,
+          "retained_after_holm_0_05": false
+        },
+        {
+          "model": "terramind",
+          "region": "france",
+          "paired_delta_mean": 0.00104,
+          "ci95": [
+            0.000141,
+            0.001939
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 4.374278717023117e-14,
+          "tost_p_value_holm": 3.936850845320805e-13,
+          "retained_after_holm_0_05": true
+        },
+        {
+          "model": "terramind",
+          "region": "netherlands",
+          "paired_delta_mean": 0.00877,
+          "ci95": [
+            0.002723,
+            0.014817
+          ],
+          "direction": "frozen-favored",
+          "equivalent_by_ci95": true,
+          "tost_p_value": 1.1736210159263294e-05,
+          "tost_p_value_holm": 5.868105079631647e-05,
+          "retained_after_holm_0_05": true
+        }
+      ]
+    }
+  }
+}

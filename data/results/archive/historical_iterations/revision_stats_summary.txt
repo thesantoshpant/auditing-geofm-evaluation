@@ -1,0 +1,45 @@
+# Phase B statistics — generated from existing JSONs
+
+## Table 1 augmentation: per-region point + 95% CI
+
+Region       RF-true                U-Net (seed-CI)                  Frozen-probe Prithvi (chip-CI)             Full-FT (seed-CI)               
+-------------------------------------------------------------------------------------------------------------------------------------------------
+India        0.574                  0.909[0.825,0.993]               0.983\,{\scriptsize[0.979,\,0.985]}        0.983[0.976,0.990]              
+Cambodia     0.55                   0.948[0.946,0.950]               n/a                                        0.949[0.949,0.949]              
+Vietnam      0.643                  0.962[0.955,0.969]               0.929\,{\scriptsize[0.925,\,0.933]}        0.951[0.951,0.951]              
+Kenya        0.651                  0.887[0.882,0.892]               0.766\,{\scriptsize[0.718,\,0.813]}        0.763[0.733,0.793]              
+France       0.695                  0.977[0.977,0.977]               0.961\,{\scriptsize[0.958,\,0.964]}        0.978[0.976,0.980]              
+Netherlands  0.815                  0.981[0.976,0.986]               0.955\,{\scriptsize[0.951,\,0.958]}        0.959[0.947,0.971]              
+
+## Table 2 augmentation: frozen-decoder vs full-FT (Prithvi) with TOST
+
+Equivalence margin epsilon = 0.02 AUROC  (paired CI; n=3, df=2)
+
+Region       frozen-dec           full-FT              delta      paired CI              TOST verdict      
+---------------------------------------------------------------------------------------------------------
+India        0.983            0.983            -0.001    [-0.014,+0.013]        equivalent        
+Cambodia     0.947            0.949            -0.002    [-0.004,+0.001]        equivalent        
+Vietnam      0.954            0.951            +0.003    [+0.002,+0.005]        equivalent        
+Kenya        0.636            0.763            -0.127    [-0.206,-0.048]        different         
+France       0.982            0.978            +0.004    [+0.001,+0.007]        equivalent        
+Netherlands  0.972            0.959            +0.013    [-0.005,+0.031]        inconclusive      
+
+TOST result: 4/6 regions equivalent within +-0.02 AUROC (seed-paired, Prithvi only)
+
+## Table 5 augmentation: cross-region transfer means with seed CIs
+
+Model                          all 10 mean    seed CI                non-Kenya 6 mean   seed CI               
+--------------------------------------------------------------------------------------------------------------
+unet_cross                     0.825         [0.759,0.892]   0.848             [0.748,0.949]
+prithvi_ft_cross               0.777         [0.696,0.859]   0.822             [0.716,0.929]
+frozen_prithvi_cross           0.831         [0.769,0.894]   0.880             [0.814,0.946]
+frozen_terramind_cross         0.828         [0.763,0.893]   0.890             [0.852,0.928]
+frozen_clay_cross              0.498         [0.489,0.506]   0.496             [0.486,0.506]
+spectral_rf_cross              0.560         [0.515,0.605]   0.573             [0.495,0.651]
+
+## Paired delta: frozen_Prithvi - U-Net (per transfer)
+  All 10:    mean delta = +0.0059, 95% CI = [-0.0325, +0.0442], n=10
+  Non-Kenya: mean delta = +0.0317, 95% CI = [-0.0120, +0.0755], n=6
+  TOST equivalence (eps=+-0.05): all10=True, nonKenya=False
+
+Done.

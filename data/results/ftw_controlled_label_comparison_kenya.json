@@ -1,0 +1,62 @@
+{
+  "country": "kenya",
+  "n_pixels": 49686,
+  "chip_overlap": 0,
+  "n_train_chips": 155,
+  "n_test_chips": 52,
+  "true_pos_rate": 0.167,
+  "proxy_pos_rate": 0.44,
+  "seed": 20260514,
+  "models": {
+    "clay_v1": {
+      "true": {
+        "auroc": 0.556,
+        "f1": 0.226
+      },
+      "proxy": {
+        "auroc": 0.67,
+        "f1": 0.573
+      }
+    },
+    "prithvi_eo_2_0_300m": {
+      "true": {
+        "auroc": 0.766,
+        "f1": 0.315
+      },
+      "proxy": {
+        "auroc": 0.786,
+        "f1": 0.684
+      }
+    },
+    "terramind_v1_base": {
+      "true": {
+        "auroc": 0.745,
+        "f1": 0.263
+      },
+      "proxy": {
+        "auroc": 0.803,
+        "f1": 0.694
+      }
+    },
+    "anysat_dense": {
+      "true": {
+        "auroc": 0.853,
+        "f1": 0.546
+      },
+      "proxy": {
+        "auroc": 0.859,
+        "f1": 0.774
+      }
+    },
+    "rf_spectral": {
+      "true": {
+        "auroc": 0.651,
+        "f1": 0.074
+      },
+      "proxy": {
+        "auroc": 0.806,
+        "f1": 0.66
+      }
+    }
+  }
+}

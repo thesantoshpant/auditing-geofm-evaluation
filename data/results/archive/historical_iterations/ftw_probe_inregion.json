@@ -1,0 +1,294 @@
+{
+  "prithvi": {
+    "india": {
+      "frozen_backbone": [
+        0.9828,
+        0.0016
+      ],
+      "full_ft": [
+        0.9833,
+        0.0043
+      ],
+      "delta_frozen_minus_full": -0.0005,
+      "paired_delta_std": 0.0056,
+      "seeds_frozen": [
+        0.9843,
+        0.9812,
+        0.9829
+      ],
+      "seeds_ft": [
+        0.9784,
+        0.9852,
+        0.9863
+      ],
+      "frozen_source_family": "canonical",
+      "ft_source_family": "canonical"
+    },
+    "cambodia": {
+      "frozen_backbone": [
+        0.9473,
+        0.001
+      ],
+      "full_ft": [
+        0.9488,
+        0.0005
+      ],
+      "delta_frozen_minus_full": -0.0015,
+      "paired_delta_std": 0.0011,
+      "seeds_frozen": [
+        0.9476,
+        0.9481,
+        0.9462
+      ],
+      "seeds_ft": [
+        0.9493,
+        0.9484,
+        0.9487
+      ],
+      "frozen_source_family": "canonical",
+      "ft_source_family": "canonical"
+    },
+    "vietnam": {
+      "frozen_backbone": [
+        0.9543,
+        0.0005
+      ],
+      "full_ft": [
+        0.9512,
+        0.0005
+      ],
+      "delta_frozen_minus_full": 0.0031,
+      "paired_delta_std": 0.0007,
+      "seeds_frozen": [
+        0.9545,
+        0.9547,
+        0.9537
+      ],
+      "seeds_ft": [
+        0.9517,
+        0.9508,
+        0.951
+      ],
+      "frozen_source_family": "canonical",
+      "ft_source_family": "canonical"
+    },
+    "kenya": {
+      "frozen_backbone": [
+        0.6359,
+        0.0458
+      ],
+      "full_ft": [
+        0.7628,
+        0.0151
+      ],
+      "delta_frozen_minus_full": -0.1268,
+      "paired_delta_std": 0.0317,
+      "seeds_frozen": [
+        0.6668,
+        0.6577,
+        0.5833
+      ],
+      "seeds_ft": [
+        0.7767,
+        0.7649,
+        0.7467
+      ],
+      "frozen_source_family": "canonical",
+      "ft_source_family": "canonical"
+    },
+    "france": {
+      "frozen_backbone": [
+        0.9817,
+        0.0005
+      ],
+      "full_ft": [
+        0.9775,
+        0.0016
+      ],
+      "delta_frozen_minus_full": 0.0042,
+      "paired_delta_std": 0.0011,
+      "seeds_frozen": [
+        0.9813,
+        0.9822,
+        0.9817
+      ],
+      "seeds_ft": [
+        0.9759,
+        0.979,
+        0.9777
+      ],
+      "frozen_source_family": "canonical",
+      "ft_source_family": "canonical"
+    },
+    "netherlands": {
+      "frozen_backbone": [
+        0.9717,
+        0.001
+      ],
+      "full_ft": [
+        0.9587,
+        0.0066
+      ],
+      "delta_frozen_minus_full": 0.013,
+      "paired_delta_std": 0.0072,
+      "seeds_frozen": [
+        0.9715,
+        0.9728,
+        0.9709
+      ],
+      "seeds_ft": [
+        0.9536,
+        0.9564,
+        0.9662
+      ],
+      "frozen_source_family": "canonical",
+      "ft_source_family": "canonical"
+    }
+  },
+  "terramind": {
+    "india": {
+      "frozen_backbone": [
+        0.9654,
+        0.017
+      ],
+      "full_ft": [
+        0.9644,
+        0.0086
+      ],
+      "delta_frozen_minus_full": 0.001,
+      "paired_delta_std": 0.014,
+      "seeds_frozen": [
+        0.9715,
+        0.9462,
+        0.9786
+      ],
+      "seeds_ft": [
+        0.9584,
+        0.9606,
+        0.9743
+      ],
+      "frozen_source_family": "canonical",
+      "ft_source_family": "canonical"
+    },
+    "cambodia": {
+      "frozen_backbone": [
+        0.9424,
+        0.0006
+      ],
+      "full_ft": [
+        0.9482,
+        0.0009
+      ],
+      "delta_frozen_minus_full": -0.0057,
+      "paired_delta_std": 0.0006,
+      "seeds_frozen": [
+        0.943,
+        0.9418,
+        0.9425
+      ],
+      "seeds_ft": [
+        0.9492,
+        0.9478,
+        0.9475
+      ],
+      "frozen_source_family": "canonical",
+      "ft_source_family": "v7"
+    },
+    "vietnam": {
+      "frozen_backbone": [
+        0.9515,
+        0.0005
+      ],
+      "full_ft": [
+        0.9539,
+        0.0003
+      ],
+      "delta_frozen_minus_full": -0.0024,
+      "paired_delta_std": 0.0004,
+      "seeds_frozen": [
+        0.9514,
+        0.9511,
+        0.952
+      ],
+      "seeds_ft": [
+        0.9541,
+        0.9536,
+        0.954
+      ],
+      "frozen_source_family": "v7",
+      "ft_source_family": "canonical"
+    },
+    "kenya": {
+      "frozen_backbone": [
+        0.6179,
+        0.0297
+      ],
+      "full_ft": [
+        0.7041,
+        0.0791
+      ],
+      "delta_frozen_minus_full": -0.0862,
+      "paired_delta_std": 0.0533,
+      "seeds_frozen": [
+        0.5838,
+        0.6323,
+        0.6377
+      ],
+      "seeds_ft": [
+        0.6175,
+        0.7725,
+        0.7223
+      ],
+      "frozen_source_family": "v7",
+      "ft_source_family": "canonical"
+    },
+    "france": {
+      "frozen_backbone": [
+        0.9788,
+        0.0005
+      ],
+      "full_ft": [
+        0.9729,
+        0.0014
+      ],
+      "delta_frozen_minus_full": 0.006,
+      "paired_delta_std": 0.0015,
+      "seeds_frozen": [
+        0.9783,
+        0.9792,
+        0.979
+      ],
+      "seeds_ft": [
+        0.9732,
+        0.9741,
+        0.9713
+      ],
+      "frozen_source_family": "canonical",
+      "ft_source_family": "canonical"
+    },
+    "netherlands": {
+      "frozen_backbone": [
+        0.9592,
+        0.0012
+      ],
+      "full_ft": [
+        0.9403,
+        0.0102
+      ],
+      "delta_frozen_minus_full": 0.019,
+      "paired_delta_std": 0.0112,
+      "seeds_frozen": [
+        0.9606,
+        0.9585,
+        0.9586
+      ],
+      "seeds_ft": [
+        0.9304,
+        0.9397,
+        0.9507
+      ],
+      "frozen_source_family": "v7",
+      "ft_source_family": "canonical"
+    }
+  }
+}

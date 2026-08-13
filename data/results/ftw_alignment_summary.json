@@ -1,0 +1,89 @@
+{
+  "description": "FTW alignment summary: canonical inputs and split metadata for the released evaluation. Per-pixel test labels are rasterized from the FTW polygons referenced here in each chip's local UTM CRS (scripts/ftw_to_polygons.py + the FTW pipeline), and were verified at 100% label-imagery alignment (paper appendix).",
+  "method": "For each region: load the FTW polygon parquet, the canonical chip-grouped split JSON, and compute SHA-256 of each. Per-pixel polygon membership equals the stored test label by construction (deterministic rasterization). Reviewers can regenerate by running scripts/prep_ftw_country.sh + scripts/ftw_export_split.py against the same FTW source release.",
+  "canonical_split": {
+    "seed": 20260514,
+    "test_fraction": 0.25,
+    "chip_overlap": 0
+  },
+  "regions": {
+    "india": {
+      "polygon_parquet": "data/labels/polygons_ftw_india.parquet",
+      "polygon_sha256": "e5089959e8447a54331e211d788fd74406eb852629acdc9e0c4d5fa01855783d",
+      "n_polygons": 9595,
+      "split_json": "data/results/ftw_split_india.json",
+      "split_sha256": "d03d26b34233d2da95d87a8c89a74e514332da9ccbc7897632e7583276e3fd0c",
+      "split_seed": 20260514,
+      "n_train_chips": 525,
+      "n_test_chips": 175,
+      "n_test_pixels": 54362,
+      "chip_overlap": 0,
+      "total_polygon_area_m2": 34203527
+    },
+    "cambodia": {
+      "polygon_parquet": "data/labels/polygons_ftw_cambodia.parquet",
+      "polygon_sha256": "308aa673ca1480ea2574d25c64873877fbdf0ce22c091108b02faef52de2acdf",
+      "n_polygons": 213845,
+      "split_json": "data/results/ftw_split_cambodia.json",
+      "split_sha256": "def79022e86dcc8a5b040d1ebb2f2c009c3425e8ba7b2d49bb582e43fe38c6f8",
+      "split_seed": 20260514,
+      "n_train_chips": 107,
+      "n_test_chips": 36,
+      "n_test_pixels": 14400,
+      "chip_overlap": 0,
+      "total_polygon_area_m2": 428665054
+    },
+    "vietnam": {
+      "polygon_parquet": "data/labels/polygons_ftw_vietnam.parquet",
+      "polygon_sha256": "4828e67d7f37c3816484b1272e9c24d8fadc7cbd799df90e3f88a2ff405b8ac1",
+      "n_polygons": 104007,
+      "split_json": "data/results/ftw_split_vietnam.json",
+      "split_sha256": "2a864dae5e15bcd3d250317e0277d5c3686b0a86b921eb5eb4e57a8f1d70e26c",
+      "split_seed": 20260514,
+      "n_train_chips": 213,
+      "n_test_chips": 72,
+      "n_test_pixels": 28800,
+      "chip_overlap": 0,
+      "total_polygon_area_m2": 340919085
+    },
+    "kenya": {
+      "polygon_parquet": "data/labels/polygons_ftw_kenya.parquet",
+      "polygon_sha256": "4a5fc41ce1ac87e04bebb0c342a123a6006d497142752fa2ac03d2f2c4995a3e",
+      "n_polygons": 333,
+      "split_json": "data/results/ftw_split_kenya.json",
+      "split_sha256": "5785047b316953daf44f808cdce53b5cec93370c75a477b6e5048d54382110b2",
+      "split_seed": 20260514,
+      "n_train_chips": 155,
+      "n_test_chips": 52,
+      "n_test_pixels": 12745,
+      "chip_overlap": 0,
+      "total_polygon_area_m2": 929930
+    },
+    "france": {
+      "polygon_parquet": "data/labels/polygons_ftw_france.parquet",
+      "polygon_sha256": "69f36098e3a50d40f5c9e750641f25a2c0f6848137fba95be6b3b114d0d2982e",
+      "n_polygons": 71039,
+      "split_json": "data/results/ftw_split_france.json",
+      "split_sha256": "3acc054bdca7c43cbfdec781e233cd458f935acba8bd3a7613e235fc6fa32977",
+      "split_seed": 20260514,
+      "n_train_chips": 532,
+      "n_test_chips": 178,
+      "n_test_pixels": 70421,
+      "chip_overlap": 0,
+      "total_polygon_area_m2": 2541399206
+    },
+    "netherlands": {
+      "polygon_parquet": "data/labels/polygons_ftw_netherlands.parquet",
+      "polygon_sha256": "447079c0793f61836d738b9b55174c103599d212509fa8920af54e6d70be417d",
+      "n_polygons": 55868,
+      "split_json": "data/results/ftw_split_netherlands.json",
+      "split_sha256": "23642ad63ed01f736587c5424d6d3b5177001a98443e1943b5382cd9511a4abb",
+      "split_seed": 20260514,
+      "n_train_chips": 522,
+      "n_test_chips": 175,
+      "n_test_pixels": 69433,
+      "chip_overlap": 0,
+      "total_polygon_area_m2": 968777610
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "india->cambodia": {
+    "unet_cross": [
+      0.6905,
+      0.0396
+    ],
+    "prithvi_ft_cross": [
+      0.6706,
+      0.0519
+    ],
+    "frozen_probe_cross": 0.7875,
+    "B_inregion_unet": 0.948,
+    "B_inregion_prithvi_ft": 0.949
+  },
+  "cambodia->india": {
+    "unet_cross": [
+      0.836,
+      0.0068
+    ],
+    "prithvi_ft_cross": [
+      0.8591,
+      0.0032
+    ],
+    "frozen_probe_cross": 0.8324,
+    "B_inregion_unet": 0.909,
+    "B_inregion_prithvi_ft": 0.983
+  },
+  "france->netherlands": {
+    "unet_cross": [
+      0.9384,
+      0.0038
+    ],
+    "prithvi_ft_cross": [
+      0.9061,
+      0.0214
+    ],
+    "frozen_probe_cross": 0.9408,
+    "B_inregion_unet": 0.981,
+    "B_inregion_prithvi_ft": 0.959
+  },
+  "netherlands->france": {
+    "unet_cross": [
+      0.9382,
+      0.0117
+    ],
+    "prithvi_ft_cross": [
+      0.9094,
+      0.0071
+    ],
+    "frozen_probe_cross": 0.9479,
+    "B_inregion_unet": 0.977,
+    "B_inregion_prithvi_ft": 0.978
+  },
+  "_means_cross": {
+    "unet": 0.8508,
+    "prithvi_ft": 0.8363,
+    "frozen_probe": 0.8771
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "n_boundary_px": 203864,
+  "pos_rate": 0.37,
+  "chip_overlap": 0,
+  "models": {
+    "clay_v1": {
+      "auroc": 0.571,
+      "f1": 0.455
+    },
+    "prithvi_eo_2_0_300m": {
+      "auroc": 0.576,
+      "f1": 0.46
+    },
+    "terramind_v1_base": {
+      "auroc": 0.584,
+      "f1": 0.468
+    },
+    "anysat_dense": {
+      "auroc": 0.582,
+      "f1": 0.461
+    },
+    "rf_spectral": {
+      "auroc": 0.586,
+      "f1": 0.155
+    }
+  }
+}

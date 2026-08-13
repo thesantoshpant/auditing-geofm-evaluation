@@ -1,0 +1,52 @@
+{
+  "country": "cambodia",
+  "n_pixels": 57200,
+  "chip_overlap": 0,
+  "n_train_chips": 107,
+  "n_test_chips": 36,
+  "true_pos_rate": 0.5,
+  "proxy_pos_rate": 0.887,
+  "seed": 20260514,
+  "models": {
+    "clay_v1": {
+      "true": {
+        "auroc": 0.491,
+        "f1": 0.499
+      },
+      "proxy": {
+        "auroc": 0.721,
+        "f1": 0.806
+      }
+    },
+    "prithvi_eo_2_0_300m": {
+      "true": {
+        "auroc": 0.924,
+        "f1": 0.877
+      },
+      "proxy": {
+        "auroc": 0.904,
+        "f1": 0.906
+      }
+    },
+    "terramind_v1_base": {
+      "true": {
+        "auroc": 0.918,
+        "f1": 0.872
+      },
+      "proxy": {
+        "auroc": 0.915,
+        "f1": 0.907
+      }
+    },
+    "rf_spectral": {
+      "true": {
+        "auroc": 0.55,
+        "f1": 0.536
+      },
+      "proxy": {
+        "auroc": 0.9,
+        "f1": 0.942
+      }
+    }
+  }
+}

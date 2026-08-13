@@ -1,0 +1,14 @@
+{
+  "kenya": {
+    "train_country": "kenya",
+    "eval_country": "kenya",
+    "ft_true_auroc": 0.5769,
+    "ft_true_ap": 0.2207,
+    "ft_true_f1": 0.0017,
+    "ft_true_iou": 0.0009,
+    "n_eval": 12745,
+    "frac": 1.0,
+    "seed": 8,
+    "freeze": "backbone"
+  }
+}

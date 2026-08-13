@@ -1,0 +1,12 @@
+{
+  "cambodia": {
+    "train_country": "cambodia",
+    "eval_country": "india",
+    "ft_true_auroc": 0.8613,
+    "ft_true_f1": 0.7536,
+    "n_eval": 54362,
+    "frac": 1.0,
+    "seed": 0,
+    "freeze": "none"
+  }
+}

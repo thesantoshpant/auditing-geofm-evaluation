@@ -1,0 +1,29 @@
+{
+  "india": {
+    "ft_true_auroc": 0.9863,
+    "ft_true_f1": 0.6164,
+    "n_eval": 54362,
+    "frac": 0.25,
+    "seed": 0,
+    "freeze": "none",
+    "n_train_chips": 131
+  },
+  "vietnam": {
+    "ft_true_auroc": 0.9433,
+    "ft_true_f1": 0.898,
+    "n_eval": 28800,
+    "frac": 0.25,
+    "seed": 0,
+    "freeze": "none",
+    "n_train_chips": 53
+  },
+  "kenya": {
+    "ft_true_auroc": 0.4865,
+    "ft_true_f1": 0.0093,
+    "n_eval": 12745,
+    "frac": 0.25,
+    "seed": 0,
+    "freeze": "none",
+    "n_train_chips": 39
+  }
+}

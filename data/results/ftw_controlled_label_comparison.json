@@ -1,0 +1,61 @@
+{
+  "n_pixels": 213611,
+  "chip_overlap": 0,
+  "n_train_chips": 525,
+  "n_test_chips": 175,
+  "true_pos_rate": 0.353,
+  "proxy_pos_rate": 0.775,
+  "seed": 20260514,
+  "models": {
+    "clay_v1": {
+      "true": {
+        "auroc": 0.577,
+        "f1": 0.444
+      },
+      "proxy": {
+        "auroc": 0.696,
+        "f1": 0.74
+      }
+    },
+    "prithvi_eo_2_0_300m": {
+      "true": {
+        "auroc": 0.983,
+        "f1": 0.908
+      },
+      "proxy": {
+        "auroc": 0.864,
+        "f1": 0.864
+      }
+    },
+    "terramind_v1_base": {
+      "true": {
+        "auroc": 0.967,
+        "f1": 0.881
+      },
+      "proxy": {
+        "auroc": 0.878,
+        "f1": 0.875
+      }
+    },
+    "anysat_dense": {
+      "true": {
+        "auroc": 0.939,
+        "f1": 0.852
+      },
+      "proxy": {
+        "auroc": 0.76,
+        "f1": 0.813
+      }
+    },
+    "rf_spectral": {
+      "true": {
+        "auroc": 0.574,
+        "f1": 0.079
+      },
+      "proxy": {
+        "auroc": 0.786,
+        "f1": 0.887
+      }
+    }
+  }
+}

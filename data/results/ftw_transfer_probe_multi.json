@@ -1,0 +1,272 @@
+{
+  "india->cambodia": {
+    "spectral_rf": {
+      "cross_mean": 0.499,
+      "cross_std": 0.006
+    },
+    "prithvi_eo_2_0_300m": {
+      "in_region_mean": 0.984,
+      "in_region_std": 0.0011,
+      "cross_mean": 0.7962,
+      "cross_std": 0.0108,
+      "transfer_gap": 0.1879
+    },
+    "terramind_v1_base": {
+      "in_region_mean": 0.9672,
+      "in_region_std": 0.0003,
+      "cross_mean": 0.849,
+      "cross_std": 0.0066,
+      "transfer_gap": 0.1182
+    },
+    "clay_v1": {
+      "in_region_mean": 0.5902,
+      "in_region_std": 0.0096,
+      "cross_mean": 0.4984,
+      "cross_std": 0.0008,
+      "transfer_gap": 0.0918
+    }
+  },
+  "cambodia->india": {
+    "spectral_rf": {
+      "cross_mean": 0.5249,
+      "cross_std": 0.006
+    },
+    "prithvi_eo_2_0_300m": {
+      "in_region_mean": 0.9253,
+      "in_region_std": 0.0022,
+      "cross_mean": 0.8321,
+      "cross_std": 0.0054,
+      "transfer_gap": 0.0932
+    },
+    "terramind_v1_base": {
+      "in_region_mean": 0.9171,
+      "in_region_std": 0.0019,
+      "cross_mean": 0.8793,
+      "cross_std": 0.0054,
+      "transfer_gap": 0.0378
+    },
+    "clay_v1": {
+      "in_region_mean": 0.5022,
+      "in_region_std": 0.0079,
+      "cross_mean": 0.4763,
+      "cross_std": 0.0185,
+      "transfer_gap": 0.0259
+    }
+  },
+  "france->netherlands": {
+    "spectral_rf": {
+      "cross_mean": 0.7065,
+      "cross_std": 0.0058
+    },
+    "prithvi_eo_2_0_300m": {
+      "in_region_mean": 0.9612,
+      "in_region_std": 0.0013,
+      "cross_mean": 0.9426,
+      "cross_std": 0.0017,
+      "transfer_gap": 0.0185
+    },
+    "terramind_v1_base": {
+      "in_region_mean": 0.9499,
+      "in_region_std": 0.0011,
+      "cross_mean": 0.9272,
+      "cross_std": 0.0028,
+      "transfer_gap": 0.0228
+    },
+    "clay_v1": {
+      "in_region_mean": 0.4988,
+      "in_region_std": 0.0021,
+      "cross_mean": 0.5006,
+      "cross_std": 0.0034,
+      "transfer_gap": -0.0018
+    }
+  },
+  "netherlands->france": {
+    "spectral_rf": {
+      "cross_mean": 0.6033,
+      "cross_std": 0.0018
+    },
+    "prithvi_eo_2_0_300m": {
+      "in_region_mean": 0.9549,
+      "in_region_std": 0.0006,
+      "cross_mean": 0.9457,
+      "cross_std": 0.0019,
+      "transfer_gap": 0.0093
+    },
+    "terramind_v1_base": {
+      "in_region_mean": 0.9455,
+      "in_region_std": 0.0018,
+      "cross_mean": 0.9248,
+      "cross_std": 0.0032,
+      "transfer_gap": 0.0206
+    },
+    "clay_v1": {
+      "in_region_mean": 0.4996,
+      "in_region_std": 0.0013,
+      "cross_mean": 0.5002,
+      "cross_std": 0.0011,
+      "transfer_gap": -0.0006
+    }
+  },
+  "india->france": {
+    "spectral_rf": {
+      "cross_mean": 0.54,
+      "cross_std": 0.0064
+    },
+    "prithvi_eo_2_0_300m": {
+      "in_region_mean": 0.984,
+      "in_region_std": 0.0011,
+      "cross_mean": 0.8501,
+      "cross_std": 0.0061,
+      "transfer_gap": 0.134
+    },
+    "terramind_v1_base": {
+      "in_region_mean": 0.9672,
+      "in_region_std": 0.0003,
+      "cross_mean": 0.8479,
+      "cross_std": 0.0094,
+      "transfer_gap": 0.1193
+    },
+    "clay_v1": {
+      "in_region_mean": 0.5902,
+      "in_region_std": 0.0096,
+      "cross_mean": 0.5039,
+      "cross_std": 0.0008,
+      "transfer_gap": 0.0863
+    }
+  },
+  "france->india": {
+    "spectral_rf": {
+      "cross_mean": 0.5633,
+      "cross_std": 0.007
+    },
+    "prithvi_eo_2_0_300m": {
+      "in_region_mean": 0.9612,
+      "in_region_std": 0.0013,
+      "cross_mean": 0.9134,
+      "cross_std": 0.0033,
+      "transfer_gap": 0.0478
+    },
+    "terramind_v1_base": {
+      "in_region_mean": 0.9499,
+      "in_region_std": 0.0011,
+      "cross_mean": 0.911,
+      "cross_std": 0.0054,
+      "transfer_gap": 0.0389
+    },
+    "clay_v1": {
+      "in_region_mean": 0.4988,
+      "in_region_std": 0.0021,
+      "cross_mean": 0.4967,
+      "cross_std": 0.018,
+      "transfer_gap": 0.0021
+    }
+  },
+  "india->kenya": {
+    "spectral_rf": {
+      "cross_mean": 0.5907,
+      "cross_std": 0.033
+    },
+    "prithvi_eo_2_0_300m": {
+      "in_region_mean": 0.984,
+      "in_region_std": 0.0011,
+      "cross_mean": 0.7205,
+      "cross_std": 0.0348,
+      "transfer_gap": 0.2635
+    },
+    "terramind_v1_base": {
+      "in_region_mean": 0.9672,
+      "in_region_std": 0.0003,
+      "cross_mean": 0.7479,
+      "cross_std": 0.0304,
+      "transfer_gap": 0.2194
+    },
+    "clay_v1": {
+      "in_region_mean": 0.5902,
+      "in_region_std": 0.0096,
+      "cross_mean": 0.5211,
+      "cross_std": 0.0156,
+      "transfer_gap": 0.0691
+    }
+  },
+  "kenya->india": {
+    "spectral_rf": {
+      "cross_mean": 0.4978,
+      "cross_std": 0.0098
+    },
+    "prithvi_eo_2_0_300m": {
+      "in_region_mean": 0.7616,
+      "in_region_std": 0.0212,
+      "cross_mean": 0.7041,
+      "cross_std": 0.0158,
+      "transfer_gap": 0.0576
+    },
+    "terramind_v1_base": {
+      "in_region_mean": 0.7147,
+      "in_region_std": 0.0355,
+      "cross_mean": 0.6695,
+      "cross_std": 0.0203,
+      "transfer_gap": 0.0452
+    },
+    "clay_v1": {
+      "in_region_mean": 0.5388,
+      "in_region_std": 0.0187,
+      "cross_mean": 0.493,
+      "cross_std": 0.0103,
+      "transfer_gap": 0.0458
+    }
+  },
+  "cambodia->kenya": {
+    "spectral_rf": {
+      "cross_mean": 0.5536,
+      "cross_std": 0.0154
+    },
+    "prithvi_eo_2_0_300m": {
+      "in_region_mean": 0.9253,
+      "in_region_std": 0.0022,
+      "cross_mean": 0.8525,
+      "cross_std": 0.0157,
+      "transfer_gap": 0.0728
+    },
+    "terramind_v1_base": {
+      "in_region_mean": 0.9171,
+      "in_region_std": 0.0019,
+      "cross_mean": 0.8081,
+      "cross_std": 0.0214,
+      "transfer_gap": 0.1091
+    },
+    "clay_v1": {
+      "in_region_mean": 0.5022,
+      "in_region_std": 0.0079,
+      "cross_mean": 0.4827,
+      "cross_std": 0.0301,
+      "transfer_gap": 0.0195
+    }
+  },
+  "kenya->cambodia": {
+    "spectral_rf": {
+      "cross_mean": 0.5207,
+      "cross_std": 0.0087
+    },
+    "prithvi_eo_2_0_300m": {
+      "in_region_mean": 0.7616,
+      "in_region_std": 0.0212,
+      "cross_mean": 0.7556,
+      "cross_std": 0.008,
+      "transfer_gap": 0.006
+    },
+    "terramind_v1_base": {
+      "in_region_mean": 0.7147,
+      "in_region_std": 0.0355,
+      "cross_mean": 0.7167,
+      "cross_std": 0.0151,
+      "transfer_gap": -0.002
+    },
+    "clay_v1": {
+      "in_region_mean": 0.5388,
+      "in_region_std": 0.0187,
+      "cross_mean": 0.503,
+      "cross_std": 0.0051,
+      "transfer_gap": 0.0358
+    }
+  }
+}
