@@ -13,7 +13,7 @@
     8,
     9
   ],
-  "method": "Clean single-recipe 10-seed analysis. For each region x model cell, delta is frozen-backbone decoder AUROC minus full fine-tuning AUROC across the same ten seeds. TOST equivalence uses the conservative criterion that the 95% paired t-interval (df=9) lies fully within +/-0.02 AUROC. P-values are max of the two one-sided TOST p-values; Holm adjustment is across the 12 region x model cells.",
+  "method": "Clean single-recipe 10-seed analysis. For each region x model cell, delta is frozen-backbone decoder AUROC minus full fine-tuning AUROC across the same ten seeds. TOST equivalence uses the conservative criterion that the 95% paired t-interval (df=9) lies fully within +/-0.02 AUROC. P-values are max of the two one-sided TOST p-values; Holm adjustment is across the 12 region x model cells. P-values are serialized to 12 significant digits to avoid library-level tail noise.",
   "models": {
     "prithvi": {
       "regions": {
@@ -53,9 +53,9 @@
             -0.0015
           ],
           "tost_equivalent": true,
-          "tost_p_value": 1.0310312825723145e-08,
+          "tost_p_value": 1.03103128834e-08,
           "tost_p_value_display": 0.0,
-          "tost_p_value_holm": 6.186187695433887e-08,
+          "tost_p_value_holm": 6.18618773004e-08,
           "tost_p_value_holm_display": 0.0,
           "tost_equiv_holm_0_05": true,
           "tost_equiv_holm_0_025": true
@@ -96,9 +96,9 @@
             -0.0012
           ],
           "tost_equivalent": true,
-          "tost_p_value": 1.4777068457760834e-13,
+          "tost_p_value": 1.47756969528e-13,
           "tost_p_value_display": 0.0,
-          "tost_p_value_holm": 1.6254775303536917e-12,
+          "tost_p_value_holm": 1.62532666481e-12,
           "tost_p_value_holm_display": 0.0,
           "tost_equiv_holm_0_05": true,
           "tost_equiv_holm_0_025": true
@@ -139,9 +139,9 @@
             -0.0032
           ],
           "tost_equivalent": true,
-          "tost_p_value": 2.625677453238495e-13,
+          "tost_p_value": 2.62625647507e-13,
           "tost_p_value_display": 0.0,
-          "tost_p_value_holm": 2.6256774532384952e-12,
+          "tost_p_value_holm": 2.62625647507e-12,
           "tost_p_value_holm_display": 0.0,
           "tost_equiv_holm_0_05": true,
           "tost_equiv_holm_0_025": true
@@ -182,7 +182,7 @@
             -0.0588
           ],
           "tost_equivalent": false,
-          "tost_p_value": 0.9977607693512881,
+          "tost_p_value": 0.997760769351,
           "tost_p_value_display": 0.997761,
           "tost_p_value_holm": 1.0,
           "tost_p_value_holm_display": 1.0,
@@ -225,9 +225,9 @@
             0.0036
           ],
           "tost_equivalent": true,
-          "tost_p_value": 1.5035306333288645e-11,
+          "tost_p_value": 1.50353122826e-11,
           "tost_p_value_display": 0.0,
-          "tost_p_value_holm": 1.0524714433302051e-10,
+          "tost_p_value_holm": 1.05247185978e-10,
           "tost_p_value_holm_display": 0.0,
           "tost_equiv_holm_0_05": true,
           "tost_equiv_holm_0_025": true
@@ -268,9 +268,9 @@
             0.0179
           ],
           "tost_equivalent": true,
-          "tost_p_value": 0.005349514139193046,
+          "tost_p_value": 0.00534951413919,
           "tost_p_value_display": 0.00535,
-          "tost_p_value_holm": 0.021398056556772183,
+          "tost_p_value_holm": 0.0213980565568,
           "tost_p_value_holm_display": 0.021398,
           "tost_equiv_holm_0_05": true,
           "tost_equiv_holm_0_025": true
@@ -316,7 +316,7 @@
             0.0356
           ],
           "tost_equivalent": false,
-          "tost_p_value": 0.5213293358646447,
+          "tost_p_value": 0.521329335865,
           "tost_p_value_display": 0.521329,
           "tost_p_value_holm": 1.0,
           "tost_p_value_holm_display": 1.0,
@@ -359,9 +359,9 @@
             -0.0053
           ],
           "tost_equivalent": true,
-          "tost_p_value": 8.148925978446186e-12,
+          "tost_p_value": 8.14890916942e-12,
           "tost_p_value_display": 0.0,
-          "tost_p_value_holm": 6.519140782756949e-11,
+          "tost_p_value_holm": 6.51912733554e-11,
           "tost_p_value_holm_display": 0.0,
           "tost_equiv_holm_0_05": true,
           "tost_equiv_holm_0_025": true
@@ -402,9 +402,9 @@
             -0.0042
           ],
           "tost_equivalent": true,
-          "tost_p_value": 9.992007221626409e-16,
+          "tost_p_value": 1.03492270822e-15,
           "tost_p_value_display": 0.0,
-          "tost_p_value_holm": 1.199040866595169e-14,
+          "tost_p_value_holm": 1.24190724986e-14,
           "tost_p_value_holm_display": 0.0,
           "tost_equiv_holm_0_05": true,
           "tost_equiv_holm_0_025": true
@@ -445,7 +445,7 @@
             -0.048
           ],
           "tost_equivalent": false,
-          "tost_p_value": 0.9969107559714124,
+          "tost_p_value": 0.996910755971,
           "tost_p_value_display": 0.996911,
           "tost_p_value_holm": 1.0,
           "tost_p_value_holm_display": 1.0,
@@ -488,9 +488,9 @@
             0.0019
           ],
           "tost_equivalent": true,
-          "tost_p_value": 1.9624302183274267e-12,
+          "tost_p_value": 1.9623938262e-12,
           "tost_p_value_display": 0.0,
-          "tost_p_value_holm": 1.766187196494684e-11,
+          "tost_p_value_holm": 1.76615444358e-11,
           "tost_p_value_holm_display": 0.0,
           "tost_equiv_holm_0_05": true,
           "tost_equiv_holm_0_025": true
@@ -531,9 +531,9 @@
             0.0148
           ],
           "tost_equivalent": true,
-          "tost_p_value": 0.001152052713752738,
+          "tost_p_value": 0.00115205271375,
           "tost_p_value_display": 0.001152,
-          "tost_p_value_holm": 0.0057602635687636905,
+          "tost_p_value_holm": 0.00576026356875,
           "tost_p_value_holm_display": 0.00576,
           "tost_equiv_holm_0_05": true,
           "tost_equiv_holm_0_025": true

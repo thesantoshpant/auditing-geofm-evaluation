@@ -15,13 +15,15 @@ if [[ -z "${PY:-}" ]]; then
   fi
 fi
 
-$PY scripts/integrate_headline_results.py
-$PY scripts/integrate_transfer_metrics.py
-$PY scripts/ftw_unet_baseline_epochs.py
-$PY scripts/integrate_revision_controls.py
-$PY scripts/ftw_finetune_fm_curves.py
-$PY scripts/ftw_multiple_comparison.py
-$PY scripts/checksums.py --verify
+"$PY" scripts/integrate_headline_results.py
+"$PY" scripts/integrate_transfer_metrics.py
+"$PY" scripts/ftw_unet_baseline_epochs.py
+"$PY" scripts/integrate_revision_controls.py
+"$PY" scripts/ftw_finetune_fm_curves.py
+"$PY" scripts/ftw_multiple_comparison.py
+"$PY" scripts/report_param_counts.py
+"$PY" scripts/regenerate_paper_figures.py
+"$PY" scripts/checksums.py --verify
 
 echo "Release verification complete."
 echo "Headline aggregates:"
@@ -33,3 +35,8 @@ echo "  data/results/ftw_unet_epoch_sensitivity.json"
 echo "  data/results/ftw_eps_sweep.json"
 echo "  data/results/ftw_regional_regime.json"
 echo "  data/results/ftw_convergence_diagnostic.json"
+echo "  data/results/ftw_param_counts.json"
+echo "Manuscript figures:"
+echo "  paper/figures/cross_region_transfer_gap.pdf"
+echo "  paper/figures/cost_performance_tradeoff.pdf"
+echo "  paper/figures/convergence.pdf"

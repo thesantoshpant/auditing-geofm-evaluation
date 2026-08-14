@@ -1,8 +1,8 @@
 """Patch-size invariants.
 
-The mechanistic analysis hinges on each model's declared
-``patch_size_px``. This test pins the expected values so an accidental edit
-in a wrapper file is caught immediately.
+Several extraction paths use each model's declared ``patch_size_px`` when
+aligning token outputs. This test pins the expected values so an accidental
+wrapper edit is caught immediately.
 
 If any of these values change deliberately, update both the wrapper and this
 test in the same commit, and document the source of truth in the wrapper

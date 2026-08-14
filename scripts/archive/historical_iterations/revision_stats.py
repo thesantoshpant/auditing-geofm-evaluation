@@ -1,5 +1,7 @@
-"""Phase B helper: compute confidence intervals and equivalence statistics for
-the TMLR revision (v7) from existing result JSONs. Does not run any new training.
+"""Historical, non-executable snapshot of the pre-camera-ready revision helper.
+
+Paths and filenames below intentionally preserve the old release layout. Use
+the active integration scripts at ``scripts/`` for the camera-ready artifact.
 
 Outputs LaTeX-ready fragments to stdout grouped by table.
 

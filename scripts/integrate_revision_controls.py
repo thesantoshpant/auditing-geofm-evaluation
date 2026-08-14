@@ -70,9 +70,16 @@ def tost_pvalue(delta_mean: float, delta_std: float, n: int, epsilon: float) -> 
     standard_error = delta_std / math.sqrt(n)
     lower_t = (delta_mean + epsilon) / standard_error
     upper_t = (epsilon - delta_mean) / standard_error
-    lower_p = 1.0 - float(stats.t.cdf(lower_t, n - 1))
-    upper_p = 1.0 - float(stats.t.cdf(upper_t, n - 1))
+    # Direct survival probabilities remain stable in the small tails where
+    # ``1 - cdf`` suffers catastrophic cancellation.
+    lower_p = float(stats.t.sf(lower_t, n - 1))
+    upper_p = float(stats.t.sf(upper_t, n - 1))
     return max(lower_p, upper_p)
+
+
+def canonical_pvalue(value: float) -> float:
+    """Serialize p-values at stable precision across supported SciPy releases."""
+    return float(f"{value:.12g}")
 
 
 def holm_adjust(p_values: list[float]) -> list[float]:
@@ -112,7 +119,8 @@ def build_epsilon_sweep(inregion: dict) -> dict:
             "Sensitivity of the primary equivalence verdict to epsilon. The table "
             "criterion is containment of the 95% seed-paired t-interval within "
             "+/-epsilon. TOST p-values and Holm adjustments are also provided for "
-            "audit, but the paper's sensitivity counts use unadjusted CI containment."
+            "audit, but the paper's sensitivity counts use unadjusted CI containment. "
+            "P-values are serialized to 12 significant digits."
         ),
         "n_seeds": 10,
         "df": 9,
@@ -120,12 +128,12 @@ def build_epsilon_sweep(inregion: dict) -> dict:
     }
     for epsilon in EPSILONS:
         p_values = [
-            tost_pvalue(
+            canonical_pvalue(tost_pvalue(
                 cell["paired_delta_mean"], cell["paired_delta_std"], 10, epsilon
-            )
+            ))
             for cell in cells
         ]
-        adjusted = holm_adjust(p_values)
+        adjusted = [canonical_pvalue(value) for value in holm_adjust(p_values)]
         rows = []
         for cell, p_value, adjusted_p in zip(cells, p_values, adjusted, strict=True):
             lower, upper = cell["ci95"]

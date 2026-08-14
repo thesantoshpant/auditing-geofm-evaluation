@@ -5,7 +5,7 @@ each FM and each directed pair. Replicates the controlled filter (proxy>=0 & val
 
   python scripts/ftw_transfer_probe.py            # all pairs, all FMs, 3 seeds
 """
-import sys, glob, json, numpy as np, pandas as pd, rasterio, statistics as st
+import sys, glob, json, os, numpy as np, pandas as pd, rasterio, statistics as st
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
@@ -21,8 +21,8 @@ def load_meta(C):
     D = f"data/features_per_pixel_ftw_{C}_true"; CH = f"data/chips_ftw_{C}"
     m = pd.read_parquet(f"{D}/features_per_pixel_meta.parquet").reset_index(drop=True)
     wcf, s2f = {}, {}
-    for f in glob.glob(f"{CH}/*/*_worldcover.tif"): wcf["_".join(f.split("/")[-1].split("_")[:3])] = f
-    for f in glob.glob(f"{CH}/*/*_s2.tif"): s2f[f.split("/")[-1].rsplit("_s2.tif", 1)[0]] = f
+    for f in glob.glob(f"{CH}/*/*_worldcover.tif"): wcf["_".join(os.path.basename(f).split("_")[:3])] = f
+    for f in glob.glob(f"{CH}/*/*_s2.tif"): s2f[os.path.basename(f).rsplit("_s2.tif", 1)[0]] = f
     proxy = np.full(len(m), -1, np.int8); nb = None; spec = None
     for cid, grp in m.groupby("chip_id"):
         if cid in wcf:

@@ -20,7 +20,7 @@
 
 \title{Auditing GeoFM Evaluation for Field-Extent Segmentation: Label Proxies, Baselines, and When Frozen Features Match Fine-tuning}
 \author{
-\name Santosh Pant\thanks{OpenAI Codex and Anthropic Claude were used for language editing, software debugging, and consistency checks. The scientific contributions, results, and final decisions are the author's own. The author independently verified the experiments, analysis, code, citations, claims, and manuscript and takes full responsibility for the work.}
+\name Santosh Pant\thanks{OpenAI Codex and Anthropic Claude assisted with language editing, software debugging, and consistency checks; the author independently verified the work, made all scientific decisions, and takes full responsibility for it.}
 \email pantsantosh23@gmail.com \\
 \addr Knox College, Galesburg, Illinois, USA
 }
@@ -218,7 +218,7 @@ p-values retains all 9 equivalent cells at $\alpha{=}0.05$
 
 \paragraph{TOST margin justification.} We use $0.02$ AUROC as a practical tolerance,
 not as a universal standard for field mapping. It is less than half the smallest
-between-model gap interpreted substantively elsewhere in the paper (about $0.04$ for the
+between-model gap interpreted substantively elsewhere in the paper ($0.042$ for the
 India frozen-probe comparison) and more than twice the largest per-configuration seed
 standard deviation outside the three failing cells ($0.0085$). The sensitivity analysis
 in Appendix Table~\ref{tab:eps_sweep} gives the result across margins from $0.005$ to
@@ -297,7 +297,7 @@ instead of ``is this pixel in a field?'' (Appendix).
 On \textsc{true} labels a supervised U-Net reaches 0.89--0.98 AUROC in all six
 regions. Compared against a single consistent FM (Prithvi frozen-probe), the U-Net
 has higher point AUROC in five of six regions (Vietnam, Kenya, France, Netherlands,
-Cambodia); India is the certified GeoFM exception (Wilcoxon $p{=}2.4\times10^{-4}$
+Cambodia); India is the only GeoFM exception (Wilcoxon $p{=}2.4\times10^{-4}$
 on per-chip paired chunks). For Vietnam, the U-Net's ten-seed CI $[.961,.967]$
 is disjoint from frozen-Prithvi's $[.925,.933]$; for Cambodia we have only point
 estimates (no per-chip CI). India is the only region where frozen-Prithvi's CI
@@ -314,7 +314,7 @@ reported above, the U-Net is the stronger model in those two regions.
 
 \paragraph{India exception.} In-region,
 Prithvi frozen-probe beats the U-Net in only one of six regions (India), where
-Prithvi leads by roughly 0.04 AUROC, and the direction is supported by a separate
+Prithvi leads by 0.042 AUROC, and the direction is supported by a separate
 chip-paired one-sided Wilcoxon
 signed-rank test ($n{=}12$ paired chunks; $p{=}2.4\times10^{-4}$; all 12 pairs
 positive). The chunk audit shows that India is stable across test chunks, not just
@@ -573,9 +573,10 @@ directions, U-Net averages 0.793 AUROC, while frozen Prithvi and frozen TerraMin
 average 0.669 and 0.666.
 Two measured properties distinguish Kenya. Its true-field-pixel coverage in the training
 masks is about 0.1\%, the lowest of any region; the next lowest is India at 0.3\%.
-Cambodia, by contrast, has the smallest fields (79\% under 0.3 ha) but the highest
-positive-pixel coverage (23\%) and does not show the same failure. Parcel size alone is
-therefore insufficient to explain the result. Kenya has 155 training chips, whereas
+The released field-size summaries show similar shares of fields under 0.3 ha in
+India (65\%) and Kenya (70\%), yet only Kenya exhibits this collapse. Parcel size alone
+is therefore insufficient to explain the result. Cambodia has the highest
+positive-pixel coverage (23\%) and remains stable. Kenya has 155 training chips, whereas
 Cambodia has 107 and remains stable, so training-set size alone is also insufficient.
 Spatial fragmentation may contribute, but we did not quantify it independently.
 Under this measured combination, frozen-feature decoders are unstable (seed std
@@ -627,11 +628,10 @@ study that varies positive prevalence while holding chip count fixed remains fut
 \label{sec:cost}
 Table~\ref{tab:cost} contrasts trainable parameters and per-region training cost. A
 Prithvi frozen backbone with a decoder trains 2.75M parameters versus 307M for
-Prithvi full fine-tuning, about $110\times$ fewer. Across both GeoFMs, frozen decoders match
-AUROC in the 9 of 12 TOST-equivalent region$\times$model cells
-(Table~\ref{tab:paired_tost}) and
-placing TerraMind India essentially at the equivalence margin by point estimate
-($\Delta{=}{+}0.020$) but not by CI. Kenya is the only region where full-FT
+Prithvi full fine-tuning, about $110\times$ fewer. Across both GeoFMs, frozen decoders are
+TOST-equivalent to full fine-tuning in 9 of 12 region$\times$model cells
+(Table~\ref{tab:paired_tost}). TerraMind India lies at the equivalence margin by point
+estimate ($\Delta{=}{+}0.020$), but its CI extends beyond the margin. Kenya is the only region where full-FT
 decisively wins for both GeoFMs. A frozen linear
 probe trains about $10^3$ parameters in seconds on CPU. AUROC parity with the
 31M-parameter U-Net is region-dependent: in the ten-seed in-region decoder comparison,
@@ -852,7 +852,8 @@ exploratory subset that excludes Kenya, and no difference is detected between fr
 TerraMind and the U-Net in AUROC there. The practical recommendation is to test a frozen decoder
 before paying for full fine-tuning, while retaining a strong supervised baseline and
 checking sparse-positive regions directly. The released code, metrics, and protocol support
-the same audit in other GeoFM evaluations.
+the same audit in other GeoFM evaluations. These conclusions apply to single-date,
+per-pixel field-extent segmentation, not parcel-boundary or instance delineation.
 
 \section*{Acknowledgments}
 The author thanks Knox College for providing the computational resources used in this
@@ -866,7 +867,15 @@ work. This research received no external funding.
 \section{Reproducibility and Controls}
 \label{app:repro}
 
-This appendix collects the reproducibility details and sensitivity controls referenced from the main text: the per-model frozen-probe breakdown (Table~\ref{tab:fm_breakdown}), seed-paired TOST detail (Table~\ref{tab:paired_tost}) and its $\varepsilon$-sensitivity sweep (Table~\ref{tab:eps_sweep}), the training-recipe key (Table~\ref{tab:recipe}), the full cross-region transfer matrix (Table~\ref{tab:xfer-full}) and its AP/IoU companion (Table~\ref{tab:xfer_metrics}), U-Net epoch sensitivity (Table~\ref{tab:unet_epoch_sensitivity}) and Kenya convergence trajectories (Figure~\ref{fig:convergence}), the per-region operational regime (Table~\ref{tab:regional_regime}), the spatial-pooling control (Table~\ref{tab:windowed}), the FTW partial-labeling sensitivity (Table~\ref{tab:partial}), the tile-disjoint split sensitivity (Table~\ref{tab:tilesplit}), and the full threshold-metric breakdown (Table~\ref{tab:xmetrics}). All numbers are recomputed from the released artifact.
+This appendix provides the detailed results and controls referenced in the main text.
+Tables~\ref{tab:fm_breakdown}--\ref{tab:recipe} cover the frozen-probe breakdown,
+paired TOST analysis, margin sensitivity, and training recipes.
+Tables~\ref{tab:xfer-full}--\ref{tab:xfer_metrics} report the full transfer matrix
+and its AP/IoU companion. The remaining tables and Figure~\ref{fig:convergence}
+report budget, regional, spatial, partial-label, split, and threshold-metric controls.
+Unless a caption states otherwise, values are generated by the released scripts from
+the released result files; rounded mask-prevalence descriptors are recorded in
+\verb|scripts/integrate_revision_controls.py| because source masks are not redistributed.
 
 \begin{table}[H]\centering\small
 \caption{\textbf{Per-region breakdown of frozen-probe AUROC across four FMs}
@@ -1089,7 +1098,7 @@ Prithvi frozen    & 0.767 & 0.682 & 0.308 & 0.816 & 0.782 & 0.404 \\
 The 80-epoch control reports mean$\pm$standard deviation over seeds 0--2; the
 150-epoch column reports the primary ten-seed mean. The comparison is a budget
 sensitivity check, not a seed-paired test; architecture, optimizer, data, and schedule
-family are unchanged.
+family are unchanged. The displayed $\Delta$ is computed from unrounded means.
 At 80 epochs the U-Net remains within $0.01$ AUROC of the 150-epoch mean in
 five of six regions; India shows a $0.03$ drop but remains the same region-level
 exception by point estimate. Training-time cost

@@ -5,7 +5,7 @@ the key PAIRED differences (uses the same chip resamples, so the paired CI is
 honest). Reuses cached TRUE-mode features; no GPU.
     python ftw_bootstrap_ci.py --country india|kenya
 """
-import argparse, glob, json, numpy as np, pandas as pd, rasterio
+import argparse, glob, json, os, numpy as np, pandas as pd, rasterio
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
@@ -16,8 +16,8 @@ ap=argparse.ArgumentParser(); ap.add_argument("--country",default="india"); ap.a
 a=ap.parse_args(); C=a.country
 D=f"data/features_per_pixel_ftw_{C}_true"; ANY=f"data/features_per_pixel_ftw_{C}_true_anysat"; CH=f"data/chips_ftw_{C}"
 m=pd.read_parquet(f"{D}/features_per_pixel_meta.parquet").reset_index(drop=True)
-wcf={ "_".join(f.split("/")[-1].split("_")[:3]):f for f in glob.glob(f"{CH}/*/*_worldcover.tif")}
-s2f={ f.split("/")[-1].rsplit("_s2.tif",1)[0]:f for f in glob.glob(f"{CH}/*/*_s2.tif")}
+wcf={ "_".join(os.path.basename(f).split("_")[:3]):f for f in glob.glob(f"{CH}/*/*_worldcover.tif")}
+s2f={ os.path.basename(f).rsplit("_s2.tif",1)[0]:f for f in glob.glob(f"{CH}/*/*_s2.tif")}
 proxy=np.full(len(m),-1,np.int8); nb=None; spec=None
 for cid,grp in m.groupby("chip_id"):
     if cid in wcf:
@@ -45,7 +45,7 @@ def fitpred_rf(y):
     return c.predict_proba(spec[te])[:,1]
 # predictions on test for each model x target
 P={}
-feats={f.split("/")[-1][len("features_"):-4]:f for f in sorted(glob.glob(f"{D}/features_*.npy"))+glob.glob(f"{ANY}/features_*.npy")}
+feats={os.path.basename(f)[len("features_"):-4]:f for f in sorted(glob.glob(f"{D}/features_*.npy"))+glob.glob(f"{ANY}/features_*.npy")}
 for fm,f in feats.items():
     X=np.load(f)[ok]; P[(fm,"true")]=fitpred(X,yt); P[(fm,"proxy")]=fitpred(X,proxy)
 P[("rf_spectral","true")]=fitpred_rf(yt); P[("rf_spectral","proxy")]=fitpred_rf(proxy)

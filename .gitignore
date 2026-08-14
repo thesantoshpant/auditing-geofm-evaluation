@@ -21,6 +21,13 @@ venv/
 # Local review and render output
 tmp/
 
+# Regenerated public-data and feature intermediates
+data/chips_ftw_*/
+data/features_per_pixel_*/
+data/labels/
+data/ftw/
+data/index/
+
 # Editor and operating-system files
 .idea/
 .vscode/

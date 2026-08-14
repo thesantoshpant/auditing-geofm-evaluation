@@ -6,7 +6,7 @@ dir) + RF on raw S2 reflectance. Records chip-overlap for provenance.
     python scripts/ftw_controlled_label_comparison.py --country india   # default
     python scripts/ftw_controlled_label_comparison.py --country kenya
 """
-import argparse, json, glob, numpy as np, pandas as pd, rasterio
+import argparse, json, glob, os, numpy as np, pandas as pd, rasterio
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score, f1_score
 from sklearn.model_selection import GroupShuffleSplit
@@ -23,12 +23,12 @@ C = args.country
 D = f"data/features_per_pixel_ftw_{C}_true"
 ANY = f"data/features_per_pixel_ftw_{C}_true_anysat"
 CHIPS = f"data/chips_ftw_{C}"
-OUT = f"data/results/ftw_controlled_label_comparison_{C}.json" if C != "india" else "data/results/ftw_controlled_label_comparison.json"
+OUT = f"data/results/ftw_controlled_label_comparison_{C}.json"
 
 m = pd.read_parquet(f"{D}/features_per_pixel_meta.parquet").reset_index(drop=True)
 wcf, s2f = {}, {}
-for f in glob.glob(f"{CHIPS}/*/*_worldcover.tif"): wcf["_".join(f.split("/")[-1].split("_")[:3])] = f
-for f in glob.glob(f"{CHIPS}/*/*_s2.tif"): s2f[f.split("/")[-1].rsplit("_s2.tif", 1)[0]] = f
+for f in glob.glob(f"{CHIPS}/*/*_worldcover.tif"): wcf["_".join(os.path.basename(f).split("_")[:3])] = f
+for f in glob.glob(f"{CHIPS}/*/*_s2.tif"): s2f[os.path.basename(f).rsplit("_s2.tif", 1)[0]] = f
 proxy = np.full(len(m), -1, dtype=np.int8); nb = None; spec = None
 for cid, grp in m.groupby("chip_id"):
     if cid in wcf:
@@ -79,7 +79,7 @@ yt, yp = m2.label.to_numpy(), m2.proxy_label.to_numpy()
 print("%-22s | TRUE field        | WC-cropland proxy" % "model (AUROC / F1)"); print("-" * 72)
 feats = sorted(glob.glob(f"{D}/features_*.npy")) + glob.glob(f"{ANY}/features_*.npy")
 for f in feats:
-    fm = f.split("/")[-1][len("features_"):-4]; X = np.load(f)[ok]
+    fm = os.path.basename(f)[len("features_"):-4]; X = np.load(f)[ok]
     at, ft = lin(X, yt); ap_, fp = lin(X, yp); res["models"][fm] = {"true": {"auroc": at, "f1": ft}, "proxy": {"auroc": ap_, "f1": fp}}
     print("%-22s | %s / %s      | %s / %s" % (fm, at, ft, ap_, fp))
 art, frt = rf(spec, yt); arp, frp = rf(spec, yp); res["models"]["rf_spectral"] = {"true": {"auroc": art, "f1": frt}, "proxy": {"auroc": arp, "f1": frp}}

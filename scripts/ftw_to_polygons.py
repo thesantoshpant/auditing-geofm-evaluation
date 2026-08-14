@@ -3,8 +3,8 @@
 format (drop-in replacement for WorldCover-derived polygons).
 
 Each FTW field (unique instance ID) becomes one polygon, with area in m^2
-(reprojected to the geometry's true local UTM) and the same size_bin scheme as
-`extract_field_polygons.py`. Output is a geoparquet keyed on `chip_id`
+(reprojected to the geometry's true local UTM) and the ``FieldSizeBin`` scheme
+in ``src/ftw_eval/data/labels.py``. Output is a geoparquet keyed on `chip_id`
 (= FTW aoi_id), so the existing per-pixel / per-polygon extractors can consume
 FTW exactly like a normal region once S2 is pulled over the same footprints.
 

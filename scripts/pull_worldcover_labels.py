@@ -102,7 +102,7 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     if not args.index.exists():
-        log.error("Index not found at %s. Run build_chip_index.py first.", args.index)
+        log.error("Index not found at %s. Run scripts/build_ftw_index.py first.", args.index)
         return 2
 
     if args.project:

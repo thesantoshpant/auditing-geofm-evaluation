@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "generated_by": "scripts/report_param_counts.py",
+  "counts": {
+    "prithvi_frozen_decoder": {
+      "trainable_parameters": 2747841,
+      "count_kind": "exact_from_reconstructed_training_architecture"
+    },
+    "terramind_frozen_decoder": {
+      "trainable_parameters": 2158017,
+      "count_kind": "exact_from_reconstructed_training_architecture"
+    },
+    "unet": {
+      "trainable_parameters": 31048705,
+      "count_kind": "exact_from_reconstructed_training_architecture"
+    },
+    "prithvi_full_finetune": {
+      "trainable_parameters": 306634177,
+      "trainable_parameters_rounded": 306600000,
+      "backbone_parameters": 303886336,
+      "count_kind": "exact_from_pinned_architecture_definition",
+      "architecture_source": "terratorch 1.2.7 prithvi_eo_v2_300: width=1024, depth=24, heads=16, mlp_ratio=4, qkv_bias=true, in_chans=6, patch_size=[1,16,16]"
+    }
+  },
+  "prithvi_full_to_decoder_ratio": {
+    "value": 111.6,
+    "interpretation": "approximately 110 times",
+    "uses_rounded_full_finetune_count": false
+  }
+}

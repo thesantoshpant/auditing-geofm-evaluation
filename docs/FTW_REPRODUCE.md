@@ -67,7 +67,11 @@ python scripts/ftw_controlled_label_comparison.py --country "$C" --group-by tile
 - `ftw_partial_label_sensitivity.json`: high-confidence-negative sensitivity in
   India, France, and Kenya
 - `ftw_proxy_mismatch_coverage.json`: polygon-field and WorldCover coverage
-- `eval_per_pixel_ftw_*_chip.json`: standalone probe and spectral evaluations
+- `ftw_finetune_fm_*_seed*.json`: ten-seed GeoFM decoder/full-FT runs
+- `ftw_unet_*_seed*.json`: ten-seed supervised U-Net runs
+
+The country wrapper also generates `eval_per_pixel_ftw_*_chip.json` files for
+local inspection. Those large-intermediate evaluations are not redistributed.
 
 Verify all released files with:
 

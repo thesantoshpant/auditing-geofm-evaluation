@@ -2,6 +2,7 @@
 .gitattributes text eol=lf
 .gitignore text eol=lf
 LICENSE text eol=lf
+LICENSE-DATA text eol=lf
 *.sh text eol=lf
 *.py text eol=lf
 *.md text eol=lf
@@ -15,6 +16,7 @@ LICENSE text eol=lf
 *.lock text eol=lf
 *.txt text eol=lf
 *.sha256 text eol=lf
+*.cff text eol=lf
 *.pdf binary
 *.tif binary
 *.tiff binary

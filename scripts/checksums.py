@@ -42,10 +42,16 @@ def canonical_files() -> list[Path]:
     files += sorted((ROOT / "data" / "index").glob("*.jsonl"))
     files += sorted((ROOT / "docs").glob("*.md"))
     files += sorted((ROOT / "scripts").glob("*.py"))
+    files += sorted((ROOT / "scripts").glob("*.sh"))
+    files += sorted((ROOT / "src").rglob("*.py"))
+    files += sorted((ROOT / "tests").rglob("*.py"))
 
     for path in (
         ROOT / "README.md",
         ROOT / "ARTIFACT.md",
+        ROOT / "CITATION.cff",
+        ROOT / "LICENSE-DATA",
+        ROOT / "data" / "results" / "README.md",
         ROOT / "croissant.json",
         ROOT / "pyproject.toml",
         ROOT / "requirements.lock",
@@ -53,10 +59,13 @@ def canonical_files() -> list[Path]:
         ROOT / ".gitattributes",
         ROOT / ".gitignore",
         ROOT / "LICENSE",
-        ROOT / "scripts" / "reproduce_all.sh",
         ROOT / "paper" / "main_tmlr.tex",
+        ROOT / "paper" / "main_tmlr.pdf",
         ROOT / "paper" / "references.bib",
         ROOT / "paper" / "tmlr.sty",
+        ROOT / "paper" / "figures" / "cross_region_transfer_gap.pdf",
+        ROOT / "paper" / "figures" / "cost_performance_tradeoff.pdf",
+        ROOT / "paper" / "figures" / "convergence.pdf",
     ):
         if path.exists():
             files.append(path)

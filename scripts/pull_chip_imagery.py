@@ -39,18 +39,11 @@ S1_BANDS = ["VV", "VH"]
 
 def utm_epsg(lon: float, lat: float = 27.0) -> str:
     """Region-general UTM EPSG for a chip center: zone from lon, hemisphere
-    from lat (326## = Northern, 327## = Southern). Works for /India
-    (N) and  (S) alike. Note: polygon AREA is translation-
-    invariant, so the N/S choice does not affect areas, but the correct
-    hemisphere keeps exported coordinates sane."""
+    from lat (326## = Northern, 327## = Southern). The correct hemisphere is
+    required for geospatial alignment."""
     zone = int((lon + 180.0) // 6) + 1
     band = 326 if lat >= 0 else 327
     return f"EPSG:{band}{zone:02d}"
-
-
-# .
-def utm_epsg_for_chip(lon: float) -> str:
-    return utm_epsg(lon, 27.0)
 
 
 def chip_id(row: dict) -> str:
@@ -161,7 +154,7 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     if not args.index.exists():
-        log.error("Index not found at %s. Run build_chip_index.py first.", args.index)
+        log.error("Index not found at %s. Run scripts/build_ftw_index.py first.", args.index)
         return 2
 
     # Prefer an explicit project; otherwise fall back to the project baked

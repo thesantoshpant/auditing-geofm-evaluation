@@ -46,9 +46,9 @@ cryptography==48.0.0
 cycler==0.12.1
     # via matplotlib
 earthengine-api==1.7.29
-    # via frozen-not-finetuned-eval (pyproject.toml)
+    # via auditing-geofm-evaluation (pyproject.toml)
 einops==0.8.2
-    # via frozen-not-finetuned-eval (pyproject.toml)
+    # via auditing-geofm-evaluation (pyproject.toml)
 filelock==3.29.1
     # via
     #   huggingface-hub
@@ -60,7 +60,7 @@ fsspec==2026.4.0
     #   huggingface-hub
     #   torch
 geopandas==1.1.3
-    # via frozen-not-finetuned-eval (pyproject.toml)
+    # via auditing-geofm-evaluation (pyproject.toml)
 gitdb==4.0.12
     # via gitpython
 gitpython==3.1.50
@@ -110,7 +110,7 @@ httplib2==0.31.2
 httpx==0.28.1
     # via huggingface-hub
 huggingface-hub==1.18.0
-    # via frozen-not-finetuned-eval (pyproject.toml)
+    # via auditing-geofm-evaluation (pyproject.toml)
 idna==3.18
     # via
     #   anyio
@@ -128,7 +128,7 @@ markupsafe==3.0.3
     # via jinja2
 matplotlib==3.10.9
     # via
-    #   frozen-not-finetuned-eval (pyproject.toml)
+    #   auditing-geofm-evaluation (pyproject.toml)
     #   seaborn
 mdurl==0.1.2
     # via markdown-it-py
@@ -140,7 +140,7 @@ networkx==3.6.1
     # via torch
 numpy==2.4.6
     # via
-    #   frozen-not-finetuned-eval (pyproject.toml)
+    #   auditing-geofm-evaluation (pyproject.toml)
     #   contourpy
     #   geopandas
     #   matplotlib
@@ -178,7 +178,7 @@ protobuf==7.35.0
     #   proto-plus
     #   wandb
 pyarrow==24.0.0
-    # via frozen-not-finetuned-eval (pyproject.toml)
+    # via auditing-geofm-evaluation (pyproject.toml)
 pyasn1==0.6.3
     # via pyasn1-modules
 pyasn1-modules==0.4.2
@@ -187,7 +187,7 @@ pycparser==3.0
     # via cffi
 pydantic==2.13.4
     # via
-    #   frozen-not-finetuned-eval (pyproject.toml)
+    #   auditing-geofm-evaluation (pyproject.toml)
     #   wandb
 pydantic-core==2.46.4
     # via pydantic
@@ -202,7 +202,7 @@ pyparsing==3.3.2
     #   rasterio
 pyproj==3.7.2
     # via
-    #   frozen-not-finetuned-eval (pyproject.toml)
+    #   auditing-geofm-evaluation (pyproject.toml)
     #   geopandas
 python-dateutil==2.9.0.post0
     # via
@@ -210,11 +210,11 @@ python-dateutil==2.9.0.post0
     #   pandas
 pyyaml==6.0.3
     # via
-    #   frozen-not-finetuned-eval (pyproject.toml)
+    #   auditing-geofm-evaluation (pyproject.toml)
     #   huggingface-hub
     #   wandb
 rasterio==1.4.4
-    # via frozen-not-finetuned-eval (pyproject.toml)
+    # via auditing-geofm-evaluation (pyproject.toml)
 requests==2.34.2
     # via
     #   earthengine-api
@@ -223,19 +223,21 @@ requests==2.34.2
     #   wandb
 rich==15.0.0
     # via
-    #   frozen-not-finetuned-eval (pyproject.toml)
+    #   auditing-geofm-evaluation (pyproject.toml)
     #   typer
 scikit-learn==1.9.0
-    # via frozen-not-finetuned-eval (pyproject.toml)
+    # via auditing-geofm-evaluation (pyproject.toml)
 scipy==1.17.1
-    # via scikit-learn
+    # via
+    #   auditing-geofm-evaluation (pyproject.toml)
+    #   scikit-learn
 seaborn==0.13.2
-    # via frozen-not-finetuned-eval (pyproject.toml)
+    # via auditing-geofm-evaluation (pyproject.toml)
 sentry-sdk==2.61.1
     # via wandb
 shapely==2.1.2
     # via
-    #   frozen-not-finetuned-eval (pyproject.toml)
+    #   auditing-geofm-evaluation (pyproject.toml)
     #   geopandas
 shellingham==1.5.4
     # via typer
@@ -249,13 +251,13 @@ threadpoolctl==3.6.0
     # via scikit-learn
 torch==2.5.1
     # via
-    #   frozen-not-finetuned-eval (pyproject.toml)
+    #   auditing-geofm-evaluation (pyproject.toml)
     #   torchvision
 torchvision==0.20.1
-    # via frozen-not-finetuned-eval (pyproject.toml)
+    # via auditing-geofm-evaluation (pyproject.toml)
 tqdm==4.68.1
     # via
-    #   frozen-not-finetuned-eval (pyproject.toml)
+    #   auditing-geofm-evaluation (pyproject.toml)
     #   huggingface-hub
 typer==0.25.1
     # via huggingface-hub
@@ -279,4 +281,4 @@ urllib3==2.7.0
     #   requests
     #   sentry-sdk
 wandb==0.27.2
-    # via frozen-not-finetuned-eval (pyproject.toml)
+    # via auditing-geofm-evaluation (pyproject.toml)

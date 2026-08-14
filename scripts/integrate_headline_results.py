@@ -53,9 +53,9 @@ def tcrit(df: int) -> float:
     return table.get(df, 1.96)
 
 
-def tcdf(x: float, df: int) -> float:
+def tsf(x: float, df: int) -> float:
     if _stats is not None:
-        return float(_stats.t.cdf(x, df))
+        return float(_stats.t.sf(x, df))
     raise RuntimeError("scipy is required for TOST p-values")
 
 
@@ -69,6 +69,11 @@ def round4(x: float) -> float:
     return round(float(x), 4)
 
 
+def canonical_pvalue(value: float) -> float:
+    """Serialize p-values at stable precision across supported SciPy releases."""
+    return float(f"{value:.12g}")
+
+
 def tost_pvalue(delta_mean: float, delta_sd: float, n: int, eps: float) -> float:
     if delta_sd == 0:
         return 0.0 if abs(delta_mean) < eps else 1.0
@@ -76,8 +81,10 @@ def tost_pvalue(delta_mean: float, delta_sd: float, n: int, eps: float) -> float
     df = n - 1
     t_lower = (delta_mean - (-eps)) / se
     t_upper = (eps - delta_mean) / se
-    p_lower = 1.0 - tcdf(t_lower, df)
-    p_upper = 1.0 - tcdf(t_upper, df)
+    # Use the survival function directly. Subtracting CDF values from one
+    # loses precision in the small tails and produced version-dependent JSON.
+    p_lower = tsf(t_lower, df)
+    p_upper = tsf(t_upper, df)
     return max(p_lower, p_upper)
 
 
@@ -171,7 +178,8 @@ def inregion(fm: dict[tuple[str, str, str, str, int], dict[str, float]]) -> dict
             "AUROC across the same ten seeds. TOST equivalence uses the conservative "
             "criterion that the 95% paired t-interval (df=9) lies fully within "
             "+/-0.02 AUROC. P-values are max of the two one-sided TOST p-values; "
-            "Holm adjustment is across the 12 region x model cells."
+            "Holm adjustment is across the 12 region x model cells. P-values are "
+            "serialized to 12 significant digits to avoid library-level tail noise."
         ),
         "models": {},
     }
@@ -187,7 +195,7 @@ def inregion(fm: dict[tuple[str, str, str, str, int], dict[str, float]]) -> dict
             delta_mean = mean(deltas)
             delta_sd = stdev(deltas)
             tost = lo >= -EPS and hi <= EPS
-            p = tost_pvalue(delta_mean, delta_sd, len(SEEDS), EPS)
+            p = canonical_pvalue(tost_pvalue(delta_mean, delta_sd, len(SEEDS), EPS))
             cell = {
                 "frozen_seeds": frozen,
                 "fullft_seeds": fullft,
@@ -209,7 +217,7 @@ def inregion(fm: dict[tuple[str, str, str, str, int], dict[str, float]]) -> dict
                 total_equiv += 1
         out["models"][model] = model_out
 
-    adjusted = holm_adjust([p for _, _, p in ordered])
+    adjusted = [canonical_pvalue(value) for value in holm_adjust([p for _, _, p in ordered])]
     for (model, region, _), adj in zip(ordered, adjusted):
         cell = out["models"][model]["regions"][region]
         cell["tost_p_value_holm"] = adj

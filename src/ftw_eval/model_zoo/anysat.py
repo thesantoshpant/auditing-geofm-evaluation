@@ -14,7 +14,7 @@ README examples use ``patch_size=10`` and ``patch_size=20``. ``40`` is NOT
 documented as a supported value. We default to **20 m** so the token tile is
 2x2 pixels at S2 10 m GSD.
 
-## Output mode caveat ( sign-off, revisit)
+## Output modes
 
 AnySat's ``output='patch'`` mode in the released hub checkpoint emits a 3D
 tensor of shape ``[B, P, D]`` with P = 92160 = 96 * 96 * 10 for a 240-px input
@@ -23,17 +23,12 @@ band sub-patch tokens, NOT a single ViT-style 14x14 patch grid. This means:
 
 1. Memory at ``output='patch'`` is ~27 GB on a single 240-px chip (A6000 fits
    single-chip but not batched).
-2. The token grid is not directly comparable to Clay/Prithvi/TerraMind's
-   single-modality ViT tokens, breaking the patch-boundary analysis
-   premise for AnySat specifically.
+2. The token grid is not directly comparable to the single-modality ViT token
+   grids exposed by Clay, Prithvi, and TerraMind.
 
-For sign-off we default to ``output='tile'`` which returns a single
-pooled vector per chip ``[B, D]`` (cheap, fast, suitable for zero-
-shot eval). The mechanistic analysis will need a follow-up audit:
-either AnySat is included via ``output='dense'`` (and we explain the per-band
-token structure carefully), or AnySat is documented as a "tile-only baseline"
-that gives a competitive zero-shot reference but cannot be patch-boundary
-probed. Decide this after chips are in hand.
+The base wrapper therefore uses ``output='tile'`` and returns one pooled vector
+per chip. ``AnySatDenseFoundationModel`` below uses ``output='dense'`` for the
+pixel-aligned frozen-probe evaluations.
 """
 
 from __future__ import annotations
@@ -60,9 +55,8 @@ class AnySatFoundationModel(FoundationModel):
     # patch_size_px = patch_size_m / gsd_m = 20 / 10 = 2 at S2 native.
     patch_size_px: ClassVar[int | None] = 2
     pretrained_id: ClassVar[str | None] = "gastruc/anysat"
-    patch_size_m: ClassVar[int] = 20 # 20 m is the largest documented value in the README
-    # : 'tile' returns [B, D]; cheap, comparable to other FMs' pooled feature.
-    # may revisit and switch to 'dense' or 'all' once we audit token shape.
+    patch_size_m: ClassVar[int] = 20  # Largest value documented in the README.
+    # Tile mode returns one pooled feature vector per chip.
     output_mode: ClassVar[str] = "tile"
     pooling_method: ClassVar[str] = "tile"
     has_cls_token: ClassVar[bool] = False
@@ -149,10 +143,7 @@ class AnySatFoundationModel(FoundationModel):
                 patch_size=self.patch_size_m,
                 output=self.output_mode,
             )
-        # In 'tile' mode AnySat returns a single [B, D] pooled vector per chip.
-        # No token grid is exposed. mechanistic analysis on AnySat
-        # requires switching this wrapper to 'dense' or 'all'; until then,
-        # token-level analysis on AnySat is disabled by design.
+        # In tile mode AnySat returns a single [B, D] vector and no token grid.
         if out.dim() == 2:
             features = out
             tokens = None

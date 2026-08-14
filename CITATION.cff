@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this artifact, please cite the TMLR paper."
+title: "Auditing GeoFM Evaluation for Field-Extent Segmentation: Label Proxies, Baselines, and When Frozen Features Match Fine-tuning"
+type: software
+version: 1.0.0
+authors:
+  - family-names: Pant
+    given-names: Santosh
+    affiliation: Knox College
+    email: pantsantosh23@gmail.com
+repository-code: "https://github.com/thesantoshpant/auditing-geofm-evaluation"
+url: "https://openreview.net/forum?id=qRXVTe1yYp"
+license: Apache-2.0
+date-released: 2026-08-14
+preferred-citation:
+  type: article
+  title: "Auditing GeoFM Evaluation for Field-Extent Segmentation: Label Proxies, Baselines, and When Frozen Features Match Fine-tuning"
+  authors:
+    - family-names: Pant
+      given-names: Santosh
+  journal: Transactions on Machine Learning Research
+  year: 2026
+  url: "https://openreview.net/forum?id=qRXVTe1yYp"

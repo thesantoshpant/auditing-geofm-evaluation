@@ -1,15 +1,13 @@
-""": FTW partial-labeling sensitivity. FTW annotates only a SUBSET of fields per
-chip, so some label=0 ("negative") pixels are actually unlabeled fields -- and the pixels
-most likely to be hidden fields are those that look crop-like (WorldCover=cropland). We
-therefore re-score the TRUE-label task with negatives RESTRICTED to high-confidence
-non-cropland (label==0 AND WorldCover!=cropland), dropping ambiguous label==0 & crop-like
-pixels. If the foundation-model >> spectral-RF ranking is stable under this restriction,
-the conclusion is not an artifact of FTW partial labeling. Replicates the exact filter +
-split of ftw_controlled_label_comparison.py.
+"""FTW partial-label sensitivity on high-confidence negative pixels.
+
+FTW annotates a subset of fields, so some pixels labeled negative may be
+unlabeled fields. This control removes negative pixels that WorldCover marks as
+cropland, then repeats the split and scoring used by
+``ftw_controlled_label_comparison.py``.
 
   python scripts/ftw_partial_label_sensitivity.py            # india, france, kenya
 """
-import sys, json, glob, numpy as np, pandas as pd, rasterio
+import sys, json, glob, os, numpy as np, pandas as pd, rasterio
 sys.path.insert(0, "scripts")
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
@@ -23,8 +21,8 @@ for C in COUNTRIES:
     D = "data/features_per_pixel_ftw_%s_true" % C; CHIPS = "data/chips_ftw_%s" % C
     m = pd.read_parquet("%s/features_per_pixel_meta.parquet" % D).reset_index(drop=True)
     wcf, s2f = {}, {}
-    for f in glob.glob("%s/*/*_worldcover.tif" % CHIPS): wcf["_".join(f.split("/")[-1].split("_")[:3])] = f
-    for f in glob.glob("%s/*/*_s2.tif" % CHIPS): s2f[f.split("/")[-1].rsplit("_s2.tif", 1)[0]] = f
+    for f in glob.glob("%s/*/*_worldcover.tif" % CHIPS): wcf["_".join(os.path.basename(f).split("_")[:3])] = f
+    for f in glob.glob("%s/*/*_s2.tif" % CHIPS): s2f[os.path.basename(f).rsplit("_s2.tif", 1)[0]] = f
     proxy = np.full(len(m), -1, dtype=np.int8); nb = None; spec = None
     for cid, grp in m.groupby("chip_id"):
         if cid in wcf:

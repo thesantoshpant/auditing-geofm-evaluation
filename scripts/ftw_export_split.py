@@ -7,15 +7,15 @@ as the FM linear probes / RF. Verifies counts against the committed controlled J
 Outputs: data/results/ftw_split_{C}.json (train chips + counts)
          data/results/ftw_split_{C}_test.parquet (test pixels: chip_id,pixel_r,pixel_c,label)
 """
-import argparse, json, glob, numpy as np, pandas as pd, rasterio
+import argparse, json, glob, os, numpy as np, pandas as pd, rasterio
 from sklearn.model_selection import GroupShuffleSplit
 ap = argparse.ArgumentParser(); ap.add_argument("--country", default="india"); ap.add_argument("--seed", type=int, default=20260514)
 a = ap.parse_args(); C = a.country
 D = f"data/features_per_pixel_ftw_{C}_true"; CHIPS = f"data/chips_ftw_{C}"
 m = pd.read_parquet(f"{D}/features_per_pixel_meta.parquet").reset_index(drop=True)
 wcf, s2f = {}, {}
-for f in glob.glob(f"{CHIPS}/*/*_worldcover.tif"): wcf["_".join(f.split("/")[-1].split("_")[:3])] = f
-for f in glob.glob(f"{CHIPS}/*/*_s2.tif"): s2f[f.split("/")[-1].rsplit("_s2.tif", 1)[0]] = f
+for f in glob.glob(f"{CHIPS}/*/*_worldcover.tif"): wcf["_".join(os.path.basename(f).split("_")[:3])] = f
+for f in glob.glob(f"{CHIPS}/*/*_s2.tif"): s2f[os.path.basename(f).rsplit("_s2.tif", 1)[0]] = f
 proxy = np.full(len(m), -1, dtype=np.int8); nb = None; spec = None
 for cid, grp in m.groupby("chip_id"):
     if cid in wcf:
@@ -42,7 +42,7 @@ out = {"country": C, "seed": a.seed, "n_pixels": int(len(m2)), "n_train_chips": 
        "train_chips": train_chips}
 json.dump(out, open(f"data/results/ftw_split_{C}.json", "w"), indent=2)
 # verify against committed controlled JSON
-cj = f"data/results/ftw_controlled_label_comparison{'' if C=='india' else '_'+C}.json"
+cj = f"data/results/ftw_controlled_label_comparison_{C}.json"
 try:
     j = json.load(open(cj)); match = (j["n_test_chips"] == len(test_chips) and j["n_train_chips"] == len(train_chips) and j["n_pixels"] == len(m2))
     print("[%s] split: %d px, %d train / %d test chips, overlap=%d | controlled JSON match=%s (ctrl: %dpx %dtr %dte)"

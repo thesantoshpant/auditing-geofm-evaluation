@@ -1,17 +1,8 @@
-"""Abstract foundation model interface.
+"""Common interface for the foundation-model wrappers used by the artifact.
 
-Every wrapped FM implements this protocol so downstream code (zero-shot eval,
-LoRA adaptation, TokenPool method, mechanistic probing) treats them uniformly.
-
-Notes on patch tokenization
----------------------------
-``patch_size_px`` is the **most important** piece of metadata for this project.
-The mechanistic analysis uses it to compute per-field patch-boundary
-overlap. Verify this value against each FM's source carefully — a wrong value
-silently breaks the central claim of the paper.
-
-For pixel-based models (Presto) where there is no spatial patch, return
-``None`` and document the alternative tokenization explicitly.
+The interface standardizes preprocessing and feature outputs across models.
+``patch_size_px`` records the spatial support of token outputs when a model
+exposes them; pixel-based or pooled-only models may set it to ``None``.
 """
 
 from __future__ import annotations
@@ -32,7 +23,7 @@ class ModelOutput:
     Attributes:
         tokens: Per-patch embeddings [B, N, D] when the model exposes them.
         features: Pooled embedding [B, D] suitable as input to a probe head.
-        attention: Optional last-layer attention [B, heads, N, N] for mechanistic analysis.
+        attention: Optional last-layer attention [B, heads, N, N].
         extras: Anything model-specific.
     """
 

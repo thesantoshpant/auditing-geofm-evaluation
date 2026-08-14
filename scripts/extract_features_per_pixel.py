@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Per-pixel feature extraction: upsample FM token grid to chip pixels.
 
-Resolves the n_tokens-asymmetry methodology artifact identified in .
+All model outputs are aligned to the same sampled pixels before evaluation.
 Per the per-polygon protocol, positives draw variable-size token pools and
 negatives draw a fixed ~16x16 pool; any expressive classifier exploits the
 difference. The per-pixel protocol replaces polygon-level aggregation with

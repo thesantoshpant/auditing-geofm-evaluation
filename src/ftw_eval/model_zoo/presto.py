@@ -33,8 +33,7 @@ installation verifier by default. The wrapper below records the model contract,
 but ``preprocess()`` and ``encode()`` intentionally raise ``NotImplementedError``
 until a version-pinned pixel-time-series adapter is added.
 
-``patch_size_px`` is ``None`` here. For TokenPool comparisons, Presto is treated
-as a pixel-based baseline outside the patch-aware family.
+``patch_size_px`` is ``None`` because Presto is pixel based.
 """
 
 from __future__ import annotations
@@ -67,7 +66,8 @@ class PrestoFoundationModel(FoundationModel):
             from presto import Presto
         except ImportError as e:
             raise FoundationModelNotInstalledError(
-                "Presto deps not installed. Run: pip install -e '.[presto]'"
+                "Presto is not part of the shared environment. See ARTIFACT.md "
+                "for the documented dependency conflict and separate-environment requirement."
             ) from e
 
         self._model = Presto.load_pretrained()
@@ -82,8 +82,7 @@ class PrestoFoundationModel(FoundationModel):
         # See presto/dataops.py for the exact contract.
         raise NotImplementedError(
             "Presto is not evaluated in this artifact because it requires a "
-            "version-pinned pixel-time-series adapter. Use --skip presto in "
-            "verify_install.py."
+            "version-pinned pixel-time-series adapter. See ARTIFACT.md."
         )
 
     def encode(

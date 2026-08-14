@@ -4,7 +4,7 @@
 150-epoch run. ``--eval-country`` evaluates a source-trained model on another
 region's canonical test pixels.
 """
-import sys, json, glob, argparse, numpy as np, rasterio, pandas as pd
+import sys, json, glob, os, argparse, numpy as np, rasterio, pandas as pd
 sys.path.insert(0, "scripts"); sys.path.insert(0, "src")
 import torch, torch.nn as nn, torch.nn.functional as F
 from extract_features_per_pixel import build_polygon_id_raster
@@ -37,7 +37,7 @@ def dice_loss(logit, y):
 def pad16(arr):
     _, H, W = arr.shape; ph, pw = (-H) % 16, (-W) % 16
     return np.pad(arr, ((0, 0), (0, ph), (0, pw)), mode="reflect") if (ph or pw) else arr
-def chips_of(C): return {f.split("/")[-1].rsplit("_s2.tif", 1)[0]: f for f in glob.glob(f"data/chips_ftw_{C}/*/*_s2.tif")}
+def chips_of(C): return {os.path.basename(f).rsplit("_s2.tif", 1)[0]: f for f in glob.glob(f"data/chips_ftw_{C}/*/*_s2.tif")}
 def run(C):
     torch.manual_seed(a.seed); np.random.seed(a.seed)
     sp = json.load(open(f"data/results/ftw_split_{C}.json")); train_chips = sp["train_chips"]

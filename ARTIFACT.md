@@ -44,6 +44,15 @@ regions. The primary derived files are:
 | `ftw_xfer_metrics.json` | AUROC, AP, and IoU for all 30 and non-Kenya 20 | `integrate_transfer_metrics.py` |
 | `ftw_eps_sweep.json` | equivalence-margin sensitivity | `integrate_revision_controls.py` |
 | `ftw_regional_regime.json` | six-region descriptive control and Cambodia subsampling | `integrate_revision_controls.py` |
+| `ftw_param_counts.json` | trainable-parameter counts and the Prithvi ratio | `report_param_counts.py` |
+
+See `data/results/README.md` for a map from all released filename patterns to
+their purpose and generating script.
+
+The manuscript figures are reproducible release assets. Running
+`scripts/regenerate_paper_figures.py` rebuilds the transfer-gap and
+cost-performance figures from the canonical aggregates;
+`scripts/ftw_finetune_fm_curves.py` rebuilds the convergence figure.
 
 The in-region comparison uses matched seeds and a 0.02 AUROC equivalence
 margin. Nine of twelve region-by-model cells meet the 95% paired-CI containment
@@ -107,6 +116,8 @@ pip install -e .
 
 `requirements.lock` is a current resolved environment for CPU-side analysis,
 not a byte-for-byte record of the training environment.
+The TOST scripts use SciPy's survival function for stable small-tail
+probabilities across the supported SciPy 1.15--1.17 range.
 
 Dependency notes:
 

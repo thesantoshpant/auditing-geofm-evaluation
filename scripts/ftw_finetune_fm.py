@@ -4,7 +4,7 @@ The default 80-epoch recipe is shared by the frozen-decoder and full-fine-tune
 conditions. ``--curve-every N`` records post-hoc test metrics every N epochs;
 these trajectories are diagnostics and are not used for checkpoint selection.
 """
-import sys, json, glob, argparse, numpy as np, rasterio, pandas as pd
+import sys, json, glob, os, argparse, numpy as np, rasterio, pandas as pd
 sys.path.insert(0, "scripts"); sys.path.insert(0, "src")
 import torch, torch.nn as nn, torch.nn.functional as F
 from extract_features_per_pixel import build_polygon_id_raster, chip_from_geotiff_array
@@ -56,7 +56,7 @@ def masks_for(C):
     polys = gpd.read_parquet(f"data/labels/polygons_ftw_{C}_keyed.parquet"); pby = {}
     for _, p in polys.iterrows(): pby.setdefault(p["chip_id"], []).append({"polygon_id": p["polygon_id"], "district": p.get("district", ""), "geometry": p["geometry"], "area_m2": float(p["area_m2"]), "size_bin": p["size_bin"]})
     return pby
-def chips_of(C): return {f.split("/")[-1].rsplit("_s2.tif", 1)[0]: f for f in glob.glob(f"data/chips_ftw_{C}/*/*_s2.tif")}
+def chips_of(C): return {os.path.basename(f).rsplit("_s2.tif", 1)[0]: f for f in glob.glob(f"data/chips_ftw_{C}/*/*_s2.tif")}
 def run(fm, C):
     torch.manual_seed(a.seed); np.random.seed(a.seed)
     sp = json.load(open(f"data/results/ftw_split_{C}.json")); train_chips = sp["train_chips"]

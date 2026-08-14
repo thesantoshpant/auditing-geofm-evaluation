@@ -3,7 +3,7 @@ ONLY on boundary-zone pixels (both classes, sampled within 3px of a field
 boundary). If FMs still beat RF here, the FM advantage is boundary-related
 signal, not within-field interpolation of same-label neighbours.
 """
-import glob, json, numpy as np, pandas as pd, rasterio
+import glob, json, os, numpy as np, pandas as pd, rasterio
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
@@ -13,7 +13,7 @@ from sklearn.model_selection import GroupShuffleSplit
 D="data/features_per_pixel_ftw_india_true_edge"
 ANY="data/features_per_pixel_ftw_india_true_edge_anysat"
 m=pd.read_parquet(f"{D}/features_per_pixel_meta.parquet").reset_index(drop=True)
-s2f={f.split("/")[-1].rsplit("_s2.tif",1)[0]:f for f in glob.glob("data/chips_ftw_india/*/*_s2.tif")}
+s2f={os.path.basename(f).rsplit("_s2.tif",1)[0]:f for f in glob.glob("data/chips_ftw_india/*/*_s2.tif")}
 nb=None; spec=None
 for cid,grp in m.groupby("chip_id"):
     if cid not in s2f: continue
@@ -40,7 +40,7 @@ def rf():
 res={"n_boundary_px":int(len(m)),"pos_rate":round(float(y.mean()),3),"chip_overlap":int(ov),"models":{}}
 print("%-22s | TRUE (boundary-zone) AUROC / F1"%"model"); print("-"*55)
 for f in sorted(glob.glob(f"{D}/features_*.npy"))+glob.glob(f"{ANY}/features_*.npy"):
-    fm=f.split("/")[-1][len("features_"):-4]; a,f1=lin(np.load(f)[ok]); res["models"][fm]={"auroc":a,"f1":f1}
+    fm=os.path.basename(f)[len("features_"):-4]; a,f1=lin(np.load(f)[ok]); res["models"][fm]={"auroc":a,"f1":f1}
     print("%-22s | %s / %s"%(fm,a,f1))
 a,f1=rf(); res["models"]["rf_spectral"]={"auroc":a,"f1":f1}; print("%-22s | %s / %s"%("rf_spectral",a,f1))
 json.dump(res,open("data/results/ftw_edge_zone_eval_india.json","w"),indent=2)

@@ -6,7 +6,7 @@ test pixels. If the FM advantage over the spectral RF PERSISTS on edge pixels,
 the FM win reflects boundary-related structure, not interior label smoothing.
 Reuses cached TRUE-mode features (no GPU).
 """
-import sys, glob, json, numpy as np, pandas as pd, rasterio
+import sys, glob, json, os, numpy as np, pandas as pd, rasterio
 sys.path.insert(0, "scripts")
 from scipy import ndimage
 from sklearn.linear_model import LogisticRegression
@@ -24,7 +24,7 @@ polys=gpd.read_parquet("data/labels/polygons_ftw_india_keyed.parquet")
 pby=defaultdict(list)
 for _,p in polys.iterrows():
     pby[p["chip_id"]].append({"polygon_id":p["polygon_id"],"district":p["district"],"geometry":p["geometry"],"area_m2":float(p["area_m2"]),"size_bin":p["size_bin"]})
-s2f={f.split("/")[-1].rsplit("_s2.tif",1)[0]:f for f in glob.glob("data/chips_ftw_india/*/*_s2.tif")}
+s2f={os.path.basename(f).rsplit("_s2.tif",1)[0]:f for f in glob.glob("data/chips_ftw_india/*/*_s2.tif")}
 
 # distance-to-boundary + raw S2 per sampled pixel
 dist=np.full(len(m),-1.0); spec=None; nb=None
@@ -63,7 +63,7 @@ for tag,thr in [("ALL test",1e9),("near-edge (<=2px)",2.0),("near-edge (<=1px)",
     print("\n=== %s : n_test=%d (pos=%d neg=%d) ==="%(tag,len(te_sub),n1,n0))
     row={}
     for f in sorted(glob.glob(f"{D}/features_*.npy")):
-        fm=f.split("/")[-1][len("features_"):-4]; a,f1=ev_lin(np.load(f)[ok],te_sub); row[fm]={"auroc":a,"f1":f1}; print("  %-22s AUROC=%s F1=%s"%(fm,a,f1))
+        fm=os.path.basename(f)[len("features_"):-4]; a,f1=ev_lin(np.load(f)[ok],te_sub); row[fm]={"auroc":a,"f1":f1}; print("  %-22s AUROC=%s F1=%s"%(fm,a,f1))
     a,f1=ev_rf(te_sub); row["rf_spectral"]={"auroc":a,"f1":f1}; print("  %-22s AUROC=%s F1=%s"%("rf_spectral",a,f1))
     res[tag]={"n_test":len(te_sub),"pos":n1,"neg":n0,"models":row}
 json.dump(res,open("data/results/ftw_edge_pixel_ablation.json","w"),indent=2)

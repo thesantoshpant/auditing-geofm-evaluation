@@ -1,7 +1,7 @@
-"""Cross-check paper-table numbers against shipped JSONs.
+"""Historical, non-executable snapshot of a pre-camera-ready number audit.
 
-Prints every headline number alongside its source JSON so reviewers can diff
-against the PDF tables directly.
+Paths and filenames below intentionally preserve the old release layout. Use
+the active integration scripts at ``scripts/`` for the camera-ready artifact.
 """
 import json
 from pathlib import Path

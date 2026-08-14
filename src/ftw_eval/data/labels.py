@@ -1,14 +1,8 @@
-"""Label data structures for the starter dataset.
+"""Label structures shared by the field-extent evaluation scripts.
 
-Two scales of label live here:
-
-1. **Pixel labels** — per-pixel land cover (e.g. ESA WorldCover class codes).
-   Stored as single-band uint8 GeoTIFFs aligned to the chip.
-2. **Object labels** — per-field polygons extracted from the pixel mask via
-   watershed + morphology (or SAM2 later). Stored as geoparquet so
-   geopandas can read them with a single line.
-
-The ``FieldSizeBin`` enum is the controlled axis for the entire paper: all evaluation metrics will be stratified by these bins.
+Pixel labels are aligned single-band rasters such as ESA WorldCover classes.
+Object labels are field polygons stored as GeoParquet. ``FieldSizeBin`` defines
+the descriptive area bins used by the regional sensitivity analyses.
 """
 
 from __future__ import annotations

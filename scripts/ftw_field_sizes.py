@@ -24,7 +24,7 @@ from rasterio.warp import transform_geom
 from shapely.geometry import shape
 
 FTW = Path("data/ftw")
-MIN_AREA, MAX_AREA = 100.0, 2_000_000.0  # same window as extract_field_polygons
+MIN_AREA, MAX_AREA = 100.0, 2_000_000.0  # Shared polygon-area filter.
 BINS = [("<0.1ha", 0, 1e3), ("0.1-0.3ha", 1e3, 3e3), ("0.3-0.5ha", 3e3, 5e3),
         ("0.5-1ha", 5e3, 1e4), (">1ha", 1e4, np.inf)]
 
