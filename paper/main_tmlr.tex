@@ -507,7 +507,7 @@ specialist; the frozen-probe field-extent advantage rests on interior context.}
 \toprule
 Slice & RF & Clay & Prithvi & TerraMind & AnySat & full-region AUROC reference \\
 \midrule
-boundary zone ($\le$2 px) & 0.586 & 0.571 & 0.576 & 0.584 & 0.582 & not evaluated \\
+boundary zone ($\le$2 px) & 0.586 & 0.571 & 0.576 & 0.584 & 0.582 & see row below \\
 full region (India)       & 0.574 & 0.577 & 0.983 & 0.967 & 0.939 & cf.\ Table~\ref{tab:flaws} \\
 \bottomrule
 \end{tabular}
@@ -664,8 +664,8 @@ exception.}
 \centering\small
 \caption{\textbf{Cost asymmetry.} Trainable parameters and per-region training cost.
 The frozen-decoder pipeline is TOST-equivalent to full fine-tuning in 9 of 12
-region$\times$model cells (Table~\ref{tab:paired_tost}), at a small fraction of
-the trainable parameters. GPU-minute entries are approximate development-run
+region$\times$model cells (Table~\ref{tab:paired_tost}). For Prithvi, the frozen
+decoder trains a small fraction of the parameters used by full fine-tuning. GPU-minute entries are approximate development-run
 observations; elapsed time was not retained in the result JSONs. AUROC
 parity with the from-scratch U-Net is region-dependent; on IoU, the U-Net wins
 outright outside Cambodia (Table~\ref{tab:iou_summary}).}
