@@ -32,6 +32,7 @@ canonical file used by the paper.
 | `ftw_proxy_sensitivity_<region>.json` | retained field-size sensitivity summaries | `scripts/ftw_field_sizes.py` |
 | `ftw_edge_zone_eval_india.json` | frozen-probe boundary-zone control | `scripts/ftw_edge_eval.py` |
 | `ftw_partial_label_sensitivity.json` | high-confidence-negative control | `scripts/ftw_partial_label_sensitivity.py` |
+| `ftw_india_wilcoxon.json` | one-off 12-chunk India Prithvi frozen-probe versus U-Net directional audit | aggregate retained and checksummed; per-chunk prediction arrays were not retained |
 
 ## Source runs for revision controls
 

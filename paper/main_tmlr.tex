@@ -237,10 +237,9 @@ on F1 and best-FM$-$RF\textsubscript{true} on AUROC. All 10 survive both Benjami
 control at 0.05 and Holm correction at 0.05, with minimum $z{=}6.54$
 (\verb|ftw_multiple_comparison.json|); chip-paired Wilcoxon signed-rank confirms
 the India Prithvi-over-U-Net exception ($p{=}2.4\times10^{-4}$, all 12 chunks
-positive). The evaluation code, metric artifacts, and
-reproduction commands are released; every primary number was independently
-recomputed from raw rasters and reproduced to three decimals
-(Appendix~\ref{app:repro}).
+positive). The evaluation code, metric artifacts, and reproduction commands are
+released. Primary aggregates recompute from the released run files, and direct
+raster checks verify label-to-image alignment (Appendix~\ref{app:repro}).
 
 
 \FloatBarrier
@@ -257,7 +256,7 @@ WorldCover proxy lifts the per-pixel RF from 0.55--0.82 to 0.79--0.96, making it
 foundation-model-competitive. A from-scratch U-Net on \textsc{true} labels reaches
 0.89--0.98 everywhere and is competitive with Prithvi frozen-probe in five of six
 regions (India excepted), so the reported ``GeoFM\,$\gg$\,baseline'' gap mostly
-reflects the choice of baseline. Prithvi frozen-probe is now reported as a single
+reflects the choice of baseline. The Prithvi frozen-probe column reports a single
 consistent model (linear probe on Prithvi-EO-2.0 features); a per-model breakdown
 across \{Prithvi, TerraMind, Clay, AnySat\} is in Appendix Table~\ref{tab:fm_breakdown}.
 Bracketed values are 95\% CIs: chip-level bootstrap ($B{=}1000$) for the
@@ -321,7 +320,7 @@ positive). The chunk audit shows that India is stable across test chunks, not ju
 a seed artifact, so we retain it as an exception. Possible contributors include Prithvi's HLS global pretraining
 (which may include Indian agro-climates in unknown proportion), India's
 distinctive smallholder spatial layout, and ordinary single-region noise at the
-between-region scale. Using polygon totals and counts in the released alignment summary, Cambodia has a smaller
+between-region scale. The released alignment summary gives Cambodia a smaller
 mean polygon area than India (0.20 vs.\ 0.36 ha), but the U-Net
 leads its frozen probe (0.948 vs.\ 0.924), so field size alone does not explain the pattern. We do not have a
 single confident explanation and recommend caution before generalizing this
@@ -449,7 +448,7 @@ Netherlands ($\sim$3.8\%)  & \textbf{0.809} & 0.699 & 0.708 \\
 \FloatBarrier
 
 \paragraph{In-region.} With the backbone frozen and only a decoder trained,
-performance is statistically equivalent to full fine-tuning in nine of twelve
+performance is statistically equivalent to full fine-tuning in 9 of 12
 region$\times$model cells across the single-recipe ten-seed grid (Table~\ref{tab:spine},
 TOST at $\varepsilon{=}0.02$ AUROC; count stable for $\varepsilon \in [0.02, 0.03]$;
 no FT-favored non-equivalence besides Kenya at any $\varepsilon \geq 0.010$;
@@ -515,7 +514,7 @@ full region (India)       & 0.574 & 0.577 & 0.983 & 0.967 & 0.939 & cf.\ Table~\
 \end{table}
 \FloatBarrier
 
-\paragraph{Cross-region.} Transferring across countries without target-region
+\paragraph{Cross-region.} For cross-country transfer without target-region
 labels, the ten-seed grid covers all 30 directed train-country$\to$test-country
 transfers among the six regions (Appendix Table~\ref{tab:xfer-full}). The full
 matrix does \emph{not} support a broad frozen-GeoFM transfer win: the from-scratch
@@ -750,9 +749,9 @@ the same backbone$+$decoder graph as full-FT at inference. Users who explicitly 
 features offline can trade one-time extraction and storage for multi-head reuse, but
 that saving is not realized in the reported runs.
 
-For a new region with no local labels, the full
-cross-region matrix supports frozen decoders over full fine-tuning on the
-exploratory non-Kenya transfer subset for both GeoFMs, but it does not support a broad claim
+For a new region with no local labels, the exploratory non-Kenya transfer subset
+supports frozen decoders over full fine-tuning for both GeoFMs, but the full
+cross-region matrix does not support a broad claim
 that frozen GeoFMs beat a source-trained U-Net. On the full 30-transfer matrix the
 U-Net has the highest AUROC and AP; on exploratory non-Kenya transfers no AUROC
 difference is detected between TerraMind frozen and the U-Net, while Prithvi frozen is lower.
