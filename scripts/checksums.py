@@ -15,7 +15,6 @@ import argparse
 import hashlib
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "results" / "CHECKSUMS.sha256"
 
@@ -24,13 +23,7 @@ def canonical_files() -> list[Path]:
     results = ROOT / "data" / "results"
     files: list[Path] = []
 
-    files += sorted(results.glob("*_chip.json"))
-    for extra in ("paired_significance.json",):
-        if (results / extra).exists():
-            files.append(results / extra)
     files += sorted(results.glob("ftw_proxy_sensitivity_*.json"))
-    files += sorted(results.glob("xseason_*.json"))
-    files += sorted(results.glob("cross_region_*.json"))
     files += sorted(results.glob("ftw_*.json"))
     files += sorted(results.glob("ftw_*_summary.txt"))
 
@@ -38,8 +31,6 @@ def canonical_files() -> list[Path]:
     if environment.exists():
         files.append(environment)
 
-    files += sorted((ROOT / "data" / "chips").glob("manifest_*.jsonl"))
-    files += sorted((ROOT / "data" / "index").glob("*.jsonl"))
     files += sorted((ROOT / "docs").glob("*.md"))
     files += sorted((ROOT / "scripts").glob("*.py"))
     files += sorted((ROOT / "scripts").glob("*.sh"))

@@ -207,8 +207,8 @@ pixels via a chip-grouped split (no chip in both train and test; overlap $=0$; s
 single-recipe ten-seed grid with ten matched training seeds per region and one software recipe;
 we report mean and a seed-paired $t$-interval at $df{=}9$ for matched
 frozen-decoder vs.\ full-FT differences (the same paired analysis used in
-Table~\ref{tab:spine} and Appendix Table~\ref{tab:paired_tost}). Frozen-probe AUROC and F1 in
-Table~\ref{tab:flaws} carry chip-level 95\% bootstrap CIs ($B{=}1000$) recomputed
+Table~\ref{tab:spine} and Appendix Table~\ref{tab:paired_tost}). Frozen-probe AUROC in
+Table~\ref{tab:flaws} carries chip-level 95\% bootstrap CIs ($B{=}1000$) recomputed
 over the test chips, available in five regions (Cambodia per-chip CIs not
 recomputed; point estimates only). Equivalence claims use two one-sided tests
 (TOST; \citealp{lakens2017equivalence}) with declared margin
@@ -291,7 +291,7 @@ field-membership predictor into one that rivals GeoFMs. The reason is that World
 ``cropland'' is spectrally separable while true field membership is a spatial
 property. FTW-labeled fields cover a small fraction of a scene, while WorldCover
 calls a majority of it cropland. The proxy therefore asks ``is this managed land?''
-instead of ``is this pixel in a field?'' (Appendix).
+instead of ``is this pixel in a field?''
 
 \paragraph{Choice 2: baseline strength.}
 On \textsc{true} labels a supervised U-Net reaches 0.89--0.98 AUROC in all six
@@ -482,7 +482,7 @@ segmentation, not boundary delineation or instance separation
 (Section~\ref{sec:setup}). As a control on the frozen-probe comparisons in
 Table~\ref{tab:flaws}, we re-evaluated the frozen-probe feature classifiers on a
 boundary zone (within $\le 2$ pixels of a field edge, India test set,
-$n{=}203{,}864$ boundary pixels). The five frozen-probe configurations evaluated here (four FMs $+$ per-pixel
+$n{=}203{,}864$ boundary pixels). The five classifiers evaluated here (four frozen probes $+$ the per-pixel
 RF) all fall to near-chance on this slice (Table~\ref{tab:edgezone}: AUROC
 0.57--0.59 for Clay, Prithvi, TerraMind, AnySat, RF), against 0.94--0.98 on the
 full-region task for the three transformer-based FMs. We did not evaluate the U-Net, frozen-decoder, or full-FT
@@ -495,12 +495,12 @@ scope.
 \begin{table}[H]\centering\small
 \caption{\textbf{Frozen-probe boundary-zone evaluation (India).} Restricting
 evaluation to pixels within $\le 2$ pixels of a field edge ($n{=}203{,}864$
-pixels) drops the five frozen-probe configurations evaluated here (four FMs $+$
+pixels) drops the five classifiers evaluated here (four frozen probes $+$ the
 per-pixel RF) to near-chance AUROC, against 0.94--0.98 on the full-region task for the three transformer-based FMs.
 \textbf{Scope.} The U-Net, frozen-decoder, and full-FT configurations were
 \emph{not} evaluated on this slice; this table supports only a frozen-probe
 scope claim and does not compare trained segmentation models on boundary
-pixels. None of the frozen-probe configurations is a boundary-delineation
+pixels. None of the four frozen-probe configurations is a boundary-delineation
 specialist; the frozen-probe field-extent advantage rests on interior context.}
 \label{tab:edgezone}
 \tablebodygap
@@ -641,7 +641,7 @@ U-Net has higher point AUROC than frozen-Prithvi in four of six regions
 and narrowly in France. The largest gap is Kenya, where U-Net leads frozen-Prithvi
 by 0.237 AUROC. On IoU, the U-Net wins outright outside Cambodia
 (Table~\ref{tab:iou_summary}). The frozen-probe cost advantage is robust;
-matched-accuracy equality vs the supervised baseline is region-specific. For
+matched-accuracy equality vs.\ the supervised baseline is region-specific. For
 cross-region deployment, the frozen decoder also needs no target-region labels, but
 the full transfer matrix shows that it should be compared directly with a supervised
 U-Net; its transfer strength cannot be assumed.

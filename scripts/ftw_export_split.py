@@ -4,13 +4,16 @@ low-data sweep) trains on the same train chips and is scored on the IDENTICAL te
 as the FM linear probes / RF. Verifies counts against the committed controlled JSON.
 
   python scripts/ftw_export_split.py --country india
-Outputs: data/results/ftw_split_{C}.json (train chips + counts)
-         data/results/ftw_split_{C}_test.parquet (test pixels: chip_id,pixel_r,pixel_c,label)
+Outputs under --output-dir (default data/results):
+         ftw_split_{C}.json (train chips + counts)
+         ftw_split_{C}_test.parquet (test pixels: chip_id,pixel_r,pixel_c,label)
 """
 import argparse, json, glob, os, numpy as np, pandas as pd, rasterio
 from sklearn.model_selection import GroupShuffleSplit
 ap = argparse.ArgumentParser(); ap.add_argument("--country", default="india"); ap.add_argument("--seed", type=int, default=20260514)
-a = ap.parse_args(); C = a.country
+ap.add_argument("--output-dir", default="data/results")
+a = ap.parse_args(); C = a.country; OUTDIR = a.output_dir
+os.makedirs(OUTDIR, exist_ok=True)
 D = f"data/features_per_pixel_ftw_{C}_true"; CHIPS = f"data/chips_ftw_{C}"
 m = pd.read_parquet(f"{D}/features_per_pixel_meta.parquet").reset_index(drop=True)
 wcf, s2f = {}, {}
@@ -36,11 +39,11 @@ tr, te = next(GroupShuffleSplit(n_splits=1, test_size=0.25, random_state=a.seed)
 train_chips = sorted(set(chips[tr])); test_chips = sorted(set(chips[te]))
 ov = len(set(chips[tr]) & set(chips[te]))
 test = m2.iloc[te][["chip_id", "pixel_r", "pixel_c", "label"]].reset_index(drop=True)
-test.to_parquet(f"data/results/ftw_split_{C}_test.parquet")
+test.to_parquet(os.path.join(OUTDIR, f"ftw_split_{C}_test.parquet"))
 out = {"country": C, "seed": a.seed, "n_pixels": int(len(m2)), "n_train_chips": len(train_chips),
        "n_test_chips": len(test_chips), "n_test_pixels": int(len(test)), "chip_overlap": int(ov),
        "train_chips": train_chips}
-json.dump(out, open(f"data/results/ftw_split_{C}.json", "w"), indent=2)
+json.dump(out, open(os.path.join(OUTDIR, f"ftw_split_{C}.json"), "w"), indent=2)
 # verify against committed controlled JSON
 cj = f"data/results/ftw_controlled_label_comparison_{C}.json"
 try:

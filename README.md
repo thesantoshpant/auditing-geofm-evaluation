@@ -108,23 +108,26 @@ Google Earth Engine authentication is required for the imagery pull.
 
 ```bash
 C=india
+RUN_DIR="outputs/quickstart_${C}"
 bash scripts/prep_ftw_country.sh "$C"
 python scripts/build_ftw_index.py --country "$C" --limit 800 \
   --out "data/index/ftw_${C}.jsonl"
-bash scripts/run_ftw_country.sh "$C"
-python scripts/ftw_export_split.py --country "$C"
-python scripts/ftw_controlled_label_comparison.py --country "$C"
+bash scripts/run_ftw_country.sh "$C" "$RUN_DIR"
+python scripts/ftw_export_split.py --country "$C" --output-dir "$RUN_DIR"
 python scripts/ftw_unet_baseline.py --robust \
+  --split-dir "$RUN_DIR" \
   --output "outputs/ftw_unet_${C}.json" "$C"
 python scripts/ftw_finetune_fm.py --model prithvi --freeze backbone \
+  --split-dir "$RUN_DIR" \
   --output "outputs/ftw_prithvi_${C}_frozen_decoder.json" "$C"
 python scripts/ftw_finetune_fm.py --model prithvi --freeze none \
+  --split-dir "$RUN_DIR" \
   --output "outputs/ftw_prithvi_${C}_full_finetune.json" "$C"
 ```
 
-The explicit output paths keep quickstart runs separate from the checksummed
-release results. Use `--eval-all-regions` to evaluate each trained source model
-on all six canonical target regions; the exact headline-grid loops are in
+The explicit split and result paths keep quickstart runs separate from the
+checksummed release results. To use `--eval-all-regions`, first generate all six
+region splits under one `RUN_DIR`; the exact headline-grid loops are in
 [ARTIFACT.md](ARTIFACT.md).
 
 See [ARTIFACT.md](ARTIFACT.md) and
@@ -142,7 +145,11 @@ python -m pytest
 
 ## Data and licenses
 
-- Fields of The World: CC BY 4.0
+- Fields of The World source polygons: per-country licenses in the
+  [FTW distribution](https://source.coop/kerner-lab/fields-of-the-world)
+  (India, Cambodia, Vietnam: CC-BY-4.0; Kenya:
+  GPL-2.0-or-later; France: Open Licence; Netherlands: CC0-1.0). The source
+  polygons are not redistributed here.
 - ESA WorldCover 10 m v200: CC BY 4.0
 - Sentinel-2 L2A: Copernicus free and open data
 - Repository code (`src/`, `scripts/`, and `tests/`): Apache License 2.0;

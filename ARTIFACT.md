@@ -184,22 +184,25 @@ The data preparation stage requires Google Earth Engine authentication.
 
 ```bash
 C=india
+RUN_DIR="outputs/reproduce_${C}"
 bash scripts/prep_ftw_country.sh "$C"
 python scripts/build_ftw_index.py --country "$C" --limit 800 \
   --out "data/index/ftw_${C}.jsonl"
-bash scripts/run_ftw_country.sh "$C"
-python scripts/ftw_export_split.py --country "$C"
+bash scripts/run_ftw_country.sh "$C" "$RUN_DIR"
+python scripts/ftw_export_split.py --country "$C" --output-dir "$RUN_DIR"
 ```
 
 Run the label/baseline audit and segmentation models:
 
 ```bash
-python scripts/ftw_controlled_label_comparison.py --country "$C"
 python scripts/ftw_unet_baseline.py --robust \
+  --split-dir "$RUN_DIR" \
   --output "outputs/ftw_unet_${C}.json" "$C"
 python scripts/ftw_finetune_fm.py --model prithvi --freeze backbone \
+  --split-dir "$RUN_DIR" \
   --output "outputs/ftw_prithvi_${C}_frozen_decoder.json" "$C"
 python scripts/ftw_finetune_fm.py --model prithvi --freeze none \
+  --split-dir "$RUN_DIR" \
   --output "outputs/ftw_prithvi_${C}_full_finetune.json" "$C"
 ```
 
@@ -210,7 +213,11 @@ all five cross-region targets to one JSON. The full model and country recipes ar
 
 ## Data sources and integrity
 
-- Fields of The World field polygons: CC BY 4.0
+- Fields of The World source polygons: per-country licenses in the
+  [FTW distribution](https://source.coop/kerner-lab/fields-of-the-world)
+  (India, Cambodia, Vietnam: CC-BY-4.0; Kenya:
+  GPL-2.0-or-later; France: Open Licence; Netherlands: CC0-1.0). The source
+  polygons are not redistributed here.
 - ESA WorldCover 10 m v200: CC BY 4.0
 - Sentinel-2 L2A: Copernicus free and open data
 

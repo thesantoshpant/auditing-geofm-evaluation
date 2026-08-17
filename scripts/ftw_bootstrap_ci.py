@@ -3,7 +3,7 @@ Train each model once on the train split; then bootstrap-resample TEST CHIPS
 (with replacement, B=1000) to get CIs on each model's true & proxy AUROC and on
 the key PAIRED differences (uses the same chip resamples, so the paired CI is
 honest). Reuses cached TRUE-mode features; no GPU.
-    python ftw_bootstrap_ci.py --country india|kenya
+    python ftw_bootstrap_ci.py --country india|kenya [--output PATH]
 """
 import argparse, glob, json, os, numpy as np, pandas as pd, rasterio
 from sklearn.linear_model import LogisticRegression
@@ -12,8 +12,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import roc_auc_score, f1_score
 from sklearn.model_selection import GroupShuffleSplit
 
-ap=argparse.ArgumentParser(); ap.add_argument("--country",default="india"); ap.add_argument("--B",type=int,default=1000); ap.add_argument("--seed",type=int,default=20260514)
-a=ap.parse_args(); C=a.country
+ap=argparse.ArgumentParser(); ap.add_argument("--country",default="india"); ap.add_argument("--B",type=int,default=1000); ap.add_argument("--seed",type=int,default=20260514); ap.add_argument("--output",default="")
+a=ap.parse_args(); C=a.country; OUT=a.output or f"data/results/ftw_bootstrap_ci_{C}.json"
 D=f"data/features_per_pixel_ftw_{C}_true"; ANY=f"data/features_per_pixel_ftw_{C}_true_anysat"; CH=f"data/chips_ftw_{C}"
 m=pd.read_parquet(f"{D}/features_per_pixel_meta.parquet").reset_index(drop=True)
 wcf={ "_".join(os.path.basename(f).split("_")[:3]):f for f in glob.glob(f"{CH}/*/*_worldcover.tif")}
@@ -77,7 +77,8 @@ rf_t,rf_p=P[("rf_spectral","true")],P[("rf_spectral","proxy")]
 # best FM on true by AUROC
 fmnames=[k for k in feats]; bestfm=max(fmnames,key=lambda k:metric(P[(k,"true")],yt_te,np.arange(len(te)),"auroc"))
 (c2,p2)=paired(P[(bestfm,"true")],yt_te,rf_t,yt_te,"auroc"); res["paired_bestFMtrue_minus_RFtrue_auroc"]={"best_fm":bestfm,"point":p2,"ci":list(c2)}
-json.dump(res,open(f"data/results/ftw_bootstrap_ci_{C}.json","w"),indent=2)
+os.makedirs(os.path.dirname(os.path.abspath(OUT)), exist_ok=True)
+json.dump(res,open(OUT,"w"),indent=2)
 for fm in res["models"]:
     t=res["models"][fm]["true"]; pr=res["models"][fm]["proxy"]
     print("  %-20s TRUE auroc %.3f%s f1 %.3f%s | PROXY auroc %.3f%s f1 %.3f%s"%(fm,
@@ -85,4 +86,4 @@ for fm in res["models"]:
       pr["auroc"]["point"],pr["auroc"]["ci"],pr["f1"]["point"],pr["f1"]["ci"]))
 print("  PAIRED RF(proxy-true) F1 diff = %.3f %s"%(p1,c1))
 print("  PAIRED bestFM(%s) minus RF, TRUE AUROC = %.3f %s"%(bestfm,p2,c2))
-print("wrote data/results/ftw_bootstrap_ci_%s.json"%C)
+print("wrote " + OUT)

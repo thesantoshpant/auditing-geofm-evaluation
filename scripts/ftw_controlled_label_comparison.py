@@ -16,6 +16,7 @@ from sklearn.ensemble import RandomForestClassifier
 ap = argparse.ArgumentParser()
 ap.add_argument("--country", default="india")
 ap.add_argument("--seed", type=int, default=20260514)
+ap.add_argument("--output", default="")
 ap.add_argument("--group-by", choices=["chip","tile"], default="chip",
                 help="split grouping: chip_id (default) or MGRS tile (scene-disjoint robustness)")
 args = ap.parse_args()
@@ -23,7 +24,7 @@ C = args.country
 D = f"data/features_per_pixel_ftw_{C}_true"
 ANY = f"data/features_per_pixel_ftw_{C}_true_anysat"
 CHIPS = f"data/chips_ftw_{C}"
-OUT = f"data/results/ftw_controlled_label_comparison_{C}.json"
+OUT = args.output or f"data/results/ftw_controlled_label_comparison_{C}.json"
 
 m = pd.read_parquet(f"{D}/features_per_pixel_meta.parquet").reset_index(drop=True)
 wcf, s2f = {}, {}
@@ -52,7 +53,8 @@ if args.group_by == "tile":
     for _ln in open(f"data/chips/manifest_ftw_{C}.jsonl"):
         _r = _json.loads(_ln); c2tile[_r["chip_id"]] = str(_r.get("scene_id","")).split("_")[-1]
     groups = np.array([c2tile.get(c, c) for c in chips])
-    OUT = OUT.replace(".json", "_tilesplit.json")
+    if not args.output:
+        OUT = OUT.replace(".json", "_tilesplit.json")
     print("[%s] GROUP-BY TILE: %d distinct tiles" % (C, len(set(groups))))
 else:
     groups = chips
@@ -84,5 +86,6 @@ for f in feats:
     print("%-22s | %s / %s      | %s / %s" % (fm, at, ft, ap_, fp))
 art, frt = rf(spec, yt); arp, frp = rf(spec, yp); res["models"]["rf_spectral"] = {"true": {"auroc": art, "f1": frt}, "proxy": {"auroc": arp, "f1": frp}}
 print("%-22s | %s / %s      | %s / %s" % ("rf_spectral(S2)", art, frt, arp, frp))
+os.makedirs(os.path.dirname(os.path.abspath(OUT)), exist_ok=True)
 json.dump(res, open(OUT, "w"), indent=2)
 print("\nwrote " + OUT)

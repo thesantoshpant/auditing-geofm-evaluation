@@ -15,6 +15,7 @@ from sklearn.metrics import average_precision_score, f1_score, jaccard_score, ro
 ap = argparse.ArgumentParser(); ap.add_argument("--model", choices=["prithvi", "terramind"], default="prithvi")
 ap.add_argument("--epochs", type=int, default=80); ap.add_argument("--tag", default="")
 ap.add_argument("--output", default="")
+ap.add_argument("--split-dir", default="data/results")
 ap.add_argument("--curve-every", type=int, default=0)
 ap.add_argument("--frac", type=float, default=1.0); ap.add_argument("--seed", type=int, default=0)
 ap.add_argument("--freeze", choices=["none", "backbone", "last6"], default="none")
@@ -68,7 +69,7 @@ def masks_for(C):
 def chips_of(C): return {os.path.basename(f).rsplit("_s2.tif", 1)[0]: f for f in glob.glob(f"data/chips_ftw_{C}/*/*_s2.tif")}
 def run(fm, C):
     torch.manual_seed(a.seed); np.random.seed(a.seed)
-    sp = json.load(open(f"data/results/ftw_split_{C}.json")); train_chips = sp["train_chips"]
+    sp = json.load(open(os.path.join(a.split_dir, f"ftw_split_{C}.json"))); train_chips = sp["train_chips"]
     pby = masks_for(C); s2f = chips_of(C); train_chips = [c for c in train_chips if c in s2f]
     if a.frac < 1.0:
         r = np.random.RandomState(a.seed); r.shuffle(train_chips); train_chips = train_chips[:max(2, int(round(len(train_chips) * a.frac)))]
@@ -86,7 +87,7 @@ def run(fm, C):
     diagnostic_region = a.eval_country or C
     print(f"{C} [{a.model}-ft frac={a.frac:.2f} seed={a.seed} freeze={a.freeze}]: {len(train_chips)} chips cov={cov:.3f}", flush=True)
     def evaluate(ec):
-        test = pd.read_parquet(f"data/results/ftw_split_{ec}_test.parquet").reset_index(drop=True); s2e = chips_of(ec)
+        test = pd.read_parquet(os.path.join(a.split_dir, f"ftw_split_{ec}_test.parquet")).reset_index(drop=True); s2e = chips_of(ec)
         fm._model.eval(); dec.eval(); probs = np.full(len(test), np.nan)
         with torch.no_grad():
             for cid, grp in test.groupby("chip_id"):
@@ -132,7 +133,10 @@ def run(fm, C):
         if not a.eval_all_regions:
             result["epochs"] = a.epochs
         if epoch_curve:
-            result["epoch_curve"] = epoch_curve
+            result["epoch_curve"] = [
+                {key: value for key, value in point.items() if key != "n_eval"}
+                for point in epoch_curve
+            ]
             result["log_every"] = a.curve_every
         key = evaluation_key(C, ec)
         results[key] = result

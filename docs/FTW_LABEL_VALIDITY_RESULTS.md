@@ -33,10 +33,10 @@ retained per-chip data permit them.
 
 - A 5 by 5 windowed random forest improves mean AUROC by about 0.01, so local
   pooling does not close the gap to the spatial models.
-- The India boundary-zone analysis evaluates five frozen-probe configurations.
-  Their AUROCs are near 0.58 on that slice. It does not evaluate the U-Net,
-  frozen decoder, or full fine-tuning and therefore cannot rank those trained
-  segmentation models at field edges.
+- The India boundary-zone analysis evaluates four frozen probes plus the
+  per-pixel random forest. Their AUROCs are near 0.58 on that slice. It does not
+  evaluate the U-Net, frozen decoder, or full fine-tuning and therefore cannot
+  rank those trained segmentation models at field edges.
 - Restricting negatives to high-confidence non-cropland pixels was tested in
   India, France, and Kenya. Prithvi changes little, while the random forest can
   change substantially, especially in France. This is a scoped sensitivity

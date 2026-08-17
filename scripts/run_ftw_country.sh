@@ -2,11 +2,12 @@
 # Retrieve public imagery and run the frozen-probe controls for one country.
 set -euo pipefail
 
-if [[ $# -ne 1 ]]; then
-  echo "Usage: bash scripts/run_ftw_country.sh <country>" >&2
+if [[ $# -lt 1 || $# -gt 2 ]]; then
+  echo "Usage: bash scripts/run_ftw_country.sh <country> [output-dir]" >&2
   exit 2
 fi
 C="$1"
+OUTDIR="${2:-data/results}"
 case "$C" in
   india|cambodia|vietnam|kenya|france|netherlands) ;;
   *) echo "Unsupported country: $C" >&2; exit 2 ;;
@@ -29,7 +30,7 @@ IDX="data/index/ftw_${C}.jsonl"
 CH="data/chips_ftw_${C}"
 M="data/chips/manifest_ftw_${C}.jsonl"
 PKEY="data/labels/polygons_ftw_${C}_keyed.parquet"
-mkdir -p data/index data/chips data/labels "$CH" data/results
+mkdir -p data/index data/chips data/labels "$CH" "$OUTDIR"
 if [[ ! -f "$IDX" ]]; then
   echo "$IDX is missing. Run scripts/build_ftw_index.py first." >&2
   exit 2
@@ -74,13 +75,15 @@ echo "### [7] PROXY 3FM"
 echo "### [8] PROXY AnySat"
 "$PY" scripts/extract_features_per_pixel.py --manifest "$M" --polygons "$PKEY" --out-dir "data/features_per_pixel_ftw_${C}_proxy_anysat" --fms anysat-dense
 echo "### [9] CONTROLLED"
-"$PY" scripts/ftw_controlled_label_comparison.py --country "$C"
+"$PY" scripts/ftw_controlled_label_comparison.py --country "$C" \
+  --output "$OUTDIR/ftw_controlled_label_comparison_${C}.json"
 echo "### [10] STANDALONE"
 for label in true proxy; do
-  "$PY" scripts/eval_per_pixel.py --features-dir "data/features_per_pixel_ftw_${C}_${label}" --out "data/results/eval_per_pixel_ftw_${C}_${label}_chip.json" --split chip --seed 20260514
-  "$PY" scripts/eval_per_pixel.py --features-dir "data/features_per_pixel_ftw_${C}_${label}_anysat" --out "data/results/eval_per_pixel_ftw_${C}_${label}_anysat_chip.json" --split chip --seed 20260514
-  "$PY" scripts/eval_nonfm_baseline_per_pixel.py --manifest "$M" --features-dir "data/features_per_pixel_ftw_${C}_${label}" --out "data/results/eval_per_pixel_ftw_${C}_${label}_nonfm_rf_chip.json" --clf rf --split chip --seed 20260514
+  "$PY" scripts/eval_per_pixel.py --features-dir "data/features_per_pixel_ftw_${C}_${label}" --out "$OUTDIR/eval_per_pixel_ftw_${C}_${label}_chip.json" --split chip --seed 20260514
+  "$PY" scripts/eval_per_pixel.py --features-dir "data/features_per_pixel_ftw_${C}_${label}_anysat" --out "$OUTDIR/eval_per_pixel_ftw_${C}_${label}_anysat_chip.json" --split chip --seed 20260514
+  "$PY" scripts/eval_nonfm_baseline_per_pixel.py --manifest "$M" --features-dir "data/features_per_pixel_ftw_${C}_${label}" --out "$OUTDIR/eval_per_pixel_ftw_${C}_${label}_nonfm_rf_chip.json" --clf rf --split chip --seed 20260514
 done
 echo "### [11] BOOTSTRAP"
-"$PY" scripts/ftw_bootstrap_ci.py --country "$C"
+"$PY" scripts/ftw_bootstrap_ci.py --country "$C" \
+  --output "$OUTDIR/ftw_bootstrap_ci_${C}.json"
 echo "### $C PIPELINE DONE"

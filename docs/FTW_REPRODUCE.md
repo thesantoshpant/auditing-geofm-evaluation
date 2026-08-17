@@ -28,6 +28,7 @@ Choose one of `india`, `cambodia`, `vietnam`, `kenya`, `france`, or
 
 ```bash
 C=vietnam
+RUN_DIR="outputs/reproduce_${C}"
 
 # FTW labels and keyed polygons
 bash scripts/prep_ftw_country.sh "$C"
@@ -35,14 +36,14 @@ bash scripts/prep_ftw_country.sh "$C"
 # Public-data index, imagery pull, and feature extraction
 python scripts/build_ftw_index.py --country "$C" --limit 800 \
   --out "data/index/ftw_${C}.jsonl"
-bash scripts/run_ftw_country.sh "$C"
+bash scripts/run_ftw_country.sh "$C" "$RUN_DIR"
 
-# Canonical chip-grouped split and same-pixel label comparison
-python scripts/ftw_export_split.py --country "$C"
-python scripts/ftw_controlled_label_comparison.py --country "$C"
+# Canonical chip-grouped split (the wrapper above also runs the label comparison)
+python scripts/ftw_export_split.py --country "$C" --output-dir "$RUN_DIR"
 
 # Tile-disjoint sensitivity
-python scripts/ftw_controlled_label_comparison.py --country "$C" --group-by tile
+python scripts/ftw_controlled_label_comparison.py --country "$C" --group-by tile \
+  --output "$RUN_DIR/ftw_controlled_label_comparison_${C}_tilesplit.json"
 ```
 
 ## Design checks
@@ -62,8 +63,8 @@ python scripts/ftw_controlled_label_comparison.py --country "$C" --group-by tile
 - `ftw_controlled_label_comparison*.json`: same-pixel label audit
 - `ftw_bootstrap_ci_<region>.json`: chip-clustered AUROC intervals and paired
   deltas for five regions; Cambodia's retained per-chip features are unavailable
-- `ftw_edge_zone_eval_india.json`: boundary-zone results for five frozen-probe
-  configurations only
+- `ftw_edge_zone_eval_india.json`: boundary-zone results for four frozen probes
+  plus the per-pixel random forest
 - `ftw_partial_label_sensitivity.json`: high-confidence-negative sensitivity in
   India, France, and Kenya
 - `ftw_proxy_mismatch_coverage.json`: polygon-field and WorldCover coverage
@@ -75,7 +76,10 @@ The headline files contain six evaluation keys per trained source model. Use
 the complete 300-run command loops and filename tags are in `ARTIFACT.md`.
 
 The country wrapper also generates `eval_per_pixel_ftw_*_chip.json` files for
-local inspection. Those large-intermediate evaluations are not redistributed.
+local inspection. Those large-intermediate evaluations are not redistributed
+or included in the release checksum manifest. The commands above keep derived
+split and label-audit outputs under ignored `outputs/`, so they do not alter the
+checksummed release state.
 
 Verify all released files with:
 

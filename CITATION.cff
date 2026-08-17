@@ -11,7 +11,7 @@ authors:
 repository-code: "https://github.com/thesantoshpant/auditing-geofm-evaluation"
 url: "https://openreview.net/forum?id=qRXVTe1yYp"
 license: Apache-2.0
-date-released: 2026-08-14
+date-released: 2026-08-16
 preferred-citation:
   type: article
   title: "Auditing GeoFM Evaluation for Field-Extent Segmentation: Label Proxies, Baselines, and When Frozen Features Match Fine-tuning"

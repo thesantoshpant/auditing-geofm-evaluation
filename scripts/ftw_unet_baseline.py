@@ -16,6 +16,7 @@ ap.add_argument("--robust", action="store_true"); ap.add_argument("--perpixel", 
 ap.add_argument("--frac", type=float, default=1.0); ap.add_argument("--seed", type=int, default=0)
 ap.add_argument("--epochs", type=int, default=150)
 ap.add_argument("--tag", default=""); ap.add_argument("--output", default="")
+ap.add_argument("--split-dir", default="data/results")
 ap.add_argument("--eval-country", default=""); ap.add_argument("--eval-all-regions", action="store_true")
 ap.add_argument("countries", nargs="*")
 a = ap.parse_args()
@@ -45,7 +46,7 @@ def pad16(arr):
 def chips_of(C): return {os.path.basename(f).rsplit("_s2.tif", 1)[0]: f for f in glob.glob(f"data/chips_ftw_{C}/*/*_s2.tif")}
 def run(C):
     torch.manual_seed(a.seed); np.random.seed(a.seed)
-    sp = json.load(open(f"data/results/ftw_split_{C}.json")); train_chips = sp["train_chips"]
+    sp = json.load(open(os.path.join(a.split_dir, f"ftw_split_{C}.json"))); train_chips = sp["train_chips"]
     polys = gpd.read_parquet(f"data/labels/polygons_ftw_{C}_keyed.parquet"); pby = {}
     for _, p in polys.iterrows(): pby.setdefault(p["chip_id"], []).append({"polygon_id": p["polygon_id"], "district": p.get("district", ""), "geometry": p["geometry"], "area_m2": float(p["area_m2"]), "size_bin": p["size_bin"]})
     s2f = chips_of(C); train_chips = [c for c in train_chips if c in s2f]
@@ -81,7 +82,7 @@ def run(C):
     results = {}
     net.eval()
     for ec in eval_regions:
-        test = pd.read_parquet(f"data/results/ftw_split_{ec}_test.parquet").reset_index(drop=True); s2e = chips_of(ec)
+        test = pd.read_parquet(os.path.join(a.split_dir, f"ftw_split_{ec}_test.parquet")).reset_index(drop=True); s2e = chips_of(ec)
         probs = np.full(len(test), np.nan)
         with torch.no_grad():
             for cid, grp in test.groupby("chip_id"):
