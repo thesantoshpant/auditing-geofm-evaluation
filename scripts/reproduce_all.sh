@@ -4,6 +4,8 @@
 # the shipped release state without launching new GPU training jobs.
 set -euo pipefail
 
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+
 if [[ -z "${PY:-}" ]]; then
   if command -v python >/dev/null 2>&1; then
     PY=python

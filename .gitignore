@@ -20,6 +20,7 @@ venv/
 
 # Local review and render output
 tmp/
+outputs/
 
 # Regenerated public-data and feature intermediates
 data/chips_ftw_*/

@@ -3,20 +3,29 @@
 The default 80-epoch recipe is shared by the frozen-decoder and full-fine-tune
 conditions. ``--curve-every N`` records post-hoc test metrics every N epochs;
 these trajectories are diagnostics and are not used for checkpoint selection.
+``--eval-all-regions`` writes the six-target schema used by the headline grid.
 """
 import sys, json, glob, os, argparse, numpy as np, rasterio, pandas as pd
 sys.path.insert(0, "scripts"); sys.path.insert(0, "src")
 import torch, torch.nn as nn, torch.nn.functional as F
 from extract_features_per_pixel import build_polygon_id_raster, chip_from_geotiff_array
+from ftw_eval.evaluation import REGIONS, evaluation_key, evaluation_targets
 import geopandas as gpd
 from sklearn.metrics import average_precision_score, f1_score, jaccard_score, roc_auc_score
 ap = argparse.ArgumentParser(); ap.add_argument("--model", choices=["prithvi", "terramind"], default="prithvi")
 ap.add_argument("--epochs", type=int, default=80); ap.add_argument("--tag", default="")
+ap.add_argument("--output", default="")
 ap.add_argument("--curve-every", type=int, default=0)
 ap.add_argument("--frac", type=float, default=1.0); ap.add_argument("--seed", type=int, default=0)
 ap.add_argument("--freeze", choices=["none", "backbone", "last6"], default="none")
-ap.add_argument("--eval-country", default=""); ap.add_argument("countries", nargs="*")
-a = ap.parse_args(); COUNTRIES = a.countries if a.countries else ["india", "vietnam", "france", "netherlands", "kenya"]
+ap.add_argument("--eval-country", default=""); ap.add_argument("--eval-all-regions", action="store_true")
+ap.add_argument("countries", nargs="*")
+a = ap.parse_args()
+if a.eval_all_regions and a.eval_country:
+    ap.error("--eval-all-regions and --eval-country are mutually exclusive")
+if a.eval_all_regions and a.curve_every:
+    ap.error("--eval-all-regions cannot be combined with --curve-every")
+COUNTRIES = a.countries if a.countries else list(REGIONS)
 dev = "cuda"
 def make_fm():
     if a.model == "prithvi": from ftw_eval.model_zoo.prithvi import PrithviFoundationModel as M
@@ -72,10 +81,12 @@ def run(fm, C):
     D = fwd_tokens(fm, Xc[0][None].to(dev)).shape[1]; dec = Decoder(D).to(dev); set_freeze(fm); fm._model.train(); dec.train()
     opt = torch.optim.AdamW([{"params": [p for p in fm._model.parameters() if p.requires_grad], "lr": 1e-4}, {"params": dec.parameters(), "lr": 1e-3}])
     sch = torch.optim.lr_scheduler.SequentialLR(opt, [torch.optim.lr_scheduler.LinearLR(opt, start_factor=0.1, total_iters=5), torch.optim.lr_scheduler.CosineAnnealingLR(opt, max(a.epochs - 5, 1))], milestones=[5])
-    bce = nn.BCEWithLogitsLoss(pos_weight=pw); ec = a.eval_country if a.eval_country else C
-    print(f"{C}->{ec} [{a.model}-ft frac={a.frac:.2f} seed={a.seed} freeze={a.freeze}]: {len(train_chips)} chips cov={cov:.3f}", flush=True)
-    test = pd.read_parquet(f"data/results/ftw_split_{ec}_test.parquet").reset_index(drop=True); s2e = chips_of(ec)
-    def evaluate():
+    bce = nn.BCEWithLogitsLoss(pos_weight=pw)
+    eval_regions = evaluation_targets(C, a.eval_country, a.eval_all_regions)
+    diagnostic_region = a.eval_country or C
+    print(f"{C} [{a.model}-ft frac={a.frac:.2f} seed={a.seed} freeze={a.freeze}]: {len(train_chips)} chips cov={cov:.3f}", flush=True)
+    def evaluate(ec):
+        test = pd.read_parquet(f"data/results/ftw_split_{ec}_test.parquet").reset_index(drop=True); s2e = chips_of(ec)
         fm._model.eval(); dec.eval(); probs = np.full(len(test), np.nan)
         with torch.no_grad():
             for cid, grp in test.groupby("chip_id"):
@@ -93,6 +104,7 @@ def run(fm, C):
             "ap": round(average_precision_score(y, probs), 4),
             "f1": round(f1_score(y, pred), 4),
             "iou": round(jaccard_score(y, pred, zero_division=0), 4),
+            "n_eval": int(len(test)),
         }
 
     order = list(range(len(train_chips))); epoch_curve = []
@@ -108,17 +120,28 @@ def run(fm, C):
             l.backward(); opt.step()
         sch.step()
         if a.curve_every and (ep + 1) % a.curve_every == 0:
-            metrics = evaluate(); epoch_curve.append({"epoch": ep + 1, **metrics})
+            metrics = evaluate(diagnostic_region); epoch_curve.append({"epoch": ep + 1, **metrics})
             fm._model.train(); dec.train()
-    metrics = epoch_curve[-1].copy() if epoch_curve and epoch_curve[-1]["epoch"] == a.epochs else evaluate()
-    metrics.pop("epoch", None)
-    print(f"{C}->{ec} [{a.model}-ft seed={a.seed} freeze={a.freeze}] AUROC={metrics['auroc']} AP={metrics['ap']} F1={metrics['f1']} IoU={metrics['iou']} n={len(test)}\n", flush=True)
-    result = {"train_country": C, "eval_country": ec, "ft_true_auroc": metrics["auroc"], "ft_true_ap": metrics["ap"], "ft_true_f1": metrics["f1"], "ft_true_iou": metrics["iou"], "n_eval": int(len(test)), "frac": a.frac, "seed": a.seed, "freeze": a.freeze, "epochs": a.epochs}
-    if epoch_curve:
-        result["epoch_curve"] = epoch_curve
-        result["log_every"] = a.curve_every
-    return result
-OUTF = "data/results/ftw_finetune_fm_" + a.model + a.tag + ".json"
+    results = {}
+    for ec in eval_regions:
+        metrics = epoch_curve[-1].copy() if epoch_curve and ec == diagnostic_region and epoch_curve[-1]["epoch"] == a.epochs else evaluate(ec)
+        metrics.pop("epoch", None)
+        n_eval = metrics.pop("n_eval")
+        print(f"{C}->{ec} [{a.model}-ft seed={a.seed} freeze={a.freeze}] AUROC={metrics['auroc']} AP={metrics['ap']} F1={metrics['f1']} IoU={metrics['iou']} n={n_eval}", flush=True)
+        result = {"train_country": C, "eval_country": ec, "ft_true_auroc": metrics["auroc"], "ft_true_ap": metrics["ap"], "ft_true_f1": metrics["f1"], "ft_true_iou": metrics["iou"], "n_eval": n_eval, "frac": a.frac, "seed": a.seed, "freeze": a.freeze}
+        if not a.eval_all_regions:
+            result["epochs"] = a.epochs
+        if epoch_curve:
+            result["epoch_curve"] = epoch_curve
+            result["log_every"] = a.curve_every
+        key = evaluation_key(C, ec)
+        results[key] = result
+    print(flush=True)
+    return results
+OUTF = a.output or ("data/results/ftw_finetune_fm_" + a.model + a.tag + ".json")
+os.makedirs(os.path.dirname(os.path.abspath(OUTF)), exist_ok=True)
 out = {}
-for C in COUNTRIES: out[C] = run(make_fm(), C); json.dump(out, open(OUTF, "w"), indent=2)
+for C in COUNTRIES:
+    out.update(run(make_fm(), C))
+    with open(OUTF, "w") as handle: json.dump(out, handle, indent=2)
 print("wrote " + OUTF)

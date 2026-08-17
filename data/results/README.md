@@ -9,8 +9,8 @@ canonical file used by the paper.
 
 | Pattern or file | Meaning | Generator |
 |---|---|---|
-| `ftw_finetune_fm_{prithvi,terramind}_<region>_{frozen_decoder,full_finetune}_seed<0-9>.json` | 240 GeoFM runs; each stores in-region and five transfer evaluations | `scripts/ftw_finetune_fm.py` |
-| `ftw_unet_<region>_seed<0-9>.json` | 60 U-Net runs; each stores in-region and five transfer evaluations | `scripts/ftw_unet_baseline.py` |
+| `ftw_finetune_fm_{prithvi,terramind}_<region>_{frozen_decoder,full_finetune}_seed<0-9>.json` | 240 GeoFM runs; each stores in-region and five transfer evaluations | `scripts/ftw_finetune_fm.py --eval-all-regions` |
+| `ftw_unet_<region>_seed<0-9>.json` | 60 U-Net runs; each stores in-region and five transfer evaluations | `scripts/ftw_unet_baseline.py --eval-all-regions` |
 | `ftw_inregion_equivalence.json` | 12-cell seed-paired TOST analysis | `scripts/integrate_headline_results.py` |
 | `ftw_cross_region_transfer.json` | full 30-transfer AUROC matrix and paired comparisons | `scripts/integrate_headline_results.py` |
 | `ftw_headline_summary.txt` | readable headline summary | `scripts/integrate_headline_results.py` |
@@ -22,7 +22,7 @@ canonical file used by the paper.
 | Pattern or file | Meaning | Generator |
 |---|---|---|
 | `ftw_eps_sweep.json` | equivalence-margin sensitivity | `scripts/integrate_revision_controls.py` |
-| `ftw_regional_regime.json` | regional descriptors and Cambodia low-data control | `scripts/integrate_revision_controls.py` |
+| `ftw_regional_regime.json` | regional descriptors, mean polygon areas derived from the alignment summary, and Cambodia low-data control | `scripts/integrate_revision_controls.py` |
 | `ftw_unet_epoch_sensitivity.json` | 80- versus 150-epoch U-Net control | `scripts/ftw_unet_baseline_epochs.py` |
 | `ftw_convergence_diagnostic.json` | 150-epoch Prithvi trajectories | `scripts/ftw_finetune_fm_curves.py` |
 | `ftw_multiple_comparison.json` | corrected headline directional tests | `scripts/ftw_multiple_comparison.py` |
@@ -59,5 +59,6 @@ summary is kept under `archive/historical_iterations/`.
 training grid. Files under `archive/historical_iterations/` are retained only
 for provenance and are not used by the paper or canonical checksum manifest.
 
-Run `bash scripts/reproduce_all.sh` from the repository root to regenerate the
-derived files and verify the release manifest.
+Run `bash scripts/reproduce_all.sh` from any working directory to regenerate
+the derived files and verify the release manifest. Exact commands for rebuilding
+the 300-file training grid are in `ARTIFACT.md`.

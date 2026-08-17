@@ -70,6 +70,10 @@ python scripts/ftw_controlled_label_comparison.py --country "$C" --group-by tile
 - `ftw_finetune_fm_*_seed*.json`: ten-seed GeoFM decoder/full-FT runs
 - `ftw_unet_*_seed*.json`: ten-seed supervised U-Net runs
 
+The headline files contain six evaluation keys per trained source model. Use
+`--eval-all-regions` with either training entry point to generate that shape;
+the complete 300-run command loops and filename tags are in `ARTIFACT.md`.
+
 The country wrapper also generates `eval_per_pixel_ftw_*_chip.json` files for
 local inspection. Those large-intermediate evaluations are not redistributed.
 

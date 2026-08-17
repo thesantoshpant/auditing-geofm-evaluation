@@ -1,4 +1,4 @@
-"""Pool an FM's spatial token grid over a polygon's bounding box.
+"""Legacy experimental helpers for pooling spatial tokens over a polygon.
 
 The "per-polygon, per-token" feature extraction works as follows:
 
@@ -16,9 +16,9 @@ classifying "is there cropland in this big tile?" rather than "does this
 specific polygon look like cropland?".
 
 By pooling only the tokens that overlap the polygon, sub-token polygons
-collapse to a single token and large polygons average many tokens. The
-size-effect we want to surface should appear directly in the size of the
-pooled token set.
+collapse to a single token and large polygons average many tokens. These
+helpers are retained for provenance and are not used by the paper's released
+field-extent results.
 """
 
 from __future__ import annotations
@@ -125,13 +125,8 @@ def pool_tokens_for_bbox(
     elif strategy == "mean":
         pooled = flat.mean(axis=0)
     elif strategy == "multiscale":
-        # TokenPool v1: concatenate pools at multiple dilation scales.
-        # The hypothesis: small polygons (1-2 tokens at k=0) get noisy features;
-        # adding broader contexts at k=1 (one-token ring) and k=3 (broader
-        # neighborhood) gives the classifier complementary scale features.
-        # Larger polygons already have rich within-bbox content so the
-        # multi-scale add brings less relative gain. If the per-bin recall
-        # span shrinks under this pool, TokenPool works.
+        # Concatenate mean-pooled features from the polygon box and two
+        # progressively wider token neighborhoods.
         pooled = _pool_multiscale(
             tokens_2d, tok_r_min, tok_c_min, tok_r_max, tok_c_max,
             dilations=(0, 1, 3),

@@ -7,11 +7,16 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 
-
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "paper" / "figures"
 RESULTS = ROOT / "data" / "results"
 REGIONS = ["india", "cambodia", "vietnam", "kenya", "france", "netherlands"]
+PDF_METADATA = {
+    "Creator": "Auditing GeoFM Evaluation artifact",
+    "Producer": "Auditing GeoFM Evaluation artifact",
+    "CreationDate": None,
+    "ModDate": None,
+}
 
 mpl.rcParams.update(
     {
@@ -116,7 +121,7 @@ def transfer_gap() -> None:
     fig.savefig(
         OUT / "cross_region_transfer_gap.pdf",
         bbox_inches="tight",
-        metadata={"CreationDate": None, "ModDate": None},
+        metadata=PDF_METADATA,
     )
     plt.close(fig)
 
@@ -167,7 +172,9 @@ def cost_performance() -> None:
     markers = ["D", "s", "^", "v"]
 
     fig, ax = plt.subplots(figsize=(6.4, 3.7))
-    for label, x, y, color, marker in zip(labels, params, mean_auroc, colors, markers):
+    for label, x, y, color, marker in zip(
+        labels, params, mean_auroc, colors, markers, strict=True
+    ):
         ax.scatter(
             x,
             y,
@@ -192,7 +199,7 @@ def cost_performance() -> None:
     fig.savefig(
         OUT / "cost_performance_tradeoff.pdf",
         bbox_inches="tight",
-        metadata={"CreationDate": None, "ModDate": None},
+        metadata=PDF_METADATA,
     )
     plt.close(fig)
 

@@ -46,6 +46,28 @@ regions. The primary derived files are:
 | `ftw_regional_regime.json` | six-region descriptive control and Cambodia subsampling | `integrate_revision_controls.py` |
 | `ftw_param_counts.json` | trainable-parameter counts and the Prithvi ratio | `report_param_counts.py` |
 
+The following loops reproduce the 300-file grid naming and six-target JSON
+structure. Each invocation trains one source model, then `--eval-all-regions`
+evaluates that trained model on the source region and the other five regions.
+
+```bash
+REGIONS=(india cambodia vietnam kenya france netherlands)
+for S in $(seq 0 9); do
+  for R in "${REGIONS[@]}"; do
+    python scripts/ftw_unet_baseline.py --robust --seed "$S" \
+      --eval-all-regions --tag "_${R}_seed${S}" "$R"
+    for MODEL in prithvi terramind; do
+      python scripts/ftw_finetune_fm.py --model "$MODEL" --freeze backbone \
+        --seed "$S" --eval-all-regions \
+        --tag "_${R}_frozen_decoder_seed${S}" "$R"
+      python scripts/ftw_finetune_fm.py --model "$MODEL" --freeze none \
+        --seed "$S" --eval-all-regions \
+        --tag "_${R}_full_finetune_seed${S}" "$R"
+    done
+  done
+done
+```
+
 See `data/results/README.md` for a map from all released filename patterns to
 their purpose and generating script.
 
@@ -173,13 +195,17 @@ Run the label/baseline audit and segmentation models:
 
 ```bash
 python scripts/ftw_controlled_label_comparison.py --country "$C"
-python scripts/ftw_unet_baseline.py --robust "$C"
-python scripts/ftw_finetune_fm.py --model prithvi --freeze backbone "$C"
-python scripts/ftw_finetune_fm.py --model prithvi "$C"
+python scripts/ftw_unet_baseline.py --robust \
+  --output "outputs/ftw_unet_${C}.json" "$C"
+python scripts/ftw_finetune_fm.py --model prithvi --freeze backbone \
+  --output "outputs/ftw_prithvi_${C}_frozen_decoder.json" "$C"
+python scripts/ftw_finetune_fm.py --model prithvi --freeze none \
+  --output "outputs/ftw_prithvi_${C}_full_finetune.json" "$C"
 ```
 
 Pass `--seed N` for individual training seeds and `--eval-country B` for a
-cross-region target. The full model and country recipes are documented in
+single cross-region target. Pass `--eval-all-regions` to write the source and
+all five cross-region targets to one JSON. The full model and country recipes are documented in
 `docs/FTW_REPRODUCE.md`.
 
 ## Data sources and integrity

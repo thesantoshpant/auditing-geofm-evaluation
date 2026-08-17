@@ -1,22 +1,27 @@
 """Train the supervised U-Net baseline used by the FTW evaluation.
 
 ``--epochs`` supports the 80-epoch budget control as well as the primary
-150-epoch run. ``--eval-country`` evaluates a source-trained model on another
-region's canonical test pixels.
+150-epoch run. ``--eval-country`` evaluates a source-trained model on one other
+region; ``--eval-all-regions`` evaluates it on all six canonical test sets.
 """
 import sys, json, glob, os, argparse, numpy as np, rasterio, pandas as pd
 sys.path.insert(0, "scripts"); sys.path.insert(0, "src")
 import torch, torch.nn as nn, torch.nn.functional as F
 from extract_features_per_pixel import build_polygon_id_raster
+from ftw_eval.evaluation import REGIONS, evaluation_key, evaluation_targets
 import geopandas as gpd
 from sklearn.metrics import average_precision_score, f1_score, jaccard_score, roc_auc_score
 ap = argparse.ArgumentParser()
 ap.add_argument("--robust", action="store_true"); ap.add_argument("--perpixel", action="store_true")
 ap.add_argument("--frac", type=float, default=1.0); ap.add_argument("--seed", type=int, default=0)
 ap.add_argument("--epochs", type=int, default=150)
-ap.add_argument("--tag", default=""); ap.add_argument("--eval-country", default=""); ap.add_argument("countries", nargs="*")
+ap.add_argument("--tag", default=""); ap.add_argument("--output", default="")
+ap.add_argument("--eval-country", default=""); ap.add_argument("--eval-all-regions", action="store_true")
+ap.add_argument("countries", nargs="*")
 a = ap.parse_args()
-COUNTRIES = a.countries if a.countries else ["india", "vietnam", "france", "netherlands", "kenya"]
+if a.eval_all_regions and a.eval_country:
+    ap.error("--eval-all-regions and --eval-country are mutually exclusive")
+COUNTRIES = a.countries if a.countries else list(REGIONS)
 dev = "cuda" if torch.cuda.is_available() else "cpu"; EP = a.epochs
 def conv(i, o): return nn.Sequential(nn.Conv2d(i, o, 3, padding=1), nn.BatchNorm2d(o), nn.ReLU(True), nn.Conv2d(o, o, 3, padding=1), nn.BatchNorm2d(o), nn.ReLU(True))
 class UNet(nn.Module):
@@ -60,8 +65,8 @@ def run(C):
     else:
         sch = torch.optim.lr_scheduler.CosineAnnealingLR(opt, EP)
     bce = nn.BCEWithLogitsLoss(pos_weight=torch.tensor([pwv], device=dev)); tag = ("PerPixel" if a.perpixel else ("UNet-robust" if a.robust else "UNet"))
-    ec = a.eval_country if a.eval_country else C
-    print(f"{C}->{ec} [{tag} frac={a.frac:.2f} seed={a.seed}]: {len(train_chips)} train chips, cov={cov:.3f}", flush=True)
+    eval_regions = evaluation_targets(C, a.eval_country, a.eval_all_regions)
+    print(f"{C} [{tag} frac={a.frac:.2f} seed={a.seed}]: {len(train_chips)} train chips, cov={cov:.3f}", flush=True)
     net.train()
     for ep in range(EP):
         np.random.shuffle(train_chips);
@@ -73,27 +78,38 @@ def run(C):
             if np.random.rand() < .5: X = torch.flip(X, [3]); Y = torch.flip(Y, [2])
             opt.zero_grad(); o = net(X); l = bce(o, Y) + (dice_loss(o, Y) if a.robust else 0.0); l.backward(); opt.step()
         sch.step()
-    # evaluate on ec's canonical test pixels (cross-region if ec != C)
-    sp_e = json.load(open(f"data/results/ftw_split_{ec}.json")); test = pd.read_parquet(f"data/results/ftw_split_{ec}_test.parquet").reset_index(drop=True); s2e = chips_of(ec)
-    net.eval(); probs = np.full(len(test), np.nan)
-    with torch.no_grad():
-        for cid, grp in test.groupby("chip_id"):
-            if cid not in s2e: continue
-            with rasterio.open(s2e[cid]) as s: a0 = s.read().astype(np.float32) / 10000.0
-            H0, W0 = a0.shape[1], a0.shape[2]; arr = (pad16(a0) - MEAN[:, None, None]) / STD[:, None, None]
-            pr = torch.sigmoid(net(torch.tensor(arr[None]).to(dev)))[0].cpu().numpy()
-            for j, r in grp.iterrows():
-                rr, cc = int(r.pixel_r), int(r.pixel_c)
-                if rr < H0 and cc < W0: probs[j] = pr[rr, cc]
-    nan = int(np.isnan(probs).sum()); assert nan == 0, f"{nan} unpredicted"
-    y = test.label.to_numpy(); pred = (probs >= .5).astype(int)
-    auc = round(roc_auc_score(y, probs), 4)
-    avg_precision = round(average_precision_score(y, probs), 4)
-    f1 = round(f1_score(y, pred), 4)
-    iou = round(jaccard_score(y, pred, zero_division=0), 4)
-    print(f"{C}->{ec} [{tag} seed={a.seed}] AUROC={auc} AP={avg_precision} F1={f1} IoU={iou} n={len(test)}\n", flush=True)
-    return {"train_country": C, "eval_country": ec, "unet_true_auroc": auc, "unet_true_ap": avg_precision, "unet_true_f1": f1, "unet_true_iou": iou, "n_eval": int(len(test)), "frac": a.frac, "seed": a.seed, "epochs": EP}
-OUTF = f"data/results/ftw_unet{a.tag}.json" if a.tag else ("data/results/ftw_unet_perpixel_ablation.json" if a.perpixel else ("data/results/ftw_unet_baseline_robust.json" if a.robust else "data/results/ftw_unet_baseline.json"))
+    results = {}
+    net.eval()
+    for ec in eval_regions:
+        test = pd.read_parquet(f"data/results/ftw_split_{ec}_test.parquet").reset_index(drop=True); s2e = chips_of(ec)
+        probs = np.full(len(test), np.nan)
+        with torch.no_grad():
+            for cid, grp in test.groupby("chip_id"):
+                if cid not in s2e: continue
+                with rasterio.open(s2e[cid]) as s: a0 = s.read().astype(np.float32) / 10000.0
+                H0, W0 = a0.shape[1], a0.shape[2]; arr = (pad16(a0) - MEAN[:, None, None]) / STD[:, None, None]
+                pr = torch.sigmoid(net(torch.tensor(arr[None]).to(dev)))[0].cpu().numpy()
+                for j, r in grp.iterrows():
+                    rr, cc = int(r.pixel_r), int(r.pixel_c)
+                    if rr < H0 and cc < W0: probs[j] = pr[rr, cc]
+        nan = int(np.isnan(probs).sum()); assert nan == 0, f"{nan} unpredicted"
+        y = test.label.to_numpy(); pred = (probs >= .5).astype(int)
+        auc = round(roc_auc_score(y, probs), 4)
+        avg_precision = round(average_precision_score(y, probs), 4)
+        f1 = round(f1_score(y, pred), 4)
+        iou = round(jaccard_score(y, pred, zero_division=0), 4)
+        print(f"{C}->{ec} [{tag} seed={a.seed}] AUROC={auc} AP={avg_precision} F1={f1} IoU={iou} n={len(test)}", flush=True)
+        key = evaluation_key(C, ec)
+        result = {"train_country": C, "eval_country": ec, "unet_true_auroc": auc, "unet_true_ap": avg_precision, "unet_true_f1": f1, "unet_true_iou": iou, "n_eval": int(len(test)), "frac": a.frac, "seed": a.seed}
+        if not a.eval_all_regions:
+            result["epochs"] = EP
+        results[key] = result
+    print(flush=True)
+    return results
+OUTF = a.output or (f"data/results/ftw_unet{a.tag}.json" if a.tag else ("data/results/ftw_unet_perpixel_ablation.json" if a.perpixel else ("data/results/ftw_unet_baseline_robust.json" if a.robust else "data/results/ftw_unet_baseline.json")))
+os.makedirs(os.path.dirname(os.path.abspath(OUTF)), exist_ok=True)
 out = {}
-for C in COUNTRIES: out[C] = run(C); json.dump(out, open(OUTF, "w"), indent=2)
+for C in COUNTRIES:
+    out.update(run(C))
+    with open(OUTF, "w") as handle: json.dump(out, handle, indent=2)
 print("wrote " + OUTF)

@@ -1,9 +1,10 @@
 {
-  "method": "Descriptive six-region summary. Training-chip counts, paired AUROC deltas, and ten-seed IoU means are regenerated from shipped JSONs. Positive-pixel percentages are rounded manuscript descriptors from the training masks; the raw masks are not redistributed. No causal threshold is estimated.",
+  "method": "Descriptive six-region summary. Training-chip counts, paired AUROC deltas, ten-seed IoU means, and mean polygon areas are regenerated from shipped JSONs. Mean polygon area is total polygon area divided by polygon count in ftw_alignment_summary.json. Positive-pixel percentages are rounded manuscript descriptors from the training masks; the raw masks are not redistributed. No causal threshold is estimated.",
   "regions": {
     "india": {
       "positive_pixel_pct_rounded": 0.3,
       "n_train_chips": 525,
+      "mean_polygon_area_ha": 0.3565,
       "prithvi_frozen_minus_fullft_auroc": -0.0036,
       "terramind_frozen_minus_fullft_auroc": 0.0204,
       "unet_mean_iou_at_0_5": 0.455,
@@ -14,6 +15,7 @@
     "cambodia": {
       "positive_pixel_pct_rounded": 23.0,
       "n_train_chips": 107,
+      "mean_polygon_area_ha": 0.2005,
       "prithvi_frozen_minus_fullft_auroc": -0.0018,
       "terramind_frozen_minus_fullft_auroc": -0.0061,
       "unet_mean_iou_at_0_5": 0.8258,
@@ -24,6 +26,7 @@
     "vietnam": {
       "positive_pixel_pct_rounded": 18.0,
       "n_train_chips": 213,
+      "mean_polygon_area_ha": 0.3278,
       "prithvi_frozen_minus_fullft_auroc": -0.0039,
       "terramind_frozen_minus_fullft_auroc": -0.0045,
       "unet_mean_iou_at_0_5": 0.8535,
@@ -34,6 +37,7 @@
     "kenya": {
       "positive_pixel_pct_rounded": 0.1,
       "n_train_chips": 155,
+      "mean_polygon_area_ha": 0.2793,
       "prithvi_frozen_minus_fullft_auroc": -0.1174,
       "terramind_frozen_minus_fullft_auroc": -0.0972,
       "unet_mean_iou_at_0_5": 0.0865,
@@ -44,6 +48,7 @@
     "france": {
       "positive_pixel_pct_rounded": 11.0,
       "n_train_chips": 532,
+      "mean_polygon_area_ha": 3.5775,
       "prithvi_frozen_minus_fullft_auroc": 0.0025,
       "terramind_frozen_minus_fullft_auroc": 0.001,
       "unet_mean_iou_at_0_5": 0.891,
@@ -54,6 +59,7 @@
     "netherlands": {
       "positive_pixel_pct_rounded": 3.8,
       "n_train_chips": 522,
+      "mean_polygon_area_ha": 1.734,
       "prithvi_frozen_minus_fullft_auroc": 0.0128,
       "terramind_frozen_minus_fullft_auroc": 0.0088,
       "unet_mean_iou_at_0_5": 0.8095,

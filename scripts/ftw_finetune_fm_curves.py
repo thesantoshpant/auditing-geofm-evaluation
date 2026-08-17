@@ -16,13 +16,18 @@ matplotlib.use("Agg")
 matplotlib.rcParams["pdf.fonttype"] = 42
 matplotlib.rcParams["ps.fonttype"] = 42
 
-import matplotlib.pyplot as plt
-
+import matplotlib.pyplot as plt  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "data" / "results"
 SUMMARY = RESULTS / "ftw_convergence_diagnostic.json"
 FIGURE = ROOT / "paper" / "figures" / "convergence.pdf"
+PDF_METADATA = {
+    "Creator": "Auditing GeoFM Evaluation artifact",
+    "Producer": "Auditing GeoFM Evaluation artifact",
+    "CreationDate": None,
+    "ModDate": None,
+}
 REGIONS = ("vietnam", "kenya")
 CONFIGS = {
     "frozen_decoder": "ftw_finetune_fm_prithvi_curve150_backbone_seed0.json",
@@ -112,7 +117,7 @@ def main() -> int:
     fig.savefig(
         FIGURE,
         bbox_inches="tight",
-        metadata={"CreationDate": None, "ModDate": None},
+        metadata=PDF_METADATA,
     )
     plt.close(fig)
 

@@ -1,3 +1,3 @@
-"""Controlled evaluation of geospatial foundation models for agricultural field mapping."""
+"""Controlled evaluation of GeoFMs for agricultural field-extent segmentation."""
 
-__version__ = "0.0.1"
+__version__ = "1.0.0"

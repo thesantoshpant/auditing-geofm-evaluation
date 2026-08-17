@@ -10,10 +10,10 @@ from pathlib import Path
 
 from scipy import stats
 
-
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "data" / "results"
 INREGION = RESULTS / "ftw_inregion_equivalence.json"
+ALIGNMENT = RESULTS / "ftw_alignment_summary.json"
 EPS_OUTPUT = RESULTS / "ftw_eps_sweep.json"
 REGIME_OUTPUT = RESULTS / "ftw_regional_regime.json"
 REGIONS = ["india", "cambodia", "vietnam", "kenya", "france", "netherlands"]
@@ -232,12 +232,20 @@ def cambodia_low_data() -> dict:
 
 
 def build_regional_regime(inregion: dict) -> dict:
+    alignment = load_json(ALIGNMENT)["regions"]
     regions: dict[str, object] = {}
     for region in REGIONS:
         split = load_json(RESULTS / f"ftw_split_{region}.json")
+        polygon_summary = alignment[region]
         regions[region] = {
             "positive_pixel_pct_rounded": POSITIVE_PIXEL_PCT[region],
             "n_train_chips": int(split["n_train_chips"]),
+            "mean_polygon_area_ha": round(
+                float(polygon_summary["total_polygon_area_m2"])
+                / int(polygon_summary["n_polygons"])
+                / 10_000,
+                4,
+            ),
             "prithvi_frozen_minus_fullft_auroc": inregion["models"]["prithvi"][
                 "regions"
             ][region]["paired_delta_mean"],
@@ -256,7 +264,9 @@ def build_regional_regime(inregion: dict) -> dict:
     return {
         "method": (
             "Descriptive six-region summary. Training-chip counts, paired AUROC "
-            "deltas, and ten-seed IoU means are regenerated from shipped JSONs. "
+            "deltas, ten-seed IoU means, and mean polygon areas are regenerated "
+            "from shipped JSONs. Mean polygon area is total polygon area divided "
+            "by polygon count in ftw_alignment_summary.json. "
             "Positive-pixel percentages are rounded manuscript descriptors from "
             "the training masks; the raw masks are not redistributed. No causal "
             "threshold is estimated."

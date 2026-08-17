@@ -78,7 +78,7 @@ AI4SmallFarms. The comparison in the Prithvi-EO-2.0 report is instead a multi-te
 crop-segmentation task \citep{prithvi}, so it does not answer the same field-extent question.
 
 With decoder capacity matched, frozen and fully fine-tuned backbones are TOST-equivalent
-in 9 of 12 in-region region$\times$model cells at $\varepsilon{=}0.02$ AUROC. Kenya is
+in 9 of 12 region$\times$model cells under in-region evaluation at $\varepsilon{=}0.02$ AUROC. Kenya is
 the shared exception, with roughly 0.1\% positive pixels and a clear advantage for full
 fine-tuning. The cross-region result is more cautious: the U-Net leads the full 30-transfer
 matrix on AUROC and AP, although frozen decoders outperform full fine-tuning in an exploratory subset that
@@ -152,7 +152,7 @@ industrial agriculture: India, Cambodia, Vietnam, Kenya, France, and the Netherl
 For each chip we form two labels on the same pixels. The \textsc{true} label is 1
 when the pixel lies inside an FTW field polygon, rasterized to the chip grid in the
 chip's own CRS. The \textsc{proxy} label is 1 when the pixel is ESA WorldCover
-``cropland'' (class~40, \citep{worldcover}). The task throughout is per-pixel binary
+``cropland'' (class~40, \citealp{worldcover}). The task throughout is per-pixel binary
 field-extent segmentation (inside-vs-outside a field polygon); we do not evaluate
 boundary delineation or instance separation between adjacent parcels, and we use
 ``field mapping'' as a synonym for this per-pixel task.
@@ -262,7 +262,7 @@ consistent model (linear probe on Prithvi-EO-2.0 features); a per-model breakdow
 across \{Prithvi, TerraMind, Clay, AnySat\} is in Appendix Table~\ref{tab:fm_breakdown}.
 Bracketed values are 95\% CIs: chip-level bootstrap ($B{=}1000$) for the
 frozen-probe column (five regions; Cambodia point estimate only); seed-level
-$t$-interval ($df{=}9$) for ten-seed U-Net and FT FM. FT FM $=$ fine-tuned Prithvi
+$t$-interval ($df{=}9$) for ten-seed U-Net and FT-Prithvi. FT-Prithvi $=$ fine-tuned Prithvi
 (end-to-end). Per-model tile-disjoint sensitivity is in
 Appendix Table~\ref{tab:tilesplit}. The `Prithvi frozen-probe' column is a
 linear probe on Prithvi-EO-2.0 features (\emph{not} the frozen-decoder
@@ -321,8 +321,9 @@ positive). The chunk audit shows that India is stable across test chunks, not ju
 a seed artifact, so we retain it as an exception. Possible contributors include Prithvi's HLS global pretraining
 (which may include Indian agro-climates in unknown proportion), India's
 distinctive smallholder spatial layout, and ordinary single-region noise at the
-between-region scale. Cambodia, with smaller fields than India,
-is a tie, so field size alone does not explain the pattern. We do not have a
+between-region scale. Using polygon totals and counts in the released alignment summary, Cambodia has a smaller
+mean polygon area than India (0.20 vs.\ 0.36 ha), but the U-Net
+leads its frozen probe (0.948 vs.\ 0.924), so field size alone does not explain the pattern. We do not have a
 single confident explanation and recommend caution before generalizing this
 regional result.
 
@@ -579,8 +580,8 @@ is therefore insufficient to explain the result. Cambodia has the highest
 positive-pixel coverage (23\%) and remains stable. Kenya has 155 training chips, whereas
 Cambodia has 107 and remains stable, so training-set size alone is also insufficient.
 Spatial fragmentation may contribute, but we did not quantify it independently.
-Under this measured combination, frozen-feature decoders are unstable (seed std
-up to $\pm0.04$), and the supervised U-Net is the most robust tested model on
+Under this measured combination, frozen-feature decoders are unstable (seed standard
+deviation up to $0.066$ AUROC), and the supervised U-Net is the most robust tested model on
 threshold metrics.
 
 \paragraph{Reconciling Kenya numbers across tables.} Kenya is the one region where
@@ -794,7 +795,7 @@ subset, but the U-Net has the highest AUROC and AP on the full directed matrix.
 architecture. PANGAEA evaluates more GeoFMs and reports a similar U-Net pattern, but
 it does not replace broader testing within our setup. FTW annotations can also be
 partial in sparse regions. A three-region sensitivity check does not identify that
-partial annotation as the source of the frozen-FM result (Appendix), but it cannot
+partial annotation as the source of the frozen-FM result (Appendix Table~\ref{tab:partial}), but it cannot
 rule out every labeling effect. Finally, the cross-region evidence is deliberately
 narrow: the U-Net leads frozen GeoFMs on the full 30-transfer matrix, and the
 frozen-over-FT result is limited to the exploratory non-Kenya subset.

@@ -26,7 +26,7 @@ decoder, and the same 80-epoch schedule.
 - Label and baseline choice both change the apparent GeoFM advantage on the
   same evaluation pixels.
 - Frozen-decoder and full fine-tuning are TOST-equivalent within 0.02 AUROC in
-  9 of 12 in-region region-by-model cells. Kenya is the consistent
+  9 of 12 model-by-region cells under in-region evaluation. Kenya is the consistent
   sparse-positive exception; TerraMind India is non-equivalent in the
   frozen-favored direction.
 - A from-scratch U-Net has the highest mean AUROC on the confirmatory full
@@ -114,10 +114,18 @@ python scripts/build_ftw_index.py --country "$C" --limit 800 \
 bash scripts/run_ftw_country.sh "$C"
 python scripts/ftw_export_split.py --country "$C"
 python scripts/ftw_controlled_label_comparison.py --country "$C"
-python scripts/ftw_unet_baseline.py --robust "$C"
-python scripts/ftw_finetune_fm.py --model prithvi --freeze backbone "$C"
-python scripts/ftw_finetune_fm.py --model prithvi "$C"
+python scripts/ftw_unet_baseline.py --robust \
+  --output "outputs/ftw_unet_${C}.json" "$C"
+python scripts/ftw_finetune_fm.py --model prithvi --freeze backbone \
+  --output "outputs/ftw_prithvi_${C}_frozen_decoder.json" "$C"
+python scripts/ftw_finetune_fm.py --model prithvi --freeze none \
+  --output "outputs/ftw_prithvi_${C}_full_finetune.json" "$C"
 ```
+
+The explicit output paths keep quickstart runs separate from the checksummed
+release results. Use `--eval-all-regions` to evaluate each trained source model
+on all six canonical target regions; the exact headline-grid loops are in
+[ARTIFACT.md](ARTIFACT.md).
 
 See [ARTIFACT.md](ARTIFACT.md) and
 [docs/FTW_REPRODUCE.md](docs/FTW_REPRODUCE.md) for the full workflow,

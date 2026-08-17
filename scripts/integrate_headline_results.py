@@ -36,14 +36,14 @@ T_CRIT_9 = 2.2621571627409915
 
 
 def mean(xs: list[float]) -> float:
-    return sum(xs) / len(xs)
+    return math.fsum(xs) / len(xs)
 
 
 def stdev(xs: list[float]) -> float:
     if len(xs) < 2:
         return 0.0
     mu = mean(xs)
-    return math.sqrt(sum((x - mu) ** 2 for x in xs) / (len(xs) - 1))
+    return math.sqrt(math.fsum((x - mu) ** 2 for x in xs) / (len(xs) - 1))
 
 
 def tcrit(df: int) -> float:
@@ -190,7 +190,7 @@ def inregion(fm: dict[tuple[str, str, str, str, int], dict[str, float]]) -> dict
         for region in REGIONS:
             frozen = [fm[(model, "backbone", region, region, seed)]["auroc"] for seed in SEEDS]
             fullft = [fm[(model, "none", region, region, seed)]["auroc"] for seed in SEEDS]
-            deltas = [a - b for a, b in zip(frozen, fullft)]
+            deltas = [a - b for a, b in zip(frozen, fullft, strict=True)]
             lo, hi = ci95(deltas)
             delta_mean = mean(deltas)
             delta_sd = stdev(deltas)
@@ -218,7 +218,7 @@ def inregion(fm: dict[tuple[str, str, str, str, int], dict[str, float]]) -> dict
         out["models"][model] = model_out
 
     adjusted = [canonical_pvalue(value) for value in holm_adjust([p for _, _, p in ordered])]
-    for (model, region, _), adj in zip(ordered, adjusted):
+    for (model, region, _), adj in zip(ordered, adjusted, strict=True):
         cell = out["models"][model]["regions"][region]
         cell["tost_p_value_holm"] = adj
         cell["tost_p_value_holm_display"] = round(adj, 6)
