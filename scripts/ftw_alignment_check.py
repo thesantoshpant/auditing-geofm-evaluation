@@ -23,7 +23,8 @@ def main() -> int:
             "FTW alignment summary: canonical inputs and split metadata for the released "
             "evaluation. Per-pixel test labels are rasterized from the FTW polygons referenced "
             "here in each chip's local UTM CRS (scripts/ftw_to_polygons.py + the FTW pipeline), "
-            "and were verified at 100% label-imagery alignment (paper appendix)."
+            "and direct raster checks verified label-to-image alignment in all six regions "
+            "(paper Appendix A)."
         ),
         "method": (
             "For each region: load the FTW polygon parquet, the canonical chip-grouped split "
@@ -59,7 +60,9 @@ def main() -> int:
         if "area_m2" in df.columns:
             rec["total_polygon_area_m2"] = int(df["area_m2"].sum())
         out["regions"][c] = rec
-    Path("data/results/ftw_alignment_summary.json").write_text(json.dumps(out, indent=2))
+    Path("data/results/ftw_alignment_summary.json").write_text(
+        json.dumps(out, indent=2) + "\n", encoding="utf-8", newline="\n"
+    )
     print(json.dumps({c: {"n_poly": v.get("n_polygons"), "n_test_px": v.get("n_test_pixels")}
                        for c, v in out["regions"].items()}, indent=2))
     return 0

@@ -1,5 +1,5 @@
 {
-  "description": "FTW alignment summary: canonical inputs and split metadata for the released evaluation. Per-pixel test labels are rasterized from the FTW polygons referenced here in each chip's local UTM CRS (scripts/ftw_to_polygons.py + the FTW pipeline), and were verified at 100% label-imagery alignment (paper appendix).",
+  "description": "FTW alignment summary: canonical inputs and split metadata for the released evaluation. Per-pixel test labels are rasterized from the FTW polygons referenced here in each chip's local UTM CRS (scripts/ftw_to_polygons.py + the FTW pipeline), and direct raster checks verified label-to-image alignment in all six regions (paper Appendix A).",
   "method": "For each region: load the FTW polygon parquet, the canonical chip-grouped split JSON, and compute SHA-256 of each. Per-pixel polygon membership equals the stored test label by construction (deterministic rasterization). Reviewers can regenerate by running scripts/prep_ftw_country.sh + scripts/ftw_export_split.py against the same FTW source release.",
   "canonical_split": {
     "seed": 20260514,
