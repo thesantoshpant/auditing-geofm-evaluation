@@ -31,6 +31,7 @@
     "https://creativecommons.org/licenses/by/4.0/"
   ],
   "url": "https://github.com/thesantoshpant/auditing-geofm-evaluation",
+  "identifier": "https://doi.org/10.5281/zenodo.21993508",
   "citation": "Santosh Pant. Auditing GeoFM Evaluation for Field-Extent Segmentation: Label Proxies, Baselines, and When Frozen Features Match Fine-tuning. Transactions on Machine Learning Research, 2026. https://openreview.net/forum?id=qRXVTe1yYp",
   "creator": {
     "@type": "sc:Person",
@@ -38,8 +39,8 @@
     "email": "pantsantosh23@gmail.com",
     "affiliation": "Knox College"
   },
-  "datePublished": "2026-08-14",
-  "dateModified": "2026-08-14",
+  "datePublished": "2026-08-18",
+  "dateModified": "2026-08-18",
   "keywords": [
     "geospatial foundation models",
     "evaluation",

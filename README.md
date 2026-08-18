@@ -1,11 +1,14 @@
 # Auditing GeoFM Evaluation for Field-Extent Segmentation
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21993508.svg)](https://doi.org/10.5281/zenodo.21993508)
+
 Code and results for the TMLR paper **"Auditing GeoFM Evaluation for
 Field-Extent Segmentation: Label Proxies, Baselines, and When Frozen Features
 Match Fine-tuning."**
 
 - Paper and review record: <https://openreview.net/forum?id=qRXVTe1yYp>
 - Repository: <https://github.com/thesantoshpant/auditing-geofm-evaluation>
+- Archived artifact (v1.0.0): <https://doi.org/10.5281/zenodo.21993508>
 
 ## What the study tests
 
@@ -168,5 +171,20 @@ python -m pytest
   journal = {Transactions on Machine Learning Research},
   year    = {2026},
   url     = {https://openreview.net/forum?id=qRXVTe1yYp}
+}
+```
+
+The archived software artifact can be cited separately:
+
+```bibtex
+@software{pant2026auditing_artifact,
+  title     = {Auditing GeoFM Evaluation for Field-Extent Segmentation:
+               Label Proxies, Baselines, and When Frozen Features Match Fine-tuning},
+  author    = {Pant, Santosh},
+  year      = {2026},
+  version   = {1.0.0},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.21993508},
+  url       = {https://doi.org/10.5281/zenodo.21993508}
 }
 ```
